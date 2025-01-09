@@ -34,6 +34,13 @@ class Signup(forms.Form):
                             }
                         ))
     
+    username=forms.CharField(max_length=50, label="Nom d'Utilisateur",
+                            widget=forms.TextInput(
+                                attrs={
+                                    "class":"form-control"
+                                }
+                            ))
+    
     adress=forms.CharField(max_length=50, label="Votre Adress", 
                         widget=forms.TextInput(
                             attrs={

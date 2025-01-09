@@ -1,3 +1,32 @@
+{% extends "base.html" %}
 {% block content %}
 
-{% endblock %}
+<div class="mt-2">
+  <h3 class="text-center">Sign Up</h3>
+  <div class="container">
+    <div class="row">
+      <div class="card col-md-5 col-auto m-auto">
+        <form action="{% url 'signup' %}" method="post">
+          {% csrf_token %}
+          
+          <div class="form-groupl-1">
+            {{ form.as_p }}
+          </div>
+
+          <div class="d-grip gap-2">
+            <button type="submit" class="btn btn-dark">Creer</button>
+          </div>
+
+          <div class="text-center pb-3">
+            Avez-vous un compt ? <a href="{% url 'login' %}">Login</a>
+          </div>
+        
+        </form> 
+      </div>
+      {% endblock %}
+    </div>
+  </div>
+</div>
+
+
+

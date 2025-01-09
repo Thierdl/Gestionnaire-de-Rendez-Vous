@@ -13,6 +13,6 @@ route.register('patient', PatientViewSet, basename='patient')
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('index/',include('appointement.urls')),
-    path('account/', include('account.urls')),
+    path('', include('account.urls')),
     path('api/', include(route.urls)),
 ]
