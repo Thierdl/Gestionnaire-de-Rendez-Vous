@@ -1,28 +1,19 @@
-from rest_framework.viewsets import ModelViewSet
 
-from .serializers import AppointementSerializer, PatientSerializer
-from .models import Appointement, Patient
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from .import forms
+from django.contrib.auth import authenticate, login
+from django.contrib.auth.models import  User
+
 
 
 def index_views(request):
     return render(request,'page/index.html')
 
-def signup_views(request):
-    return render(request, 'account/signup.html')
+def add_appointement(request):
+    return
 
+def update_appointement(request):
+    return
 
-class AppointementViewSet(ModelViewSet):
-    serializer_class=AppointementSerializer
-
-    def get_queryset(self):
-        queryset=Appointement.objects.all()
-        return queryset
-
-
-class PatientViewSet(ModelViewSet):
-    serializer_class=PatientSerializer
-
-    def  get_queryset(self):
-        queryset=Patient.objects.all()
-        return queryset
+def delete_appointement(request):
+    return
