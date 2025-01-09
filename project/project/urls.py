@@ -2,8 +2,9 @@
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers
-from appointement.views import AppointementViewSet, PatientViewSet
-from appointement.views import index_views
+from api.views import AppointementViewSet, PatientViewSet
+
+
 
 route=routers.SimpleRouter()
 route.register('appointement',AppointementViewSet, basename='appointement')

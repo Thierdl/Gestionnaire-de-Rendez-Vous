@@ -16,8 +16,6 @@ DATABASES={
 }
 
 
-SECRET_KEY = 'django-insecure-y-b32e^v29xvflwf)ewox7wz=d=)^o(-duhgy!tr4_(dkc60^#'
-
 
 DEBUG = True
 
