@@ -1,9 +1,11 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib.auth.decorators import login_required
 from .import models
 # Create your views here.
 
 def patient_view(request):
-    return render()
+    pativ=models.Patient.objects.all()
+    return render(request, "page/patiview.html", {'pativ':pativ})
 
 def addpatient(request):
     if request.method=="POST":        
@@ -22,11 +24,12 @@ def addpatient(request):
         )
 
         patient.save()
-        return redirect("test")
+        return redirect("pative")
     
     return render(request, "patient/addpatient.html")
 
-def update(request):
+
+def update_patient(request):
     patient=get_object_or_404(models.Patient)
     if request.method=="POST":
 
@@ -42,10 +45,10 @@ def update(request):
         patient.adress=adress
         patient.phone=phone
 
-        patient.delete()
-        return redirect()
+        patient.save()
+        return redirect("test")
 
-    return render(request)
+    return render(request, "patient/updatepat.html", {'patient':patient})
 
 def delete(request):
     return render()

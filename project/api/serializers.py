@@ -1,5 +1,6 @@
 from rest_framework.serializers import ModelSerializer
-from appointement.models import Appointement, Patient
+from appointement.models import Appointement
+from patient.models import Patient
 
 class AppointementSerializer(ModelSerializer):
     class Meta():

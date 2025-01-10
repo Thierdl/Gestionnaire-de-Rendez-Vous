@@ -14,8 +14,8 @@ route.register('patient', PatientViewSet, basename='patient')
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include(route.urls)),
-    path('',include('appointement.urls')),
-    path('', include("patient.urls")),
+    path('appoit/',include('appointement.urls')),
+    path('pat/', include("patient.urls")),
     path('', include('account.urls')),
    
 ]

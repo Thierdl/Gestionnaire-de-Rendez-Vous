@@ -1,0 +1,17 @@
+{% block content %}
+
+<div>
+    <h5>La liste des Pattients</h5>
+    {% for p in pativ %}
+    <h4>Nom : {{ p.name }}</h4>
+    <h4>Prénom : {{ p.firstname }}</h4>
+    <h4>Age : {{ p.age }} ans</h4>
+    <h4>Agresse : {{ p.adress }}</h4>
+    <h4>Lieu : {{ p.phone }}</h4>
+    <p>----------------------------------------</p>
+    {% endfor %}
+    
+    <p> </p>
+</div>
+
+{% endblock %}

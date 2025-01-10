@@ -1,6 +1,8 @@
 from rest_framework.viewsets import ModelViewSet
 from .serializers import AppointementSerializer, PatientSerializer
-from appointement.models import Appointement, Patient
+from appointement.models import Appointement
+from patient.models import Patient
+
 
 class AppointementViewSet(ModelViewSet):
     serializer_class=AppointementSerializer
