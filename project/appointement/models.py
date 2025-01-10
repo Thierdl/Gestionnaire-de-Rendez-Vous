@@ -5,7 +5,7 @@ class Patient(models.Model):
     firstname=models.CharField(max_length=50)
     age=models.IntegerField()
     adress=models.CharField(max_length=55)
-    phone=models.IntegerField()
+    phone=models.IntegerField(int)
 
     def __str__(self):
         return self.name

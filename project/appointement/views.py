@@ -57,23 +57,24 @@ def update_appointement(request):
 def delete_appointement(request):
     return render()
 
-def add_patient(request):
+
+def addpatient(request):
     if request.method=="POST":        
         name=request.POST.get("name")
         firstname=request.POST.get("firstname")
         age=request.POST.get("age")
         adress=request.POST.get("adress")
-        phone=request.POST.get("phonbe")
+        phone=request.POST.get("phone")
 
         patient=models.Patient.objects.create(
-            nama=name,
+            name=name,
             firstname=firstname,
             age=age,
             adress=adress,
-            phone=phone
+            phone=phone,
         )
 
         patient.save()
         return redirect("test")
     
-    return render(request,"patient/add_patient.html")
+    return render(request, "patient/addpatient.html")
