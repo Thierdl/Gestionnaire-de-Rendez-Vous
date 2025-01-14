@@ -1,77 +1,29 @@
 {% extends 'base.html' %}
 {% block content %}
-
-<table class="table table-striped table-hover">
-    <thead>
-        
-      <tr>
-        <th scope="col">First</th>
-        <th scope="col">Last</th>
-        <th scope="col">Handle</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <th scope="row">1</th>
-        <td>Mark</td>
-        <td>Otto</td>
-        <td>@mdo</td>
-      </tr>
-      <tr>
-        <th scope="row">2</th>
-        <td>Jacob</td>
-        <td>Thornton</td>
-        <td>@fat</td>
-      </tr>
-      <tr>
-        <th scope="row">3</th>
-        <td colspan="2">Larry the Bird</td>
-        <td>@twitter</td>
-      </tr>
-    </tbody>
-  
-  </table>
-
-
-
-  <table class="table table-striped table-hover">
+<h1>Mes Patient</h1>
+  <table class="table">
     <thead>
       <tr>
         <th></th>
         <th>Nom</th>
-        <th>Date</th>
-        <th>Heure</th>
+        <th>Prénom</th>
+        <th>Profil</th>
       </tr>
     </thead>
+
     <tbody>
+        {% for pa in pativ %}
       <tr>
         <td><i class="fas fa-user"></i></td>
-        <td>Moussa Ba</td>
-        <td>29:01:2025</td>
-        <td>09h00</td>
+        <td> {{pa.firstname}} </td>
+        <td>{{pa.name}}</td>
+        <td>
+          <button type="button" class="btn btn-info">Info</button>
+        </td>
       </tr>
-      <tr>
-        <td><i class="fas fa-users"></i></td>
-        <td>Equipe Karala</td>
-        <td>29:01:2025</td>
-        <td>08h00</td>
-      </tr>
-      </tbody>
+    </tbody>
+    {% endfor %}
   </table>
 
+
 {% endblock %}
-
-
-<div>
-    <h5>La liste des Pattients</h5>
-    {% for p in pativ %}
-    <h4>Nom : {{ p.name }}</h4>
-    <h4>Prénom : {{ p.firstname }}</h4>
-    <h4>Age : {{ p.age }} ans</h4>
-    <h4>Agresse : {{ p.adress }}</h4>
-    <h4>Lieu : {{ p.phone }}</h4>
-    <p>----------------------------------------</p>
-    {% endfor %}
-    
-    <p> </p>
-</div>
