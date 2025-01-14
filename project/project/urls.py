@@ -4,6 +4,7 @@ from django.urls import path, include
 from rest_framework import routers
 from api.views import AppointementViewSet, PatientViewSet
 
+from django.conf import settings
 
 
 route=routers.SimpleRouter()
@@ -19,3 +20,11 @@ urlpatterns = [
     path('', include('account.urls')),
    
 ]
+
+
+
+if settings.DEBUG:
+    import debug_toolbar
+    urlpatterns += [
+        path('__debug__/', include(debug_toolbar.urls)),
+    ]

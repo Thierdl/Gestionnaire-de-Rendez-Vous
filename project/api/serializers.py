@@ -9,6 +9,6 @@ class AppointementSerializer(ModelSerializer):
 
 
 class PatientSerializer(ModelSerializer):
-    class Met():
+    class Meta():
         model=Patient
         fields='__all__'

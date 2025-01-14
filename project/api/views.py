@@ -11,9 +11,6 @@ class AppointementViewSet(ModelViewSet):
         queryset=Appointement.objects.all()
         return queryset
     
-    def get_queryset(self):
-        queryset=Patient.object.all()
-        return queryset
     
 class PatientViewSet(ModelViewSet):
     serializer_class=PatientSerializer
