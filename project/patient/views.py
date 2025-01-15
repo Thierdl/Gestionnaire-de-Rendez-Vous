@@ -27,6 +27,7 @@ def addpatient(request):
         return redirect("pative")
     
     return render(request, "patient/addpatient.html")
+    
 
 
 def update_patient(request):

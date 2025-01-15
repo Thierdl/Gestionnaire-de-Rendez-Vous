@@ -12,7 +12,8 @@ def testhtml(request):
 
 
 def index_views(request):
-    return render(request,'page/index.html')
+    appoi=models.Appointement.objects.all()
+    return render(request,'page/index.html',{"appoi":appoi})
 
 def appointement_views(request):
     #date

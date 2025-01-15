@@ -1,96 +1,163 @@
 {% extends 'base.html' %}
 {% block content %}
 
-{% include 'partiels/navbar.html' %}
+
+	<div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar -->
+            <nav class="col-3 col-md-2 sidebar d-none d-md-block">
+                <h5 class="text-center text-light">Admin Panel</h5>
+                <a href="#">Dashboard</a>
+                <a href="#">Mes Rendez-Vous</a>
+                <a href="#">Mes Patients</a>
+                <a href="#">Mon Compt</a>
+            </nav>
+            <!-- Main Content -->
+            <main class="col-12 col-md-10 ms-sm-auto content">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light mb-3">
+                    <div class="container-fluid">
+                        <a class="navbar-brand" href="#">Dashboard</a>
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarNav">
+                            <ul class="navbar-nav ms-auto">
+                                <li class="nav-item"><a class="nav-link" href="#">Profile</a></li>
+                                <li class="nav-item"><a class="nav-link" href="#">Notifications</a></li>
+                                <li class="nav-item"><a class="nav-link" href="#">Logout</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+
+                <!-- Dashboard Widgets -->
+                <div class="row">
+                    <div class="col-md-4 mt-2">
+                        <div class="card text-white bg-primary">
+                            <div class="card-body">
+                                <h5 class="card-title">Total Users</h5>
+                                <p class="card-text">1,234</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mt-2">
+                        <div class="card text-white bg-success">
+                            <div class="card-body">
+                                <h5 class="card-title">Monthly Sales</h5>
+                                <p class="card-text">$12,345</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mt-2">
+                        <div class="card text-white bg-warning">
+                            <div class="card-body">
+                                <h5 class="card-title">Pending Orders</h5>
+                                <p class="card-text">56</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Data Table -->
+                <div class="card mt-5">
+                    <div class="card-body">
+                        <h5 class="card-title">Mes Rendez-Vous</h5>
+                        <table class="table table-striped table-responsive">
+                            <thead>
+                                <tr>
+                                    <th>Titre</th>
+                                    <th>Patient</th>
+                                    <th>Date</th>
+									<th>Heure</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+								{% for a in appoi %}
+                                <tr>
+                                    <td>{{a.title}}</td>
+									<td>{{a.patient}}</td>
+                                    <td>{{a.date}}</td>
+									<td>{{a.time}}</td>
+                                </tr>
+								{% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+{% endblock %}
+
+
+
+<!--{% include 'partiels/navbar.html' %}-->
+
+
+
 
 <div>
-	<div>
-		<div>
-			<h1>Rendes Vous</h1>
-			<p>
-			Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-			Voluptates aliquam praesentium odit quas repellat veritatis
-			rem sed vero nisi? Reprehenderit ad deleniti harum tenetur 
-			beatae impedit velit inventore ex minima?
+<div class="col-md-3 col-lg-2 p-3 bg-primary pb-5 mb-5"
+	<h1 class="text-center">LOGO</h1>
+</div>
+
+<div class="container-fluid">
+    <div class="row">
+      <!-- Sidebar -->
+      <div class="col-md-3 col-lg-2 p-3 bg-primary position-fixed">
+        <h4 class="text-center text-white">Menu</h4>
+        <ul class="nav flex-column">
+          <li class="nav-item">
+            <a class="nav-link text-white" href="#">Accueil</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="#">Mes Rendez-Vous</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="#">Mes Patients</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="#">Mon Compt</a>
+          </li>
+        </ul>
+    	</div>
+	</div>
+
+	<main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4 ">
+		<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+			<h1 class="h2">Mes Patients</h1>
+		</div>
+
+		<div class="row">
 			
-			</p>
+			<h1></h1>
+			<table class="table">
+				<thead>
+				<tr>
+					<th></th>
+					<th>Nom</th>
+					<th>Prénom</th>
+					<th>Profil</th>
+				</tr>
+				</thead>
+
+				<tbody>
+					{% for pa in pativ %}
+				<tr>
+					<td><i class="fas fa-user"></i></td>
+					<td> {{pa.firstname}} </td>
+					<td>{{pa.name}}</td>
+					<td>
+					<button type="button" class="btn btn-info">Info</button>
+					</td>
+				</tr>
+				</tbody>
+				{% endfor %}
+			</table>	
+
 		</div>
-
-		<div>
-				<button class="">Commencer</button>
-		</div>
-
+	</main>
 	</div>
 </div>
 
-<div class="container-fluid ">
-	<div class="row">
-		<ul>
-			<li>tetetet</li>
-		</ul>
-	</div>
-</div>
-
-<div class="container-fluid ">
-	<div class="row">
-		<!-- Menu Latéral -->
-		<nav class="col-md-2 d-none d-md-block bg-light sidebar rounded-3 shadow-sm p-3 mb-5 bg-body ">
-			<div class="sidebar-sticky">
-				<ul class="nav flex-column">
-					<li class="nav-item">
-						<a class="nav-link active" href="#">
-							Dashboard
-						</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="#">
-							Mes Rendez-Vous
-						</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="#">
-							Paramètres
-						</a>
-					</li>
-				</ul>
-			</div>
-		</nav>
-
-		<!-- Contenu Principal -->
-		<main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4 ">
-			<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-				<h1 class="h2">Mes Patients</h1>
-			</div>
-
-			<div class="row">
-				
-				<h1></h1>
-				<table class="table">
-					<thead>
-					<tr>
-						<th></th>
-						<th>Nom</th>
-						<th>Prénom</th>
-						<th>Profil</th>
-					</tr>
-					</thead>
-
-					<tbody>
-						{% for pa in pativ %}
-					<tr>
-						<td><i class="fas fa-user"></i></td>
-						<td> {{pa.firstname}} </td>
-						<td>{{pa.name}}</td>
-						<td>
-						<button type="button" class="btn btn-info">Info</button>
-						</td>
-					</tr>
-					</tbody>
-					{% endfor %}
-				</table>	
-
-			</div>
-		</main>
-	</div>
-</div>
-{% endblock %}
