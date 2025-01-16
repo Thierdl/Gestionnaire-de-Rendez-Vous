@@ -5,26 +5,31 @@
 
 {% include 'partiels/navbar.html' %}
 
-<div class="des1">
-	<div class="container mt-5">
-		<h1>RENDEZ-VOUS</h1>
-		<P>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-			Optio ab voluptate quod perferendis necessitatibus vel 
-			cum vero delectus eos reprehenderit reiciendis quia, porro 
-			illum cumque quae ducimus praesentium asperiores aliquam.
-		</P>
-		<P>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-			Optio ab voluptate quod perferendis necessitatibus vel 
-			cum vero delectus eos reprehenderit reiciendis quia, porro 
-			illum cumque quae ducimus praesentium asperiores aliquam.
-		</P>
+<div class="container">
+    <div class="row">
+       
+        <div class="col-12 col-md-6">
+            <h1 class="text-center mt-5 pt-5">RENDEZ-VOUS</h1>
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Optio ab voluptate quod perferendis necessitatibus vel 
+                cum vero delectus eos reprehenderit reiciendis quia, porro 
+                illum cumque quae ducimus praesentium asperiores aliquam.
+            </p>
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Optio ab voluptate quod perferendis necessitatibus vel 
+                cum vero delectus eos reprehenderit reiciendis quia, porro 
+                illum cumque quae ducimus praesentium asperiores aliquam.
+            </p>
+            <button type="button" class="btn btn-info">Commencer</button>
+        </div>
 
-		<button class="button" href="" >commencer</button>
-	</div>
+        <div class="col-12 col-md-6">
+            <img src="{% static 'image/imageindex.png' %}" class="img-fluid" alt="image">
+        </div>
+    </div>
+</div>
 
-	<div>
-		<img src="{% static 'image/imageindex.png'%}" class="img-fluid" alt="image" width="800">
-	</div>
-		
 </div>
 {% endblock %}
