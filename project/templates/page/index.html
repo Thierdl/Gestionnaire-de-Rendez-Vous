@@ -8,28 +8,38 @@
 <div class="container">
     <div class="row">
        
+        <!--div1-->
         <div class="col-12 col-md-6">
-            <h1 class="text-center mt-5 pt-5">RENDEZ-VOUS</h1>
-            <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Optio ab voluptate quod perferendis necessitatibus vel 
-                cum vero delectus eos reprehenderit reiciendis quia, porro 
-                illum cumque quae ducimus praesentium asperiores aliquam.
-            </p>
-            <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Optio ab voluptate quod perferendis necessitatibus vel 
-                cum vero delectus eos reprehenderit reiciendis quia, porro 
-                illum cumque quae ducimus praesentium asperiores aliquam.
-            </p>
-            <button type="button" class="btn btn-info">Commencer</button>
+            <div>
+                <h1 class="text-center mt-5 pt-5">RENDEZ-VOUS</h1>
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Optio ab voluptate quod perferendis necessitatibus vel 
+                    cum vero delectus eos reprehenderit reiciendis quia, porro 
+                    illum cumque quae ducimus praesentium asperiores aliquam.
+                </p>
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Optio ab voluptate quod perferendis necessitatibus vel 
+                    cum vero delectus eos reprehenderit reiciendis quia, porro 
+                    illum cumque quae ducimus praesentium asperiores aliquam.
+                </p>
+            </div>
+
+            <div class="d-grid gap-2">
+                <button class="btn btn-primary" type="button">
+                    <a href="{% url  'login' %}">Commencer</a>
+                </button>
+            </div>
         </div>
 
+        
+        <!--div2-->
         <div class="col-12 col-md-6">
             <img src="{% static 'image/imageindex.png' %}" class="img-fluid" alt="image">
         </div>
     </div>
 </div>
 
-</div>
+
 {% endblock %}

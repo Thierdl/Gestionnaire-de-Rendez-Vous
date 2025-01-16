@@ -56,6 +56,9 @@ INTERNAL_IPS = [
 
 ROOT_URLCONF = 'project.urls'
 
+LOGIN_REDIRECT_URL='/appoit/board' 
+
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',

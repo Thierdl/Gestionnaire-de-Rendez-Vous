@@ -4,6 +4,7 @@ from django.conf.urls.static import static
 from django.urls import path, include
 from rest_framework import routers
 from api.views import AppointementViewSet, PatientViewSet
+from django.contrib.auth import views as auth_views
 
 from django.conf import settings
 
@@ -18,7 +19,12 @@ urlpatterns = [
     path('api/', include(route.urls)),
     path('appoit/',include('appointement.urls')),
     path('pat/', include("patient.urls")),
-    path('', include('account.urls')),
+    path('account/', include('account.urls')),
+
+
+    path('login/', auth_views.LoginView.as_view(template_name='account/login.html'), name='login'),
+    #path('logout/', auth_views.LogoutView.as_view(next_page='page1'), name='logout'),
+
    
 ]
 
@@ -31,10 +37,12 @@ if settings.DEBUG:
 
 
 
+
 if settings.DEBUG:
     import debug_toolbar
     urlpatterns += [
         path('__debug__/', include(debug_toolbar.urls)),
     ]
+
 
 

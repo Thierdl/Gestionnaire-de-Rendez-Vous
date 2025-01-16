@@ -8,8 +8,7 @@ body {
 
 .row {
     display: flex;
-    align-content: center;
-    
+    align-content: center;    
 }
 
 .sidebar {
