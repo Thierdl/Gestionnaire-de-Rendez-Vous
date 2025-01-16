@@ -1,16 +1,17 @@
+
 {% extends 'base.html' %}
 {% block content %}
 
-
 <div class="container-fluid">
 	<div class="row">
-		<nav class="col-3 col-md-2 sidebar d-md-block d-none bg-primary mt-5" >
+		
+		<nav class="col-2 col-md-2 sidebar d-md-block d-none mt-5" >
 			<h4 class="text-center text-white">Dashboard</h4>
-			<a href="#">Home</a>
-			<a href="#">Profile</a>
-			<a href="#">Settings</a>
-			<a href="#">Reports</a>
-			<a href="#">Logout</a>
+			<a href="#">Accueil</a>
+			<a href="#">Mes Rendez-Vous</a>
+			<a href="#">Mes Patients</a>
+			<a href="#">Mon Compte</a>
+			
 		</nav>
 	
 		<main class="col-12 col-md-10 ms-sm-auto content">
@@ -29,26 +30,65 @@
 					</div>
 				</div>
 			</nav>
+			
+
+
 
 			<!-- Dashboard Widgets -->
 			<div class="row">
-				<div class="col-md-4 mt-2">
+				<div class="col-md-5 mt-3">
 					<div class="card text-white bg-primary">
 						<div class="card-body">
-							<h5 class="card-title">Mes Rendez-Vous</h5>
-							<p class="card-text">34</p>
+							<h5 class="card-title text-center">Mes Rendez-Vous</h5>
+							<p class="card-text">
+								<h1 class="text-center">34</h1>
+							</p>
 						</div>
 					</div>
 				</div>
-				<div class="col-md-4 mt-2" >
+				<div class="col-md-5 mt-3" >
 					<div class="card text-white bg-success">
 						<div class="card-body">
-							<h5 class="card-title">Mes patients</h5>
-							<p class="card-text">12</p>
+							<h5 class="card-title">Mes Patients</h5>
+							<p class="card-text">
+								<h1 class="text-center">14</h1>
+							</p>
 						</div>
 					</div>
 				</div>
+				
 			</div>
+
+
+			<div class="mt-5">
+				<h3 class="text-center">Bienvenu Docteur</h3>
+				<p>
+					Lorem ipsum dolor sit amet consectetur adipisicing elit.
+					 Perferendis maxime placeat voluptatibus, voluptatem, 
+					 ullam iusto laborum illum et est repellat dolor adipisci 
+					 ipsam, deserunt tempora similique suscipit. Nulla, dolores 
+					 excepturi?
+				</p>
+
+				<p>
+					Lorem ipsum dolor sit amet consectetur adipisicing elit.
+					 Perferendis maxime placeat voluptatibus, voluptatem, 
+					 ullam iusto laborum illum et est repellat dolor adipisci 
+					 ipsam, deserunt tempora similique suscipit. Nulla, dolores 
+					 excepturi?
+				</p>
+				<p>
+					Lorem ipsum dolor sit amet consectetur adipisicing elit.
+					 Perferendis maxime placeat voluptatibus, voluptatem, 
+					 ullam iusto laborum illum et est repellat dolor adipisci 
+					 ipsam, deserunt tempora similique suscipit. Nulla, dolores 
+					 excepturi?
+				</p>
+			</div>
+		</main>
+	</div>
+</div>
+{% endblock %}
 
 			<!-- Data Table -->
 			<div class="card mt-5">
@@ -80,4 +120,18 @@
 	</div>
 </div>
 
-{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
