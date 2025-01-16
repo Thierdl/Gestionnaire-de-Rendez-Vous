@@ -1,137 +1,30 @@
+{% extends "base.html" %}
 
-{% extends 'base.html' %}
+{% load static %}
 {% block content %}
 
-<div class="container-fluid">
-	<div class="row">
-		
-		<nav class="col-2 col-md-2 sidebar d-md-block d-none mt-5" >
-			<h4 class="text-center text-white">Dashboard</h4>
-			<a href="#">Accueil</a>
-			<a href="#">Mes Rendez-Vous</a>
-			<a href="#">Mes Patients</a>
-			<a href="#">Mon Compte</a>
-			
-		</nav>
-	
-		<main class="col-12 col-md-10 ms-sm-auto content">
-			<nav class="navbar navbar-expand-lg navbar-light bg-light mb-3">
-				<div class="container-fluid">
-					<a class="navbar-brand" href="#">Dashboard</a>
-					<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-						<span class="navbar-toggler-icon"></span>
-					</button>
-					<div class="collapse navbar-collapse" id="navbarNav">
-						<ul class="navbar-nav ms-auto">
-							<li class="nav-item"><a class="nav-link" href="#">Profile</a></li>
-							<li class="nav-item"><a class="nav-link" href="#">Notifications</a></li>
-							<li class="nav-item"><a class="nav-link" href="#">Logout</a></li>
-						</ul>
-					</div>
-				</div>
-			</nav>
-			
+{% include 'partiels/navbar.html' %}
 
+<div class="des1">
+	<div class="container mt-5">
+		<h1>RENDEZ-VOUS</h1>
+		<P>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+			Optio ab voluptate quod perferendis necessitatibus vel 
+			cum vero delectus eos reprehenderit reiciendis quia, porro 
+			illum cumque quae ducimus praesentium asperiores aliquam.
+		</P>
+		<P>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+			Optio ab voluptate quod perferendis necessitatibus vel 
+			cum vero delectus eos reprehenderit reiciendis quia, porro 
+			illum cumque quae ducimus praesentium asperiores aliquam.
+		</P>
 
-
-			<!-- Dashboard Widgets -->
-			<div class="row">
-				<div class="col-md-5 mt-3">
-					<div class="card text-white bg-primary">
-						<div class="card-body">
-							<h5 class="card-title text-center">Mes Rendez-Vous</h5>
-							<p class="card-text">
-								<h1 class="text-center">34</h1>
-							</p>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-5 mt-3" >
-					<div class="card text-white bg-success">
-						<div class="card-body">
-							<h5 class="card-title">Mes Patients</h5>
-							<p class="card-text">
-								<h1 class="text-center">14</h1>
-							</p>
-						</div>
-					</div>
-				</div>
-				
-			</div>
-
-
-			<div class="mt-5">
-				<h3 class="text-center">Bienvenu Docteur</h3>
-				<p>
-					Lorem ipsum dolor sit amet consectetur adipisicing elit.
-					 Perferendis maxime placeat voluptatibus, voluptatem, 
-					 ullam iusto laborum illum et est repellat dolor adipisci 
-					 ipsam, deserunt tempora similique suscipit. Nulla, dolores 
-					 excepturi?
-				</p>
-
-				<p>
-					Lorem ipsum dolor sit amet consectetur adipisicing elit.
-					 Perferendis maxime placeat voluptatibus, voluptatem, 
-					 ullam iusto laborum illum et est repellat dolor adipisci 
-					 ipsam, deserunt tempora similique suscipit. Nulla, dolores 
-					 excepturi?
-				</p>
-				<p>
-					Lorem ipsum dolor sit amet consectetur adipisicing elit.
-					 Perferendis maxime placeat voluptatibus, voluptatem, 
-					 ullam iusto laborum illum et est repellat dolor adipisci 
-					 ipsam, deserunt tempora similique suscipit. Nulla, dolores 
-					 excepturi?
-				</p>
-			</div>
-		</main>
+		<button class="button" href="" >commencer</button>
 	</div>
+
+	<div>
+		<img src="{% static 'image/imageindex.png'%}" class="img-fluid" alt="image" width="800">
+	</div>
+		
 </div>
 {% endblock %}
-
-			<!-- Data Table -->
-			<div class="card mt-5">
-				<div class="card-body">
-					<h5 class="card-title">Mes Rendez-Vous</h5>
-					<table class="table table-striped table-responsive">
-						<thead>
-							<tr>
-								<th>Titre</th>
-								<th>Patient</th>
-								<th>Date</th>
-								<th>Heure</th>
-							</tr>
-						</thead>
-						<tbody>
-							{% for a in appoi %}
-							<tr>
-								<td>{{a.title}}</td>
-								<td>{{a.patient}}</td>
-								<td>{{a.date}}</td>
-								<td>{{a.time}}</td>
-							</tr>
-							{% endfor %}
-						</tbody>
-					</table>
-				</div>
-			</div>
-		</main>
-	</div>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
