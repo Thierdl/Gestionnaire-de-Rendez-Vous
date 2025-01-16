@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect
 from .import forms
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import  User
+from django.contrib.auth.decorators import login_required 
 from .import models
 
 
@@ -14,6 +15,7 @@ def testhtml(request):
 def index_views(request):
     return render(request,'page/index.html')
 
+@login_required(login_url='/login/')
 def dashboard_views(request):
     return render(request, 'page//dashboard.html')
 
