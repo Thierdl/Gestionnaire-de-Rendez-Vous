@@ -57,8 +57,7 @@ def delete_patient(request, id):
     patients=get_object_or_404(models.Patient, id=id)
 
     if request.method=="POST":
-        patients=models.Patient.objects.filter(id=patients.id)
         patients.delete()
 
         return redirect("pative")
-    return render(request, 'patient/updatepat.html', {"patients":patients})
+    return render(request, 'patient/deletepat.html', {"patients":patients})
