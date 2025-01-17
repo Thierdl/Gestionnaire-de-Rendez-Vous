@@ -4,8 +4,8 @@ from .import models
 # Create your views here.
 
 def patient_view(request):
-    pativ=models.Patient.objects.all()
-    return render(request, "page/patiview.html", {'pativ':pativ})
+    patient=models.Patient.objects.all()
+    return render(request, "page/patiview.html", {'patient':patient})
 
 def addpatient(request):
     if request.method=="POST":        
@@ -30,8 +30,8 @@ def addpatient(request):
     
 
 
-def update_patient(request):
-    patient=get_object_or_404(models.Patient)
+def update_patient(request, id):
+    patient=get_object_or_404(models.Patient, id=id)
     if request.method=="POST":
 
         name=request.POST.get("name")
@@ -51,5 +51,14 @@ def update_patient(request):
 
     return render(request, "patient/updatepat.html", {'patient':patient})
 
-def delete(request):
-    return render()
+
+
+def delete_patient(request, id):
+    patients=get_object_or_404(models.Patient, id=id)
+
+    if request.method=="POST":
+        patients=models.Patient.objects.filter(id=patients.id)
+        patients.delete()
+
+        return redirect("pative")
+    return render(request, 'patient/updatepat.html', {"patients":patients})
