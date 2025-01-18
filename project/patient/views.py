@@ -51,6 +51,8 @@ def update_patient(request, id):
 
     return render(request, "patient/updatepat.html", {'patient':patient})
 
+    
+
 
 
 def delete_patient(request, id):
@@ -60,4 +62,4 @@ def delete_patient(request, id):
         patients.delete()
 
         return redirect("pative")
-    return render(request, 'patient/deletepat.html', {"patients":patients})
+    return render(request, 'patient/deletepat.html')

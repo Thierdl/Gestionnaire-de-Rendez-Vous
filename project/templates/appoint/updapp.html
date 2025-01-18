@@ -23,25 +23,28 @@
         
         <div class="mb-3">
           <label for="date" class="form-label"></label>
-          <input type="date" class="form-control mt-3"  name="date" value="{{ appoint.date }}"></input>  
+          <input type="date" class="form-control mt-3"  name="date" value="{{ appoint.date }}" required></input>  
         </div>
 
         <div class="mb-3">
           <label for="time" class="form-label"></label>
-          <input type="time" class="form-control mt-3"  name="time" value="{{ appoint.time }}"></input>  
+          <input type="time" class="form-control mt-3"  name="time" value="{{ appoint.time }}" required></input>  
         </div>
 
         <div class="mb-3">
           <label for="place" class="form-label"></label>
           <input type="text" class="form-control mt-3" name="place" placeholder="Lieu" value="{{ appoint.place }}"></input>  
         </div>
-     
 
-        <div class="d-grid gap-2 mt-3">
-            <button type="submit" class="btn btn-dark">Enregistrer</button>
+        <div class="d-grid gap-2">
+            <button type="submit" class="btn btn-dark mt-3">Enregistrer</button>
         </div>
-      </div>
     </div>
+  </form>
+
+  <form action="{% url 'del_app' appoint.id %}" method="post" style="display:inline;" class="d-grid gap-2 mt-3">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-outline-danger">Supprimer</button>
   </form>
 </div>
 

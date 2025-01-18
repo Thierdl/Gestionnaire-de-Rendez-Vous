@@ -71,15 +71,15 @@ def update_appoint(request, id):
 
         appoint.save()
 
-        return redirect("")
+        return redirect("list_app")
     return render(request, 'appoint/updapp.html', {"appoint":appoint})
 
 
 def del_appoint(request, id):
-    appoint=get_object_or_404(models.Appointement, id=id)
+    appoints=get_object_or_404(models.Appointement, id=id)
 
     if request.method=="POST":
-        appoint.delete()
-        return redirect("")
+        appoints.delete()
+        return redirect("list_app")
     
-    return render(request, 'appoint/delapp.html', "context")
+    return render(request, 'appoint/delapp.html')
