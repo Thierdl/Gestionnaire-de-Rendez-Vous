@@ -3,37 +3,36 @@
 
 <h3 class="text-center mt-5 pt-3">Ajouter une Patient</h3>
 <div class="container mt-5">
-  <div class="col-md-5 m-auto shadow p-3 mb-5 bg-body-tertiary rounded">
-    <div class="card card-body shadow p-3 mb-5 bg-body-tertiary rounded">
+  <div class="border col-md-5 m-auto p-3 mb-5 rounded">
       <form method="POST" enctype="multipart/form-data"> {% csrf_token %}
 
         <div class="mb-3">
-          <label for="name" class="form-label">Nom</label>
-          <input type="text" class="form-control" name="name" required/>
+          <label for="name" class="form-label"></label>
+          <input type="text" class="form-control" name="name" placeholder="Nom" required/>
         </div>
 
         <div class="mb-3">
-          <label for="firstname" class="form-label">Prénom</label>
-          <input type="text" class="form-control" name="firstname" required></input>  
+          <label for="firstname" class="form-label"></label>
+          <input type="text" class="form-control" name="firstname" placeholder="Prénom" required></input>  
         </div>
 
         <div class="mb-3">
-          <label for="age">Age</label>
-          <input type="number" class="form-control" name="age" required></input>  
+          <label for="age"></label>
+          <input type="number" class="form-control" name="age" placeholder="Age" required></input>  
         </div>
 
         <div>
-            <label for="adress" class="form-label">Adress</label>
-            <input type="text" class="form-control" name="adress" required></input>  
+            <label for="adress" class="form-label"></label>
+            <input type="text" class="form-control" name="adress" placeholder="Adress" required></input>  
         </div>
 
         <div>
-            <label for="phone" class="form-label">Tel:</label>
-            <input type="number" class="form-control" name="phone" required></input>  
+            <label for="phone" class="form-label"></label>
+            <input type="number" class="form-control" name="phone" placeholder="Téléphone" required></input>  
         </div>
 
         <div class="d-grid gap-2">
-          <button type="submit" class="btn btn-outline-dark">Enregistrer</button>
+          <button type="submit" class="btn btn-dark mt-3">Enregistrer</button>
         </div>
 
       </form>

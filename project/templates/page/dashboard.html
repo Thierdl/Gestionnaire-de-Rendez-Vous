@@ -8,8 +8,8 @@
 		<nav class="col-2 col-md-2 sidebar d-md-block d-none mt-5 " >
 			<h4 class="text-center text-white">Dashboard</h4>
 			<img src="" class="rounded mx-auto d-block" alt="image">
-			<a href="#">Accueil</a>
-			<a href="#">Mes Rendez-Vous</a>
+			<a href="{% url 'index' %}">Accueil</a>
+			<a href="{% url 'list_app' %}">Mes Rendez-Vous</a>
 			<a href="{% url  'pative' %}">Mes Patients</a>
 			<a href="#">Mon Compte</a>
 			
@@ -63,31 +63,40 @@
 			</div>
 
 
-			<div class=" descript mt-5">
-				<h3 class="text-center">Bienvenu Docteur</h3>
-				<p>
-					Lorem ipsum dolor sit amet consectetur adipisicing elit.
-					 Perferendis maxime placeat voluptatibus, voluptatem, 
-					 ullam iusto laborum illum et est repellat dolor adipisci 
-					 ipsam, deserunt tempora similique suscipit. Nulla, dolores 
-					 excepturi?
-				</p>
-
-				<p>
-					Lorem ipsum dolor sit amet consectetur adipisicing elit.
-					 Perferendis maxime placeat voluptatibus, voluptatem, 
-					 ullam iusto laborum illum et est repellat dolor adipisci 
-					 ipsam, deserunt tempora similique suscipit. Nulla, dolores 
-					 excepturi?
-				</p>
-				<p>
-					Lorem ipsum dolor sit amet consectetur adipisicing elit.
-					 Perferendis maxime placeat voluptatibus, voluptatem, 
-					 ullam iusto laborum illum et est repellat dolor adipisci 
-					 ipsam, deserunt tempora similique suscipit. Nulla, dolores 
-					 excepturi?
-				</p>
-			</div>
+			<div class="col-md-7 m-auto p-3 mb-5 rounded">
+				<div>
+				  <h1>Mes Patient</h1>
+				  <a href="{% url 'addpatient' %}">add patient</a>
+				</div>
+			  
+				<table class="table">
+				  <thead>
+					<tr>
+					  <th></th>
+					  <th>Nom</th>
+					  <th>Prénom</th>
+					  <th>Profil</th>
+					</tr>
+				  </thead>
+			  
+				  <tbody>
+					
+					{% for pa in patient %}
+					<tr>
+					  <td><i class="fas fa-user"></i></td>
+					  <td> {{pa.firstname}} </td>
+					  <td>{{pa.name}}</td>
+					  <td>
+						<a href="{% url 'updatepat' pa.id %}" type="button" class="btn btn-info">Info</a>
+					  </td>
+				  
+					</tr>
+			  
+					{% endfor %}
+			  
+				  </tbody>
+				</table>
+			  </div>
 		</main>
 	</div>
 </div>

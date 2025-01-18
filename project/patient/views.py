@@ -5,7 +5,7 @@ from .import models
 
 def patient_view(request):
     patient=models.Patient.objects.all()
-    return render(request, "page/patiview.html", {'patient':patient})
+    return render(request, "page/dashboard.html", {'patient':patient})
 
 def addpatient(request):
     if request.method=="POST":        

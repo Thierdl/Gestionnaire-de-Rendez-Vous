@@ -6,12 +6,14 @@ class Login(forms.Form):
                                  attrs={
                                      "class":"form-control"
                                  }
+
                             ))
     
     password=forms.CharField(label="Votre Mot de Passe",
                              widget=forms.PasswordInput(
                                  attrs={
                                      "class":"form-control"
+
                                  }
                              )
                              )

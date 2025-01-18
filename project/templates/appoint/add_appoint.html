@@ -1,27 +1,46 @@
 {% extends "base.html" %}
 {% block content %}
-<div class="border col-md-5 m-auto p-3 mb-5 rounded">
+
+
+<div class="border col-md-5 m-auto p-3 mb-5 mt-5 ">
   <form method="POST" enctype="multipart/form-data"> {% csrf_token %}
 
-      <div class="container">
-          <div class="row">
-              <div>
-                  <h1 class="text-center">Rendez-Vous</h1>
-              </div>
+    <div class="container">
+      <div class="row">
+        <div>
+            <h1 class="text-center">Rendez-Vous</h1>
+        </div>
               
-              <div class="col">
-                  <input for="title" type="text" class="form-control mt-3" name="titre" placeholder="Titre"></input>  
-                  <input for="patient" type="text" class="form-control mt-3" name="patient" placeholder="Avec Qui ?"></input>  
-                  <input for="date" type="date" class="form-control mt-3"  name="date" placeholder="Date"></input>  
-                  <input for="time" type="time" class="form-control mt-3"  name="time" placeholder="Heure"></input>  
-                  <input for="place" type="text" class="form-control mt-3" name="place" placeholder="Lieu" ></input>  
-              </div>
+        <div class="mb-3">
+          <label for="title" class="form-label"></label>
+          <input type="text" class="form-control mt-3" name="title" placeholder="Titre"></input>  
+        </div>
 
-              <div class="d-grid gap-2 mt-3">
-                  <button type="submit" class="btn btn-dark">Enregistrer</button>
-              </div>
-          </div>
+        <div class="mb-3">
+          <label for="patient" class="form-label"></label>
+          <input type="text" class="form-control mt-3" name="patient" placeholder="Avec Qui ?"></input>  
+        </div>
+        
+        <div class="mb-3">
+          <label for="date" class="form-label"></label>
+          <input type="date" class="form-control mt-3"  name="date" placeholder="Date"></input>  
+        </div>
+
+        <div class="mb-3">
+          <label for="patient" class="form-label"></label>
+          <input for="time" type="time" class="form-control mt-3"  name="time" placeholder="Heure"></input>  
+        </div>
+
+        <div class="mb-3">
+          <label for="place" class="form-label"></label>
+          <input type="text" class="form-control mt-3" name="place" placeholder="Lieu" ></input>  
+        </div>
+
+        <div class="d-grid gap-2 mt-3">
+            <button type="submit" class="btn btn-dark">Enregistrer</button>
+        </div>
       </div>
+    </div>
   </form>
 </div>
 {% endblock %}

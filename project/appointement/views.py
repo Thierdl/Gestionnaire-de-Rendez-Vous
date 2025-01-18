@@ -47,7 +47,7 @@ def add_appointement(request):
         )
 
         appointement.save()
-        return redirect("test")
+        return redirect("list_app")
 
     return render(request, "appoint/add_appoint.html")
 
