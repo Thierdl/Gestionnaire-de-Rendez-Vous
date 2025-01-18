@@ -47,7 +47,7 @@ def update_patient(request, id):
         patient.phone=phone
 
         patient.save()
-        return redirect("test")
+        return redirect("pative")
 
     return render(request, "patient/updatepat.html", {'patient':patient})
 

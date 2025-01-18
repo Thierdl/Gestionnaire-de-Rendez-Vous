@@ -37,13 +37,13 @@
           <button type="submit" class="btn btn-outline-dark mt-3">Enregistrer</button>
         </div>
 
-        <div class="d-grid gap-2">
-          <button class="btn btn-outline-dark mt-3">
-            <a href="patient/deletepat.html" type="button" >Supprimer</a>
-          </button>
-        </div>
-
       </form>  
+
+      <form action="{% url 'delete' patient.id %}" method="post" style="display:inline;">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-outline-danger">Supprimer</button>
+      </form>
+
     </div>
   </div>
 </div>
