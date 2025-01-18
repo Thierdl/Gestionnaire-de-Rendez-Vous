@@ -1,8 +1,9 @@
 
-from django.shortcuts import render, redirect
-from .import forms
-from django.contrib.auth import authenticate, login
-from django.contrib.auth.models import  User
+from django.shortcuts import render, redirect, get_object_or_404
+
+#from .import forms
+#from django.contrib.auth import authenticate, login
+#from django.contrib.auth.models import  User
 from django.contrib.auth.decorators import login_required 
 from .import models
 
@@ -20,10 +21,8 @@ def dashboard_views(request):
     return render(request, 'page/dashboard.html')
 
 def appointement_views(request):
-    #date
-    #time
-    #name patient
-    return render()
+    appoint=models.Appointement.objects.all()
+    return render(request, '', {"appoiint":appoint})
 
 
 def add_appointement(request):
@@ -49,3 +48,32 @@ def add_appointement(request):
     return render(request, "appoint/add_appoint.html")
 
 
+def update_appoin(request, id):
+    appoint=get_object_or_404(models.Appointement, id=id)
+
+    if request.method=="POST":
+        title=request.POST.get("title")
+        patient=request.POST.get("patient")
+        date=request.POST.get("date")
+        time=request.POST.get("time") 
+        place=request.POST.get("place")
+
+        
+        appoint.title=title
+        appoint.patient=patient
+        appoint.date=date
+        appoint.time=time
+        appoint.place=place
+
+        appoint.save()
+
+        return redirect("")
+    return render(request, '')
+
+
+def del_appoint(request, id):
+    appoint=get_object_or_404(models.Appointement, id=id)
+
+    if request.method=="POST":
+        return redirect("")
+    return render(request)
