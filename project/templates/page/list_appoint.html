@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<div>
+    <h3 class="text-center mt-2">Mes Rendez-Vous</h3>
+    <span><a href="">add RV</a></span>
+</div>
+
+<div class="col-md-7 m-auto p-3 mb-5 rounded">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>patient</th>
+                <th>date</th>
+            </tr>
+        </thead>
+    
+        {% for app in appoint %}
+        <tbody>
+            <tr>
+                <td>{{ app.title }}</td>
+                <td>{{ app.patient }}</td>
+                <td>{{ app.date }} / {{app.time}} </td>
+                <td>
+                    <button class="btn btn-dark">
+                        <a href="">Plus</a>
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+
+        
+        {% endfor %}
+    </table>
+</div>
+   
+
+
+
+
+{% endblock %}

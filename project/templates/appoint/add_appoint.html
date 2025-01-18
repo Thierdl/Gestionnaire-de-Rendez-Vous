@@ -1,47 +1,28 @@
 {% extends "base.html" %}
 {% block content %}
+<div class="border col-md-5 m-auto p-3 mb-5 rounded">
+  <form method="POST" enctype="multipart/form-data"> {% csrf_token %}
 
-<h3 class="text-center mt-5 pt-3">Ajouter Une Rendez-Vous</h3>
-<div class="container mt-5">
-  <div class="col-md-5 m-auto shadow p-3 mb-5 bg-body-tertiary rounded">
-    <div class="card card-body shadow p-3 mb-5 bg-body-tertiary rounded">
-      <form method="POST" enctype="multipart/form-data"> {% csrf_token %}
+      <div class="container">
+          <div class="row">
+              <div>
+                  <h1 class="text-center">Rendez-Vous</h1>
+              </div>
+              
+              <div class="col">
+                  <input for="title" type="text" class="form-control mt-3" name="titre" placeholder="Titre"></input>  
+                  <input for="patient" type="text" class="form-control mt-3" name="patient" placeholder="Avec Qui ?"></input>  
+                  <input for="date" type="date" class="form-control mt-3"  name="date" placeholder="Date"></input>  
+                  <input for="time" type="time" class="form-control mt-3"  name="time" placeholder="Heure"></input>  
+                  <input for="place" type="text" class="form-control mt-3" name="place" placeholder="Lieu" ></input>  
+              </div>
 
-        <div class="mb-3">
-          <label for="title" class="form-label">Titre</label>
-          <input type="text" class="form-control" name="title" required/>
-        </div>
-
-        <div class="mb-3">
-          <label for="patient" class="form-label">Patient</label>
-          <textarea class="form-control" name="patient" required></textarea>  
-        </div>
-
-        <div class="mb-3">
-          <label for="floatingTextarea2">Date</label>
-          <input type="date" class="form-control" required>
-           
-        </div>
-
-        <div class="mb-3">
-          <label for="time" class="form-label">Heure</label>
-          <input type="time" class="form-control" required>
-        </div>
-
-        <div class="mb-3">
-            <label for="floatingTextarea2">Lieu</label>
-            <textarea class="form-control" name="place" required></textarea>  
+              <div class="d-grid gap-2 mt-3">
+                  <button type="submit" class="btn btn-dark">Enregistrer</button>
+              </div>
           </div>
-
-
-        <div class="d-grid gap-2">
-          <button type="submit" class="btn btn-outline-dark">Enregistrer</button>
-        </div>
-
-      </form>
-    </div>
-  </div>
+      </div>
+  </form>
 </div>
-
 {% endblock %}
 

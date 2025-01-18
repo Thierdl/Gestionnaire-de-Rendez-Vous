@@ -16,13 +16,18 @@ def testhtml(request):
 def index_views(request):
     return render(request,'page/index.html')
 
+
+
 @login_required(login_url='/login/')
 def dashboard_views(request):
     return render(request, 'page/dashboard.html')
 
-def appointement_views(request):
+
+
+def list_appointement(request):
     appoint=models.Appointement.objects.all()
-    return render(request, '', {"appoiint":appoint})
+    return render(request, 'page/list_appoint.html', {"appoint":appoint})
+
 
 
 def add_appointement(request):
@@ -38,8 +43,7 @@ def add_appointement(request):
             patient=patient,
             date=date,
             time=time,
-            place=place
-            
+            place=place,  
         )
 
         appointement.save()
@@ -48,7 +52,8 @@ def add_appointement(request):
     return render(request, "appoint/add_appoint.html")
 
 
-def update_appoin(request, id):
+
+def update_appoint(request, id):
     appoint=get_object_or_404(models.Appointement, id=id)
 
     if request.method=="POST":
@@ -58,7 +63,6 @@ def update_appoin(request, id):
         time=request.POST.get("time") 
         place=request.POST.get("place")
 
-        
         appoint.title=title
         appoint.patient=patient
         appoint.date=date
@@ -68,12 +72,14 @@ def update_appoin(request, id):
         appoint.save()
 
         return redirect("")
-    return render(request, '')
+    return render(request, 'appoint/updapp.html', {"appoint":appoint})
 
 
 def del_appoint(request, id):
     appoint=get_object_or_404(models.Appointement, id=id)
 
     if request.method=="POST":
+        appoint.delete()
         return redirect("")
-    return render(request)
+    
+    return render(request, 'appoint/delapp.html', "context")
