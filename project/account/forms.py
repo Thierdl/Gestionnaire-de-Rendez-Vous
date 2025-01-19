@@ -6,12 +6,14 @@ class Login(forms.Form):
                                  attrs={
                                      "class":"form-control"
                                  }
+
                             ))
     
     password=forms.CharField(label="Votre Mot de Passe",
                              widget=forms.PasswordInput(
                                  attrs={
                                      "class":"form-control"
+
                                  }
                              )
                              )
@@ -31,8 +33,8 @@ class Signup(forms.Form):
                         widget=forms.TextInput(
                             attrs={
                                 "class":"form-control"
-                            }
-                        ))
+                                }
+                             ))
     
     username=forms.CharField(max_length=50, label="Nom d'Utilisateur",
                             widget=forms.TextInput(
@@ -47,5 +49,5 @@ class Signup(forms.Form):
                                  attrs={
                                      "class":"form-control"
                                  }
-                             ) )
+                            ))
 

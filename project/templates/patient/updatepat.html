@@ -1,50 +1,52 @@
 {% extends "base.html" %}
 {% block content %}
 
-<h3 class="text-center mt-5 pt-3">Ajouter une Patient</h3>
-<div class="container mt-5">
-  <div class="col-md-5 m-auto shadow p-3 mb-5 bg-body-tertiary rounded">
-    <div class="card card-body shadow p-3 mb-5 bg-body-tertiary rounded">
-      <form method="POST" action="{% url 'updatepat' %}" enctype="multipart/form-data"> {% csrf_token %}
+<h3 class="text-center mt-2 pt-3">Modifier</h3>
+<div class="container mt-3">
+  
+    <div class="border col-md-5 m-auto p-3 mb-5 rounded">
+
+     
+      <form method="POST" action="{% url 'updatepat' patient.id %}" enctype="multipart/form-data"> {% csrf_token %}
 
         <div class="mb-3">
           <label for="name" class="form-label"></label>
-          <input type="text" class="form-control" name="name" required value="{{ patient.name }}"/>
+          <input type="text" class="form-control" name="name" placeholder="Nom" required value="{{ patient.name }}"/>
         </div>
 
         <div class="mb-3">
-          <label for="firstname" class="form-label">Prénom</label>
-          <input type="text" class="form-control" name="firstname" required value="{{ patient.firstname }}"></input>  
+          <label for="firstname" class="form-label"></label>
+          <input type="text" class="form-control" name="firstname" placeholder="Prénom" required value="{{ patient.firstname }}"></input>  
         </div>
 
         <div class="mb-3">
-          <label for="floatingTextarea2">Age</label>
-          <input type="number" class="form-control" name="age" required value="{{ patient.age }}"></input>  
+          <label for="floatingTextarea2"></label>
+          <input type="number" class="form-control" name="age" placeholder="Age" required value="{{ patient.age }}"></input>  
         </div>
 
-    <div>
-        <label for="adress" class="form-label">Adress</label>
-        <input type="text" class="form-control" name="adress" required value="{{ patient.adress }}"></input>  
-    </div>
+        <div>
+            <label for="adress" class="form-label"></label>
+            <input type="text" class="form-control" name="adress" placeholder="Adresse" required value="{{ patient.adress }}"></input>  
+        </div>
 
-    <div>
-        <label for="phone" class="form-label">Tel:</label>
-        <input type="number" class="form-control" name="phone" required value="{{ patient.phone }}"></input>  
-    </div>
+        <div>
+            <label for="phone" class="form-label"></label>
+            <input type="number" class="form-control" name="phone" placeholder="Téléphone" required value="{{ patient.phone }}"></input>  
+        </div>
 
         <div class="d-grid gap-2">
-          <button type="submit" class="btn btn-outline-dark">Enregistrer</button>
+          <button type="submit" class="btn btn-dark mt-3">Enregistrer</button>
         </div>
 
+      </form>  
+
+      <form action="{% url 'delete' patient.id %}" method="post" style="display:inline;" class="d-grid gap-2 mt-3">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-outline-danger">Supprimer</button>
       </form>
+
     </div>
   </div>
 </div>
 
 {% endblock %}
-
-
-
-
-
-

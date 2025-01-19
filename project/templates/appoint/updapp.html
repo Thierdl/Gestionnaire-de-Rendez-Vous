@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="border col-md-5 m-auto p-3 mb-5 mt-5 ">
+  <form method="POST" enctype="multipart/form-data"> {% csrf_token %}
+
+    <div class="container">
+      <div class="row">
+        
+        <div>
+            <h1 class="text-center">Update</h1>
+        </div>
+              
+        <div class="mb-3">
+          <label for="title" class="form-label"></label>
+          <input type="text" class="form-control mt-3" name="title" placeholder="Titre" value="{{ appoint.title }}"></input>  
+        </div>
+
+        <div class="mb-3">
+          <label for="patient" class="form-label"></label>
+          <input type="text" class="form-control mt-3" name="patient" placeholder="Avec Qui ?" value="{{ appoint.patient }}"></input>  
+        </div>
+        
+        <div class="mb-3">
+          <label for="date" class="form-label"></label>
+          <input type="date" class="form-control mt-3"  name="date" value="{{ appoint.date }}" required></input>  
+        </div>
+
+        <div class="mb-3">
+          <label for="time" class="form-label"></label>
+          <input type="time" class="form-control mt-3"  name="time" value="{{ appoint.time }}" required></input>  
+        </div>
+
+        <div class="mb-3">
+          <label for="place" class="form-label"></label>
+          <input type="text" class="form-control mt-3" name="place" placeholder="Lieu" value="{{ appoint.place }}"></input>  
+        </div>
+
+        <div class="d-grid gap-2">
+            <button type="submit" class="btn btn-dark mt-3">Enregistrer</button>
+        </div>
+    </div>
+  </form>
+
+  <form action="{% url 'del_app' appoint.id %}" method="post" style="display:inline;" class="d-grid gap-2 mt-3">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-outline-danger">Supprimer</button>
+  </form>
+</div>
+
+{% endblock %}
+

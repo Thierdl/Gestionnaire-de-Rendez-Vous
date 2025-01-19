@@ -56,7 +56,7 @@ INTERNAL_IPS = [
 
 ROOT_URLCONF = 'project.urls'
 
-LOGIN_REDIRECT_URL='/appoit/board' 
+LOGIN_REDIRECT_URL='/appoint/board' 
 
 
 TEMPLATES = [

@@ -1,6 +1,12 @@
 {% extends 'base.html' %}
 {% block content %}
-<h1>Mes Patient</h1>
+
+<div class="col-md-7 m-auto p-3 mb-5 rounded">
+  <div>
+    <h1>Mes Patient</h1>
+    <a href="{% url 'addpatient' %}">add patient</a>
+  </div>
+
   <table class="table">
     <thead>
       <tr>
@@ -12,18 +18,24 @@
     </thead>
 
     <tbody>
-        {% for pa in pativ %}
+      
+      {% for pa in patient %}
       <tr>
         <td><i class="fas fa-user"></i></td>
         <td> {{pa.firstname}} </td>
         <td>{{pa.name}}</td>
         <td>
-          <button type="button" class="btn btn-info">Info</button>
+          <a href="{% url 'updatepat' pa.id %}" type="button" class="btn btn-info">Info</a>
         </td>
+        
+
       </tr>
+
+      {% endfor %}
+
     </tbody>
-    {% endfor %}
   </table>
+</div>
 
 
 {% endblock %}

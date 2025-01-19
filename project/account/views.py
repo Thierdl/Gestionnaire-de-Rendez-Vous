@@ -32,14 +32,12 @@ def signup_view(request):
       name=form.cleaned_data.get("name")
       firtsname=form.cleaned_data.get("firtsname")
       username=form.cleaned_data.get("username")
-      adress=form.cleaned_data.get("adress")
       password=form.cleaned_data.get("password")
 
       user=User.objects.create_user(
           name=name,
           firtsname=firtsname,
           username=username,
-          adress=adress,
           password=password,
           
       )
@@ -48,7 +46,6 @@ def signup_view(request):
           name=name,
           firtsname=firtsname,
           username=username,
-          adress=adress,
           password=password
       )
 
