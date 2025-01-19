@@ -33,8 +33,8 @@ class Signup(forms.Form):
                         widget=forms.TextInput(
                             attrs={
                                 "class":"form-control"
-                            }
-                        ))
+                                }
+                             ))
     
     username=forms.CharField(max_length=50, label="Nom d'Utilisateur",
                             widget=forms.TextInput(
@@ -49,5 +49,5 @@ class Signup(forms.Form):
                                  attrs={
                                      "class":"form-control"
                                  }
-                             ) )
+                            ))
 

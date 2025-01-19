@@ -40,7 +40,7 @@
 
       </form>  
 
-      <form action="{% url 'delete' patient.id %}" method="post" style="display:inline;">
+      <form action="{% url 'delete' patient.id %}" method="post" style="display:inline;" class="d-grid gap-2 mt-3">
         {% csrf_token %}
         <button type="submit" class="btn btn-outline-danger">Supprimer</button>
       </form>
