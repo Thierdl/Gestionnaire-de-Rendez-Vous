@@ -1,42 +1,83 @@
-{% extends "base.html" %}
+{% extends "base_generic.html" %}
+{% load i18n %}
+{% load allauth account %}
+
+{% load crispy_forms_tags %}  
+
+{% block head_title %}
+    <h5>{% trans "Sign In" %}</h5>
+{% endblock head_title %}
+
 {% block content %}
-
-<div class="">
-  <h3 class="text-center mt-5">Login</h3>
-  <div class="container">
-
-    <div class="border col-md-5 m-auto p-3 mb-5 rounded">
-     
-      <form method="POST"> {% csrf_token %}
-
-        <div class="mb-3">
-          <label class="form-label"></label>
-          <input class="form-control" placeholder="Username" name="username"/>  
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label"></label>
-          <input class="form-control" placeholder="Password" name="password" type="password"/>
-        </div>
-
-        <div class="d-grid gap-2">
-          <button type="submit" class="btn btn-dark">Connexion</button>
-        </div>
-        <div>
-          <p class="text-center mt-3">Avez-vous un compt ? 
-            <a href="{% url 'signup' %}">Sign up</a>
-          </p>
-        </div>
-      </form>
+<div class="container">
+    <div class="text-center">
+      {% element h1 %}
+          {% trans "Sign In" %}
+      {% endelement %}
     </div>
-  </div>
 
- 
+    <div class="container">
+        <div class="border col-md-5 m-auto p-3 rounded">
+          {% if not SOCIALACCOUNT_ONLY %}
+              <!-- Lien vers l'inscription -->
+
+              <div class="border rounded text-center mb-3">
+              {% url 'account_signup' as signup_url %}
+              {% element p %}
+                   {% blocktranslate %}If you have not created an account yet, then please <a href="{{ signup_url }}">sign up</a> first.{% endblocktranslate %}
+              {% endelement %}
+
+              {% url 'account_login' as login_url %}
+            </div>
+
+
+        
+            <div>
+                <form class="login" method="POST" action="{% url 'account_login' %}">
+                    {% csrf_token %}
+                    {{ form|crispy }}
+                    {% if redirect_field_value %}
+                    <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+                    {% endif %}
+                    <div class="d-grid">
+                    <button class="primaryAction mt-3 btn btn-dark" type="submit">{% trans "S'identifier" %}</button><br>
+                    <a class="button secondaryAction text-dark text-center" href="{% url 'account_reset_password' %}">{% trans "Mot de passe oublié?" %}</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+          {% endif %}
+    </div>
+
+
+    <div class="col-md-5 m-auto p-3">
+
+        {% if LOGIN_BY_CODE_ENABLED %}
+            {% element hr %}
+            {% endelement %}
+            {% element button_group vertical=True %}
+            
+                {% if LOGIN_BY_CODE_ENABLED %}
+                    {% element button href=request_login_code_url tags="prominent,login,outline,primary" %}
+                        {% trans "Mail me a sign-in code" %}
+                    {% endelement %}
+                {% endif %}
+
+            {% endelement %}hhh
+        {% endif %}
+    </div>
+
+    <div class="social text-center col-md-5 m-auto p-3 mb-5">
+        {% if SOCIALACCOUNT_ENABLED %}   
+            {% include "socialaccount/snippets/login.html" with page_layout="entrance" %}
+        {% endif %}
+    </div>
+
 </div>
 
+{% endblock content %}
 
-
-
+{% block extra_body %}
+    {{ block.super }}
 {% endblock %}
-
-

@@ -3,7 +3,7 @@ from django.contrib.auth import authenticate,login
 from django.contrib.auth.models import User
 from .import forms
 
-
+"""
 def login_view(request):
   form=forms.Login(request.POST or None)
   user=""
@@ -55,3 +55,4 @@ def signup_view(request):
     form = forms.Signup()
 
   return render(request, "account/signup.html", {"form":form})
+"""
