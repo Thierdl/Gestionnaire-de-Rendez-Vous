@@ -6,7 +6,8 @@ import environ
 
 env=environ.Env()   #init.
 environ.Env.read_env()  #read
-SECRET_KEY=env('SECRET_KEY')    #utilisation de variable environnement
+SECRET_KEY=env('SECRET_KEY'),  #utilisation de variable environnement
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -56,7 +57,6 @@ CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap4"
 
 CRISPY_TEMPLATE_PACK = "bootstrap4"
 
-#CRISPY_TEMPLATE_PACK = 'uni_form'
 
 
 MIDDLEWARE = [
@@ -84,8 +84,7 @@ SOCIALACCOUNT_PROVIDERS = {
         ],
         'AUTH_PARAMS': {'access_type': 'online'},
         'OAUTH_PKCE_ENABLED': True,
-        'EXCHANGE_TOKEN': True,
-        'VERIFIED_EMAIL': True,
+        
     },
 }
 
@@ -132,8 +131,10 @@ AUTHENTICATION_BACKENDS = [
 
     'allauth.account.auth_backends.AuthenticationBackend',
     
+    
 ]
 
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 WSGI_APPLICATION = 'project.wsgi.application'
 
@@ -155,9 +156,6 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
-# Internationalization
-# https://docs.djangoproject.com/en/5.1/topics/i18n/
-
 LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'UTC'
@@ -167,18 +165,12 @@ USE_I18N = True
 USE_TZ = True
 
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/5.1/howto/static-files/
-
 STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 STATICFILES_DIRS = [ os.path.join(BASE_DIR, 'static'),]
 
-# Default primary key field type
-# https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
 
 
 
