@@ -18,7 +18,7 @@ def index_views(request):
 
 
 
-@login_required(login_url='/login/')
+#@login_required(login_url='/login/')
 def dashboard_views(request):
     return render(request, 'page/dashboard.html')
 

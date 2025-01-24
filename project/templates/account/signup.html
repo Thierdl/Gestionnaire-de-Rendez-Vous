@@ -1,31 +1,64 @@
-{% extends "base.html" %}
+{% extends "base_generic.html" %}
+
+{% load crispy_forms_tags %}
+{% load allauth i18n %}
+{% block head_title %}
+    {% trans "Signup" %}
+{% endblock head_title %}
 {% block content %}
 
-<div class="mt-2">
-  <h3 class="text-center">Sign Up</h3>
-  <div class="container">
-    
-    <div class="border col-md-5 m-auto p-3 mb-5 rounded">
-      <form action="{% url 'signup' %}" method="post">
-        {% csrf_token %}
-        
-        <div class="form-groupl-1">
-          {{ form.as_p }}
-        </div>
+<div>
+    <div class="text-center">
+        {% element h1 %}
+            {% trans "Sign Up" %}
+        {% endelement %}
 
-        <div class="d-grip gap-2">
-          <button type="submit" class="btn btn-dark">Creer</button>
-        </div>
-
-        <div class="text-center pb-3">
-          Avez-vous un compt ? <a href="{% url 'login' %}">Login</a>
-        </div>
-      
-      </form> 
     </div>
-      {% endblock %}
-  </div>
+
+    <div>
+        {% setvar link %}
+            <a class="text-center" href="{{ login_url }}">
+            {% endsetvar %}
+            {% setvar end_link %}
+            </a>
+        {% endsetvar %}
+    </div>
+    
+
+    <div class="text-center mt-3">
+        {% element p %}
+            {% blocktranslate %}Already have an account? Then please {{ link }}sign in{{ end_link }}.{% endblocktranslate %}
+        {% endelement %}
+    </div>
+
+    <div class="container">
+        <div class="border rounded col-md-5 m-auto p-5 mb-5">
+
+            {% if not SOCIALACCOUNT_ONLY %}
+            {% url 'account_signup' as action_url %}
+        
+            <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
+                {% csrf_token %}
+                {{ form|crispy }}
+                {% if redirect_field_value %}
+                <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+                {% endif %}
+                <div class="d-grid mt-3">
+                    <button class="btn btn-dark" type="submit">{% trans "S'inscrire" %}</button>
+                </div>
+            </form>
+            {% endif %}
+        </div>
+    </div>
+    
+    <div class="socialn text-center">
+        {% if SOCIALACCOUNT_ENABLED %}
+
+        <div class="col-md-5 m-auto mb-3 rounded">
+            
+            {% include "socialaccount/snippets/login.html" with page_layout="entrance" %}
+            {% endif %}
+        </div>
+    </div>
 </div>
-
-
-
+{% endblock content %}

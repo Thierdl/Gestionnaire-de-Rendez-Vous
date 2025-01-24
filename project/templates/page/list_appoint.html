@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'base_generic.html' %}
 {% load static %}
 {% block content %}
 
@@ -13,8 +13,9 @@
             <thead>
                 <tr>
                     <th>Title</th>
-                    <th>patient</th>
-                    <th>date</th>
+                    <th>Patient</th>
+                    <th>Date</th>
+                    <th>Status</th>
                 </tr>
             </thead>
         
@@ -25,7 +26,16 @@
                     <td>{{ app.title }}</td>
                     <td>{{ app.patient }}</td>
                     <td>{{ app.date }} / {{app.time}} </td>
-                
+                    <td>
+                        <label for="status" name="status" class="form-label">
+                            <select class="form-select mt-3" aria-label="Default select example">
+                                <option class="" value="En attente">En attente</option>
+                                <option value="Annuler">Annuler</option>
+                                <option value="Confirmer">Confirmer</option>
+                            </select>
+                        </label>
+                    </td>
+                   
                     <td>
                         <a href="{% url 'upd_app' app.id %}" type="button" class="btn btn-dark">Plus</a>
                     </td>

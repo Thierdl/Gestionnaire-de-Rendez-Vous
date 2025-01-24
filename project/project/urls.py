@@ -19,7 +19,9 @@ urlpatterns = [
     path('api/', include(route.urls)),
     path('appoint/',include('appointement.urls')),
     path('pat/', include("patient.urls")),
-    path('account/', include('account.urls')),
+    #path('account/', include('account.urls')),
+
+    path('account/', include('allauth.urls')),
 
 
     path('login/', auth_views.LoginView.as_view(template_name='account/login.html'), name='login'),
