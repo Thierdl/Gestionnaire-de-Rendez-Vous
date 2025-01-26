@@ -1,7 +1,7 @@
 
 {% extends 'base_generic.html' %}
 {% block content %}
-
+{% include 'partiels/navbar.html' %}
 <div class="container-fluid">
 	<div class="row">
 		
@@ -16,23 +16,6 @@
 		</nav>
 	
 		<main class="col-12 col-md-10 ms-sm-auto content">
-			<nav class="navbar navbar-expand-lg navbar-light bg-light mb-3">
-				<div class="container-fluid">
-					<a class="navbar-brand" href="#">Dashboard</a>
-					<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-						<span class="navbar-toggler-icon"></span>
-					</button>
-					<div class="collapse navbar-collapse" id="navbarNav">
-						<ul class="navbar-nav ms-auto">
-							<li class="nav-item"><a class="nav-link" href="#">Profile</a></li>
-							<li class="nav-item"><a class="nav-link" href="#">Notifications</a></li>
-							<li class="nav-item"><a class="nav-link" href="#">Logout</a></li>
-						</ul>
-					</div>
-				</div>
-			</nav>
-			
-
 			<div>
 				<h1 class="text-center mb-">Gestionnaire de Rendez-Vous</h1>
 			</div>
@@ -42,10 +25,14 @@
 				<div class="col-md-5 mt-3">
 					<div class="card text-white bg-primary">
 						<div class="card-body">
-							<h3 class="card-title text-center">Mes Rendez-Vous</h3>
-							<p class="card-text">
-								<h1 class="text-center">34</h1>
-							</p>
+
+							{% if attente %}
+							<h3 class="text-center">Rendez-Vous en attente</h3>
+							<h1 class="text-center">{{ attente }}</h1>
+							{% else %}
+							<h3 class="text-center">Aucune Rendez-Vous n'est disponible</h3>
+							{% endif %}
+							
 						</div>
 					</div>
 				</div>
@@ -104,3 +91,23 @@
 
 {% endblock %}
 
+
+
+
+
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light mb-3">
+	<div class="container-fluid">
+		<a class="navbar-brand" href="#">Dashboard</a>
+		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+			<span class="navbar-toggler-icon">gghhhh</span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarNav">
+			<ul class="navbar-nav ms-auto">
+				<li class="nav-item"><a class="nav-link" href="#">Profile</a></li>
+				<li class="nav-item"><a class="nav-link" href="#">Notifications</a></li>
+				<li class="nav-item"><a class="nav-link" href="#">Logout</a></li>
+			</ul>
+		</div>
+	</div>
+</nav>

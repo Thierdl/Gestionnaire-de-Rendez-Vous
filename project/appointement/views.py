@@ -20,12 +20,19 @@ def index_views(request):
 
 #@login_required(login_url='/login/')
 def dashboard_views(request):
-    return render(request, 'page/dashboard.html')
+    appoint=models.Appointement.objects.filter(status="En attente")
+    attente=appoint.count()
+    print("Attente:",attente)
+    return render(request, 'page/dashboard.html', {"attente":attente})
 
 
 
 def list_appointement(request):
-    appoint=models.Appointement.objects.all()
+    appoint=models.Appointement.objects.filter(status="En attente")
+    attente=appoint.count()
+    print("Attente:",attente)
+
+
     return render(request, 'page/list_appoint.html', {"appoint":appoint})
 
 

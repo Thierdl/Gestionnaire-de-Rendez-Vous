@@ -1,39 +1,68 @@
-{% extends 'base.html' %}
+{% extends 'base_generic.html' %}
 
 {% block content %}
 
-<nav class="navbar navbar-expand-lg" style="background-color: #f7b7f1;">
+<main class="col-12 col-md-10 ms-sm-auto content"></main>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light mb-3">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#">Cabinet Médical</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <a class="navbar-brand" href="#">RV</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
         <span class="navbar-toggler-icon"></span>
       </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <div class="navbar-nav ms-auto">
+          <div class="nav-item"><a class="nav-link" href="#">Accueil</a></div>
+          <div class="nav-item"><a class="nav-link" href="#">Mes Rendez-Vous</a></div>
+          <div class="nav-item"><a class="nav-link" href="#">Mon Compte</a></div>
 
-      <div class="collapse navbar-collapse">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Accueil</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Mes Rendez-Vous</a>
-          </li>
-         
-          <li class="nav-item">
-            <a class="nav-link" href="#">Mon Compt</a>
-          </li>
-        </ul>
-      </div>
+          {% if user.is_authenticated %}
+          <div>
+            <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
+              Logout
+            </button>
+          </div>
 
-      <div>
-          <form class="d-flex" role="search">
-              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-              <button class="btn btn-outline-success" type="submit">Search</button>
-          </form>
-      </div>
+          <!-- Modal -->
+          <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-body">
+                  <h4 class="text-center">Are you sure you want to sign out?</h4>
+                </div>
         
+                <div class="modal-footer">
+        
+                  <form method="post" action="{% url 'account_logout' %}">
+                    {% csrf_token %}
+                    {% if redirect_field_value %}
+                    <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
+                    {% endif %}
+                  
+                    <button class="btn btn-danger m-3" type="submit">Yes</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Non</button>
+                  
+                  </form>
+        
+                </div>
+              </div>
+            </div>
+          </div>
+
+      
+          {% else %}
+          <div>
+            <button class="btn btn-primary">
+              <a class="text-white" href="{% url 'account_login' %}">Login</a>
+            </button>
+          </div>
+          {% endif %}
+
+
+        </div>
       </div>
     </div>
   </nav>
+</main>
 
 
-  {% endblock %}
+{% endblock %}
