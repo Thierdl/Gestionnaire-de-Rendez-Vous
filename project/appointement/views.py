@@ -28,9 +28,8 @@ def dashboard_views(request):
 
 
 def list_appointement(request):
-    appoint=models.Appointement.objects.filter(user=request.user)
-    attente=appoint.count()
-    print("Attente:",attente)
+    appoint=models.Appointement.objects.filter(patient__user=request.user)
+    print("Attente:",appoint)
 
 
     return render(request, 'page/list_appoint.html', {"appoint":appoint})
