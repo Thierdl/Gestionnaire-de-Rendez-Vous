@@ -4,10 +4,12 @@ from patient.models import Patient
 
 class Appointement(models.Model):
 
-    user=models.ForeignKey(User, on_delete=models.CASCADE)
-    patient=models.ForeignKey(Patient, on_delete=models.CASCADE, related_name='patients')
+    #user_id
+    #patient_id
+    #user=models.ForeignKey(User, on_delete=models.CASCADE)
+    
+    patient=models.ForeignKey(Patient, on_delete=models.CASCADE)
     title=models.CharField(max_length=50)
-    patient=models.CharField(max_length=50)
     date=models.DateField(null=True, blank=True)
     time=models.TimeField(null=True, blank=True)
     place=models.CharField(max_length=50)

@@ -4,7 +4,7 @@ from .import models
 # Create your views here.
 
 def patient_view(request):
-    patient=models.Patient.objects.all()
+    patient=models.Patient.objects.filter(user=request.user)
     return render(request, "page/dashboard.html", {'patient':patient})
 
 def addpatient(request):
