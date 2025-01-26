@@ -2,25 +2,25 @@
 
 {% block content %}
 
-<main class="col-12 col-md-10 ms-sm-auto content"></main>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light mb-3">
+<main class="col-12 col-md-10 ms-sm-auto content displa"></main>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light mb-3 d-flex justify-content-between">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">RV</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
-        <div class="navbar-nav ms-auto">
-          <div class="nav-item"><a class="nav-link" href="#">Accueil</a></div>
-          <div class="nav-item"><a class="nav-link" href="#">Mes Rendez-Vous</a></div>
-          <div class="nav-item"><a class="nav-link" href="#">Mon Compte</a></div>
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="#">Accueil</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Mes Rendez-Vous</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Mon Compte</a></li>
 
           {% if user.is_authenticated %}
-          <div>
+          <li class="nav-item">
             <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
               Logout
             </button>
-          </div>
+          </li>
 
           <!-- Modal -->
           <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -50,15 +50,15 @@
 
       
           {% else %}
-          <div>
+          <li class="nav-item">
             <button class="btn btn-primary">
               <a class="text-white" href="{% url 'account_login' %}">Login</a>
             </button>
-          </div>
+          </li>
           {% endif %}
 
 
-        </div>
+        </ul>
       </div>
     </div>
   </nav>
@@ -66,3 +66,57 @@
 
 
 {% endblock %}
+
+
+
+
+<div class="p-3 mb-3 bg-dark">
+  <div class="container d-flex justify-content-between">
+      {% if user.is_authenticated %}
+      <div><a class="text-light" href="{% url 'account_email' %}">Change E-mail</a></div>
+      <div><a class="text-light" href="#">Home</a></div>
+
+
+
+      <!-- DECONNEXION -->
+      <div>
+        <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            Déconnexion
+        </button>
+        
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-body">
+                <h4 class="text-center">Are you sure you want to sign out?</h4>
+              </div>
+      
+              <div class="modal-footer">
+      
+                <form method="post" action="{% url 'account_logout' %}">
+                  {% csrf_token %}
+                  {% if redirect_field_value %}
+                  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
+                  {% endif %}
+                
+                  <button class="btn btn-danger m-3" type="submit">Yes</button>
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Non</button>
+                
+                </form>
+      
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      
+      
+      {% else %}
+      <div><a class="text-light" href="{% url 'account_login' %}">Connexion</a></div>
+      <div><a class="text-light" href="{% url 'account_signup' %}">S'enregistrer</a></div>
+      {% endif %}
+  </div> 
+</div>
+

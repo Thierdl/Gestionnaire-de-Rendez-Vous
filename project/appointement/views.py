@@ -28,7 +28,7 @@ def dashboard_views(request):
 
 
 def list_appointement(request):
-    appoint=models.Appointement.objects.filter(status="En attente")
+    appoint=models.Appointement.objects.filter(user=request.user)
     attente=appoint.count()
     print("Attente:",attente)
 
