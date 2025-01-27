@@ -31,7 +31,7 @@ def dashboard_views(request):
 
 
 def list_appointement(request):
-    appoint=models.Appointement.objects.filter(id_patient__user=request.user)
+    appoint=models.Appointement.objects.filter(patient_id__user=request.user).order_by("-date")
     return render(request, 'page/list_appoint.html', {"appoint":appoint})
     
 
@@ -44,6 +44,7 @@ def add_appointement(request):
         date=request.POST.get("date")
         time=request.POST.get("time")
         place=request.POST.get("place")
+        status=request.POST.get("status")
 
 
         patient=get_object_or_404(
@@ -58,6 +59,7 @@ def add_appointement(request):
             date=date,
             time=time,
             place=place,
+            status=status
         )
 
         
@@ -69,26 +71,42 @@ def add_appointement(request):
 
 
 
-def update_appoint(request, id):
-    appoint=get_object_or_404(models.Appointement, id=id)
+def update_appoint(request, appoint_id):
+    appoint=get_object_or_404(
+                models.Appointement, 
+                id=appoint_id, 
+                patient__user=request.user
+                )
 
     if request.method=="POST":
         title=request.POST.get("title")
-        patient=request.POST.get("patient")
+        patient_id=request.POST.get("patient_id")
         date=request.POST.get("date")
         time=request.POST.get("time") 
         place=request.POST.get("place")
+        status=request.POST.get("status")
 
+        patient=get_object_or_404(
+                    models.Patient, 
+                    user=request.user, 
+                    id=patient_id
+                    )
+
+        
         appoint.title=title
         appoint.patient=patient
         appoint.date=date
         appoint.time=time
         appoint.place=place
+        appoint.status=status
 
         appoint.save()
 
         return redirect("list_app")
-    return render(request, 'appoint/updapp.html', {"appoint":appoint})
+    
+    patients=appoint.patient
+
+    return render(request, 'appoint/updapp.html', {"appoint":appoint,"patients":patients})
 
 
 def del_appoint(request, id):

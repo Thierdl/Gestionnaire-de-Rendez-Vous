@@ -17,13 +17,14 @@
 
           {% if user.is_authenticated %}
           <li class="nav-item">
+            {{user.email}}
+          </li>
+          <li class="nav-item">
             <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
               Logout
             </button>
           </li>
-          <li>
-            {{user.name}}
-          </li>
+          
 
           <!-- Modal -->
           <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
