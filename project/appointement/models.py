@@ -8,7 +8,8 @@ class Appointement(models.Model):
     #patient_id
     #user=models.ForeignKey(User, on_delete=models.CASCADE)
     
-    patient=models.ForeignKey(Patient, on_delete=models.CASCADE)
+    patient=models.ForeignKey(Patient, on_delete=models.CASCADE, related_name="appointement")
+    
     title=models.CharField(max_length=50)
     date=models.DateField(null=True, blank=True)
     time=models.TimeField(null=True, blank=True)

@@ -4,7 +4,8 @@ from django.contrib.auth.models import User
 
 class Patient(models.Model):
 
-    user=models.ForeignKey(User, on_delete=models.CASCADE)
+    user=models.ForeignKey(User, on_delete=models.CASCADE, related_name="patient")
+
     name=models.CharField(max_length=59)
     firstname=models.CharField(max_length=50)
     age=models.PositiveIntegerField()

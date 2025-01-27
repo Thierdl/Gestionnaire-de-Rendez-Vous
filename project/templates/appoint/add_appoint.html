@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "base_generic.html" %}
 {% block content %}
 
 
@@ -16,10 +16,19 @@
           <input type="text" class="form-control mt-3" name="title" placeholder="Titre"></input>  
         </div>
 
+
         <div class="mb-3">
-          <label for="patient" class="form-label"></label>
-          <input type="text" class="form-control" name="patient" placeholder="Avec Qui ?"></input>  
+          <label for="id_patient" name="id_patient" class="form-label">
+            <select id="id_patient" name="id_patient" class="form-select mt-3">
+              {% for patient in patients %}
+               
+                <option value="{{ patient.id }}">{{patient.firstname}} {{patient.name}}</option>
+          
+              {% endfor %}
+            </select>
+          </label>
         </div>
+
         
         <div class="mb-3">
           <label for="date" class="form-label"></label>
