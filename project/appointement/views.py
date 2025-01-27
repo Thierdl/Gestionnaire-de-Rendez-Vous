@@ -59,13 +59,14 @@ def add_appointement(request):
             date=date,
             time=time,
             place=place,
-            status=status
+            status=status,
         )
 
         
         return redirect("list_app")
     
     patients=models.Patient.objects.filter(user=request.user)
+    
     
     return render(request, "appoint/add_appoint.html", {"patients":patients})
 
@@ -104,9 +105,13 @@ def update_appoint(request, appoint_id):
 
         return redirect("list_app")
     
-    patients=appoint.patient
+    patients=models.Patient.objects.filter(user=request.user)
 
-    return render(request, 'appoint/updapp.html', {"appoint":appoint,"patients":patients})
+    return render(request, 'appoint/updapp.html', {
+                                "appoint":appoint,
+                                "patients":patients
+                                }
+                                )
 
 
 def del_appoint(request, id):
