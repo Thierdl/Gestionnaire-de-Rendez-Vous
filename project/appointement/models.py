@@ -3,10 +3,6 @@ from django.contrib.auth.models import User
 from patient.models import Patient
 
 class Appointement(models.Model):
-
-    #user_id
-    #patient_id
-    #user=models.ForeignKey(User, on_delete=models.CASCADE)
     
     patient=models.ForeignKey(Patient, on_delete=models.CASCADE, related_name="appointement")
     

@@ -40,7 +40,7 @@ def add_appointement(request):
 
     if request.method=="POST":
         title=request.POST.get("title")
-        id_patient=request.POST.get("id_patient")
+        patient_id=request.POST.get("patient_id")
         date=request.POST.get("date")
         time=request.POST.get("time")
         place=request.POST.get("place")
@@ -48,10 +48,10 @@ def add_appointement(request):
 
         patient=get_object_or_404(
                                 models.Patient, 
-                                id=id_patient, 
+                                id=patient_id, 
                                 user=request.user,
                                 )
-
+    
         models.Appointement.objects.create(
             title=title,
             patient=patient,
@@ -60,7 +60,7 @@ def add_appointement(request):
             place=place,
         )
 
-        #appointement.save()
+        
         return redirect("list_app")
     
     patients=models.Patient.objects.filter(user=request.user)
