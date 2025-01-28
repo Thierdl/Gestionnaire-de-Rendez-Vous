@@ -4,8 +4,14 @@ from .import models
 # Create your views here.
 
 def patient_view(request):
-    patient=models.Patient.objects.filter(user=request.user)
-    return render(request, "page/dashboard.html", {'patient':patient})
+    patient=models.Patient.objects.filter(user=request.user).order_by("-created")
+    patients=patient.count()
+    return render(request, "patient/list-patient.html", {
+                            "patients":patients, 
+                            "patient":patient,
+
+                            })
+
 
 def addpatient(request):
     if request.method=="POST":        
@@ -28,7 +34,7 @@ def addpatient(request):
         )
 
         patient.save()
-        return redirect("pative")
+        return redirect("list-patient")
     
     return render(request, "patient/addpatient.html")
     

@@ -2,20 +2,22 @@
 {% extends 'base_generic.html' %}
 {% block content %}
 {% include 'partiels/navbar.html' %}
-<div class="container-fluid">
+<div class="container-fluid mb-5">
 	<div class="row">
 		
 		<nav class="col-2 col-md-2 sidebar d-md-block d-none mt-5 " >
-			<h4 class="text-center text-white">Dashboard</h4>
+			<h4 class="text-center text-white">
+				<a href="{% url 'board' %}">Dashboard</a> 
+			</h4>
 			<img src="" class="rounded mx-auto d-block" alt="image">
 			<a href="{% url 'index' %}">Accueil</a>
-			<a href="{% url 'list_app' %}">Mes Rendez-Vous</a>
-			<a href="{% url  'pative' %}">Mes Patients</a>
+			<a href="{% url 'list_appoint' %}">Mes Rendez-Vous</a>
+			<a href="{% url  'list-patient' %}">Mes Patients</a>
 			<a href="#">Mon Compte</a>
 			
 		</nav>
 	
-		<main class="col-12 col-md-10 ms-sm-auto content">
+		<main class="col-12 col-md-10 ms-sm-auto content mb-5">
 			<div>
 				<h1 class="text-center mb-">Gestionnaire de Rendez-Vous</h1>
 			</div>
@@ -23,11 +25,11 @@
 			<!-- Dashboard Widgets -->
 			<div class="row justify-content-md-center">
 				<div class="col-md-5 mt-3">
-					<div class="card text-white bg-primary">
+					<div class="card bg-light">
 						<div class="card-body">
 
 							{% if rv %}
-							<h3 class="text-center">Rendez-Vous en attente</h3>
+							<h3 class="text-center">Rendez-Vous</h3>
 							<h1 class="text-center">{{ rv }}</h1>
 							{% else %}
 							<h3 class="text-center">Aucune Rendez-Vous n'est disponible</h3>
@@ -36,54 +38,64 @@
 						</div>
 					</div>
 				</div>
+
 				<div class="col-md-5 mt-3" >
-					<div class="card text-white bg-success">
+					<div class="card bg-light">
 						<div class="card-body">
+
+							{% if patie %}
 							<h3 class="card-title">Mes Patients</h3>
-							<p class="card-text">
-								<h1 class="text-center">14</h1>
-							</p>
+							<h1 class="text-center">{{ patie }}</h1>
+							
+							{% else %}
+							<h3 class="text-center">Aucune Patient</h3 >
+
+							{% endif %}
 						</div>
 					</div>
 				</div>
 				
 			</div>
 
+			<div class="row justify-content-md-center mt-3">
+				<div class="col-md-3 mt-3">
+					<div class="card text-success border border-success">
+						<div class="card-body">
 
-			<div class="col-md-7 m-auto p-3 mb-5 rounded">
-				<div>
-				  <h1>Mes Patient</h1>
-				  <a href="{% url 'addpatient' %}">add patient</a>
+							<h3 class="text-center">21</h3>
+							<h1 class="text-center">Confirmer</h1>
+							
+						</div>
+					</div>
 				</div>
-			  
-				<table class="table">
-				  <thead>
-					<tr>
-					  <th></th>
-					  <th>Nom</th>
-					  <th>Prénom</th>
-					  <th>Profil</th>
-					</tr>
-				  </thead>
-			  
-				  <tbody>
-					
-					{% for pa in patient %}
-					<tr>
-					  <td><i class="fas fa-user"></i></td>
-					  <td> {{pa.firstname}} </td>
-					  <td>{{pa.name}}</td>
-					  <td>
-						<a href="{% url 'updatepat' pa.id %}" type="button" class="btn btn-info">Info</a>
-					  </td>
-				  
-					</tr>
-			  
-					{% endfor %}
-			  
-				  </tbody>
-				</table>
-			  </div>
+
+				<div class="col-md-4 mt-3" >
+					<div class="card text-warning border-warning">
+						<div class="card-body">
+
+							{% if rv %}
+							<h3 class="text-center">{{rv}}</h3>
+							<h1 class="text-center">En attente</h1>
+							{% else %}
+							<h3 class="text-center">O</h3>
+							<h1 class="text-center">En attente</h1>
+							{% endif %}
+						</div>
+					</div>
+				</div>
+
+				<div class="col-md-3 mt-3 mb-5" >
+					<div class="card text-danger border-danger">
+						<div class="card-body">
+							<h3 class="text-center">23</h3>
+							<h1 class="text-center">Annuler</h1>
+						</div>
+					</div>
+				</div>
+
+				
+				
+			</div>
 		</main>
 	</div>
 </div>
@@ -93,21 +105,9 @@
 
 
 
-
-
-
-<nav class="navbar navbar-expand-lg navbar-light bg-light mb-3">
-	<div class="container-fluid">
-		<a class="navbar-brand" href="#">Dashboard</a>
-		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-			<span class="navbar-toggler-icon">gghhhh</span>
-		</button>
-		<div class="collapse navbar-collapse" id="navbarNav">
-			<ul class="navbar-nav ms-auto">
-				<li class="nav-item"><a class="nav-link" href="#">Profile</a></li>
-				<li class="nav-item"><a class="nav-link" href="#">Notifications</a></li>
-				<li class="nav-item"><a class="nav-link" href="#">Logout</a></li>
-			</ul>
-		</div>
+<div class="col-md-7 m-auto p-3 mb-5 rounded">
+	<div>
+	  <h1>Mes Patient</h1>
+	  <a href="{% url 'addpatient' %}">add patient</a>
 	</div>
-</nav>
+</div>

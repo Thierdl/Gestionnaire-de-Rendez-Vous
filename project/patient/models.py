@@ -12,6 +12,8 @@ class Patient(models.Model):
     adress=models.CharField(max_length=55)
     phone=models.IntegerField(blank=True)
 
+    created=models.DateTimeField(auto_now_add=True)
+
     def __str__(self):
         return self.name
     

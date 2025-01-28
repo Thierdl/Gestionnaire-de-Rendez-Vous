@@ -27,13 +27,29 @@
                     <td>{{ app.patient }}</td>
                     <td>{{ app.date }} / {{app.time}} </td>
 
-                    <td class="badge">
-                        {{ app.status }}
+                    {% if app.status == "En attente" %}
+                    <td class="badge text-bg-warning">
+                        {{app.status}}
                     </td>
+                    {% elif app.status == "Annuler" %}
+                    <td class="badge text-bg-danger">
+                        {{app.status}}
+                    </td>
+                    {% elif app.status == "Confirmer" %}
+                    <td class="badge text-bg-success">
+                        {{app.status}}
+                    </td>
+                    {% endif %}
+                    
                    
                     <td>
-                        <a href="{% url 'upd_app' app.id %}" type="button" class="btn btn-dark">Plus</a>
+                        <a href="{% url 'upd_app' app.id %}" type="button">
+                            <i class="mod fa fa-pencil" aria-hidden="true"></i>
+                        </a>
+                        <a href="#" class=""><i class="fa fa-trash" aria-hidden="true"></i></a>
+                        
                     </td>
+
                     
                 </tr>
             {% endfor %}

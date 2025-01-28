@@ -18,7 +18,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include(route.urls)),
     path('appoint/',include('appointement.urls')),
-    path('pat/', include("patient.urls")),
+    path('patient/', include("patient.urls")),
     #path('accounts/', include('account.urls')),
 
     path('account/', include('allauth.urls')),

@@ -8,11 +8,6 @@ from django.contrib.auth.decorators import login_required
 from .import models
 
 
-def testhtml(request):
-    return render(request, "testhtml/test.html")
-#"""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-
 def index_views(request):
     return render(request,'page/index.html')
 
@@ -21,20 +16,20 @@ def index_views(request):
 def dashboard_views(request):
     appoint=models.Appointement.objects.filter(
         patient__user=request.user,
-        status="En attente", 
         )
     
     rv=appoint.count()
-    print("Nombre RV:",rv)
+    
     return render(request, 'page/dashboard.html', {"rv":rv})
 
 
-
 def list_appointement(request):
-    appoint=models.Appointement.objects.filter(patient_id__user=request.user).order_by("-date")
+    appoint=models.Appointement.objects.filter(
+                        patient_id__user=request.user 
+                        ).order_by("-date")
+    
     return render(request, 'page/list_appoint.html', {"appoint":appoint})
     
-
 
 def add_appointement(request):
 
@@ -103,7 +98,7 @@ def update_appoint(request, appoint_id):
 
         appoint.save()
 
-        return redirect("list_app")
+        return redirect("list_appoint")
     
     patients=models.Patient.objects.filter(user=request.user)
 
@@ -111,14 +106,17 @@ def update_appoint(request, appoint_id):
                                 "appoint":appoint,
                                 "patients":patients
                                 }
-                                )
+                            )
 
 
-def del_appoint(request, id):
-    appoints=get_object_or_404(models.Appointement, id=id)
+def del_appoint(request, appoint_id):
+    appoints=get_object_or_404(
+                        models.Appointement, id=appoint_id, 
+                        patient__user=request.user
+                        )
 
     if request.method=="POST":
         appoints.delete()
         return redirect("list_app")
     
-    return render(request, 'appoint/delapp.html')
+    return render(request, 'appoint/updapp.html')

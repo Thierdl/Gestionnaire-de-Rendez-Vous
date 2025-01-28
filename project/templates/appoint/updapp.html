@@ -19,7 +19,7 @@
        
         <div class="mb-3">
           <label for="patient_id" name="patient_id" class="form-label">
-            <select id="patient_id" name="patient_id" class="form-control form-select mt-3" required>
+            <select id="patient_id" name="patient_id" class="form-select mt-3" required>
               {% for patient in patients %}
                 <option value="{{ patient.id }}" {% if patient.id == appoint.patient.id %}selected{% endif %}>
                   {{ patient.firstname }} {{ patient.name }}
