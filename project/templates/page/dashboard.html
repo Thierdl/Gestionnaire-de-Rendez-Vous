@@ -43,9 +43,9 @@
 					<div class="card bg-light">
 						<div class="card-body">
 
-							{% if patie %}
+							{% if patients %}
 							<h3 class="card-title">Mes Patients</h3>
-							<h1 class="text-center">{{ patie }}</h1>
+							<h1 class="text-center">{{ patients }}</h1>
 							
 							{% else %}
 							<h3 class="text-center">Aucune Patient</h3 >
@@ -61,10 +61,10 @@
 				<div class="col-md-3 mt-3">
 					<div class="card text-success border border-success">
 						<div class="card-body">
-
-							<h3 class="text-center">21</h3>
-							<h1 class="text-center">Confirmer</h1>
 							
+							<h3 class="text-center">{{ confirmeds }}</h3>
+							<h1 class="text-center">Confirmer</h1>
+						
 						</div>
 					</div>
 				</div>
@@ -72,14 +72,10 @@
 				<div class="col-md-4 mt-3" >
 					<div class="card text-warning border-warning">
 						<div class="card-body">
+							
+							<h3 class="text-center">{{ on_holds }}</h3>
+							<h1 class="text-center">En attente</h1>
 
-							{% if rv %}
-							<h3 class="text-center">{{rv}}</h3>
-							<h1 class="text-center">En attente</h1>
-							{% else %}
-							<h3 class="text-center">O</h3>
-							<h1 class="text-center">En attente</h1>
-							{% endif %}
 						</div>
 					</div>
 				</div>
@@ -87,7 +83,7 @@
 				<div class="col-md-3 mt-3 mb-5" >
 					<div class="card text-danger border-danger">
 						<div class="card-body">
-							<h3 class="text-center">23</h3>
+							<h3 class="text-center">{{ cancels }}</h3>
 							<h1 class="text-center">Annuler</h1>
 						</div>
 					</div>

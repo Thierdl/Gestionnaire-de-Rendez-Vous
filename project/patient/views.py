@@ -1,16 +1,19 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from .import models
+from appointement.models import Appointement
 # Create your views here.
 
 def patient_view(request):
     patient=models.Patient.objects.filter(user=request.user).order_by("-created")
     patients=patient.count()
+
     return render(request, "patient/list-patient.html", {
                             "patients":patients, 
                             "patient":patient,
 
                             })
+
 
 
 def addpatient(request):

@@ -7,6 +7,8 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required 
 from .import models
 
+from patient.models import Patient
+
 
 def index_views(request):
     return render(request,'page/index.html')
@@ -14,13 +16,28 @@ def index_views(request):
 
 #@login_required(login_url='/login/')
 def dashboard_views(request):
-    appoint=models.Appointement.objects.filter(
-        patient__user=request.user,
-        )
+    appoint=models.Appointement.objects.filter(patient__user=request.user)
+    on_hold=models.Appointement.objects.filter(patient__user=request.user, status="En attente")
+    confirmed=models.Appointement.objects.filter(patient__user=request.user, status="Confirmer")
+    cancel=models.Appointement.objects.filter(patient__user=request.user, status="Annuler")
+
+    patient=Patient.objects.filter(user=request.user)
+    
     
     rv=appoint.count()
+    on_holds=on_hold.count()
+    patients=patient.count()
+    confirmeds=confirmed.count()
+    cancels=cancel.count()
     
-    return render(request, 'page/dashboard.html', {"rv":rv})
+    return render(request, "page/dashboard.html", {
+                            "rv":rv,
+                            "patients":patients, 
+                            "on_holds":on_holds,
+                            "confirmeds":confirmeds,
+                            "cancels":cancels,
+                            }
+                        )
 
 
 def list_appointement(request):
@@ -58,7 +75,7 @@ def add_appointement(request):
         )
 
         
-        return redirect("list_app")
+        return redirect("list_appoint")
     
     patients=models.Patient.objects.filter(user=request.user)
     
