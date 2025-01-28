@@ -2,7 +2,7 @@
 {% extends 'base_generic.html' %}
 {% block content %}
 {% include 'partiels/navbar.html' %}
-<div class="container-fluid">
+<div class="container-fluid mb-5">
 	<div class="row">
 		
 		<nav class="col-2 col-md-2 sidebar d-md-block d-none mt-5 " >
@@ -17,7 +17,7 @@
 			
 		</nav>
 	
-		<main class="col-12 col-md-10 ms-sm-auto content">
+		<main class="col-12 col-md-10 ms-sm-auto content mb-5">
 			<div>
 				<h1 class="text-center mb-">Gestionnaire de Rendez-Vous</h1>
 			</div>
@@ -57,8 +57,8 @@
 				
 			</div>
 
-			<div class="row justify-content-md-center">
-				<div class="col-md-5 mt-3">
+			<div class="row justify-content-md-center mt-3">
+				<div class="col-md-3 mt-3">
 					<div class="card text-success border border-success">
 						<div class="card-body">
 
@@ -69,17 +69,23 @@
 					</div>
 				</div>
 
-				<div class="col-md-5 mt-3" >
+				<div class="col-md-4 mt-3" >
 					<div class="card text-warning border-warning">
 						<div class="card-body">
-							<h3 class="text-center">25</h3>
+
+							{% if rv %}
+							<h3 class="text-center">{{rv}}</h3>
 							<h1 class="text-center">En attente</h1>
+							{% else %}
+							<h3 class="text-center">O</h3>
+							<h1 class="text-center">En attente</h1>
+							{% endif %}
 						</div>
 					</div>
 				</div>
 
-				<div class="col-md-5 mt-3" >
-					<div class="card text-white bg-danger">
+				<div class="col-md-3 mt-3 mb-5" >
+					<div class="card text-danger border-danger">
 						<div class="card-body">
 							<h3 class="text-center">23</h3>
 							<h1 class="text-center">Annuler</h1>

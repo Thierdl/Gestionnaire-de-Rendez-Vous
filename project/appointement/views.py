@@ -16,13 +16,11 @@ def index_views(request):
 def dashboard_views(request):
     appoint=models.Appointement.objects.filter(
         patient__user=request.user,
-        status="En attente", 
         )
     
     rv=appoint.count()
     
     return render(request, 'page/dashboard.html', {"rv":rv})
-
 
 
 def list_appointement(request):
@@ -100,7 +98,7 @@ def update_appoint(request, appoint_id):
 
         appoint.save()
 
-        return redirect("list_app")
+        return redirect("list_appoint")
     
     patients=models.Patient.objects.filter(user=request.user)
 
