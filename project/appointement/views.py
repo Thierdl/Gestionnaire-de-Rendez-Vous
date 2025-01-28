@@ -20,7 +20,7 @@ def dashboard_views(request):
         )
     
     rv=appoint.count()
-    print("Nombre RV:",rv)
+    
     return render(request, 'page/dashboard.html', {"rv":rv})
 
 

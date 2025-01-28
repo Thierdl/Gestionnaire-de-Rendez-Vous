@@ -1,0 +1,57 @@
+{% extends 'base_generic.html' %}
+{% load static %}
+{% block content %}
+
+<div class="col-md-7 m-auto p-3 mb-5 rounded">
+    <div>
+        <h3 class="text-center mt-2">Mes Rendez-Vous</h3>
+        <span><a href="{% url 'addpatient' %}">add RV</a></span>
+    </div>
+
+    <div >
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Prénom</th>
+                    <th>Nom</th>
+                    <th>Age</th>
+                    <th>Address</th>
+                    <th>Tel</th>
+
+                </tr>
+            </thead>
+        
+            <tbody>
+                
+                {% for patient in patient %}
+ 
+                <tr>
+                    <td>{{ patient.name }}</td>
+                    <td>{{ patient.firstname }}</td>
+                    <td>{{ patient.age }}</td>
+                    <td>{{ patient.adress }}</td>
+                    <td>{{ patient.phone }}</td>
+                   
+                   
+                    <td>
+                        <a href="#" type="button">
+                            <i class="mod fa fa-pencil" aria-hidden="true"></i>
+                        </a>
+                        <a href="#" class=""><i class="fa fa-trash" aria-hidden="true"></i></a>
+                        
+                    </td>
+                {% endfor %}
+
+                    
+                </tr>
+          
+
+            </tbody>
+        </table>
+    </div>
+   
+</div>
+
+
+
+{% endblock %}
