@@ -15,12 +15,16 @@ def addpatient(request):
         adress=request.POST.get("adress")
         phone=request.POST.get("phone")
 
+        user=request.user
+
         patient=models.Patient.objects.create(
             name=name,
             firstname=firstname,
             age=age,
             adress=adress,
             phone=phone,
+
+            user=user,
         )
 
         patient.save()
@@ -52,8 +56,6 @@ def update_patient(request, id):
     return render(request, "patient/updatepat.html", {'patient':patient})
 
     
-
-
 
 def delete_patient(request, id):
     patients=get_object_or_404(models.Patient, id=id)
