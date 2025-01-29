@@ -18,7 +18,11 @@ class Appointement(models.Model):
     default="En attente",
                             )
     
-    created=models.DateTimeField(auto_now_add=True)
+    created=models.DateTimeField(auto_now_add=True) 
+
+    #if status > now
+    #else:
+    #    return
 
     def __str__(self):
         return f"{self.title}"

@@ -25,68 +25,83 @@
 			<!-- Dashboard Widgets -->
 			<div class="row justify-content-md-center">
 				<div class="col-md-5 mt-3">
-					<div class="card bg-light">
-						<div class="card-body">
+					<a href="{% url 'list_appoint' %}">
+						<div class="card bg-light">
+							<div class="card-body">
 
-							{% if rv %}
-							<h3 class="text-center">Rendez-Vous</h3>
-							<h1 class="text-center">{{ rv }}</h1>
-							{% else %}
-							<h3 class="text-center">Aucune Rendez-Vous n'est disponible</h3>
-							{% endif %}
-							
+								{% if rv %}
+								<h3 class="text-center">Rendez-Vous</h3>
+								<h1 class="text-center">{{ rv }}</h1>
+								{% else %}
+								<h3 class="text-center">Aucune Rendez-Vous n'est disponible</h3>
+								{% endif %}
+								
+							</div>
 						</div>
-					</div>
+					</a>
 				</div>
+				
 
 				<div class="col-md-5 mt-3" >
-					<div class="card bg-light">
-						<div class="card-body">
+					<a href="{% url  'list-patient' %}">
 
-							{% if patients %}
-							<h3 class="card-title">Mes Patients</h3>
-							<h1 class="text-center">{{ patients }}</h1>
-							
-							{% else %}
-							<h3 class="text-center">Aucune Patient</h3 >
+						<div class="card bg-light">
+							<div class="card-body">
 
-							{% endif %}
+								{% if patients %}
+								<h3 class="card-title">Mes Patients</h3>
+								<h1 class="text-center">{{ patients }}</h1>
+								
+								{% else %}
+								<h3 class="text-center">Aucune Patient</h3 >
+
+								{% endif %}
+							</div>
 						</div>
-					</div>
+					</a>
 				</div>
+				
 				
 			</div>
 
 			<div class="row justify-content-md-center mt-3">
+				
 				<div class="col-md-3 mt-3">
-					<div class="card text-success border border-success">
-						<div class="card-body">
+					<a href="{% url  'confirmed' %}">
+						<div class="card text-success border border-success">
+							<div class="card-body">
+								
+								<h3 class="text-center">{{ confirmeds }}</h3>
+								<h1 class="text-center">Confirmer</h1>
 							
-							<h3 class="text-center">{{ confirmeds }}</h3>
-							<h1 class="text-center">Confirmer</h1>
-						
+							</div>
 						</div>
-					</div>
+					</a>
 				</div>
+				
 
 				<div class="col-md-4 mt-3" >
-					<div class="card text-warning border-warning">
-						<div class="card-body">
-							
-							<h3 class="text-center">{{ on_holds }}</h3>
-							<h1 class="text-center">En attente</h1>
+					<a href="{% url 'on_hold' %}">
+						<div class="card text-warning border-warning">
+							<div class="card-body">
+								
+								<h3 class="text-center">{{ on_holds }}</h3>
+								<h1 class="text-center">En attente</h1>
 
+							</div>
 						</div>
-					</div>
+					</a>
 				</div>
 
 				<div class="col-md-3 mt-3 mb-5" >
-					<div class="card text-danger border-danger">
-						<div class="card-body">
-							<h3 class="text-center">{{ cancels }}</h3>
-							<h1 class="text-center">Annuler</h1>
+					<a href="{% url 'cancel' %}">
+						<div class="card text-danger border-danger">
+							<div class="card-body">
+								<h3 class="text-center">{{ cancels }}</h3>
+								<h1 class="text-center">Annuler</h1>
+							</div>
 						</div>
-					</div>
+					</a>
 				</div>
 
 				

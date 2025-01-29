@@ -3,7 +3,6 @@ from .serializers import AppointementSerializer, PatientSerializer
 from appointement.models import Appointement
 from patient.models import Patient
 
-
 class AppointementViewSet(ModelViewSet):
     serializer_class=AppointementSerializer
 

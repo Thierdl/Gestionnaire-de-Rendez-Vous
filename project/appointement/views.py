@@ -14,7 +14,26 @@ def index_views(request):
     return render(request,'page/index.html')
 
 
-#@login_required(login_url='/login/')
+@login_required(login_url="/login/")
+def confirmed(request):
+    confirmed=models.Appointement.objects.filter(status="Confirmer")
+    return render(request, "list/confirmed.html", {"confirmed":confirmed})
+
+
+@login_required(login_url="/login/")
+def on_hold(request):
+    on_hold=models.Appointement.objects.filter(status="En attente")
+    return render(request, "list/on_hold.html", {"on_hold":on_hold})
+
+
+@login_required(login_url="/login/")
+def cancel(request):
+    cancel=models.Appointement.objects.filter(status="Annuler")
+    return render (request, "list/cancel.html", {"cancel":cancel})
+
+
+
+@login_required(login_url='/login/')
 def dashboard_views(request):
     appoint=models.Appointement.objects.filter(patient__user=request.user)
     on_hold=models.Appointement.objects.filter(patient__user=request.user, status="En attente")
@@ -39,7 +58,7 @@ def dashboard_views(request):
                             }
                         )
 
-
+@login_required(login_url='/login/')
 def list_appointement(request):
     appoint=models.Appointement.objects.filter(
                         patient_id__user=request.user 
@@ -48,6 +67,7 @@ def list_appointement(request):
     return render(request, 'page/list_appoint.html', {"appoint":appoint})
     
 
+@login_required(login_url='/login/')
 def add_appointement(request):
 
     if request.method=="POST":
@@ -83,7 +103,7 @@ def add_appointement(request):
     return render(request, "appoint/add_appoint.html", {"patients":patients})
 
 
-
+@login_required(login_url='/login/')
 def update_appoint(request, appoint_id):
     appoint=get_object_or_404(
                 models.Appointement, 
@@ -125,10 +145,11 @@ def update_appoint(request, appoint_id):
                                 }
                             )
 
-
+@login_required(login_url='/login/')                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
 def del_appoint(request, appoint_id):
     appoints=get_object_or_404(
-                        models.Appointement, id=appoint_id, 
+                        models.Appointement, 
+                        id=appoint_id, 
                         patient__user=request.user
                         )
 
