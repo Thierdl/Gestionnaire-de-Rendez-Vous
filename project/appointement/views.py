@@ -16,19 +16,19 @@ def index_views(request):
 
 @login_required(login_url="/login/")
 def confirmed(request):
-    confirmed=models.Appointement.objects.filter(status="Confirmer")
+    confirmed=models.Appointement.objects.filter(patient__user=request.user, status="Confirmer")
     return render(request, "list/confirmed.html", {"confirmed":confirmed})
 
 
 @login_required(login_url="/login/")
 def on_hold(request):
-    on_hold=models.Appointement.objects.filter(status="En attente")
+    on_hold=models.Appointement.objects.filter(patient__user=request.user, status="En attente")
     return render(request, "list/on_hold.html", {"on_hold":on_hold})
 
 
 @login_required(login_url="/login/")
 def cancel(request):
-    cancel=models.Appointement.objects.filter(status="Annuler")
+    cancel=models.Appointement.objects.filter(patient__user=request.user, status="Annuler")
     return render (request, "list/cancel.html", {"cancel":cancel})
 
 
@@ -41,7 +41,6 @@ def dashboard_views(request):
     cancel=models.Appointement.objects.filter(patient__user=request.user, status="Annuler")
 
     patient=Patient.objects.filter(user=request.user)
-    
     
     rv=appoint.count()
     on_holds=on_hold.count()

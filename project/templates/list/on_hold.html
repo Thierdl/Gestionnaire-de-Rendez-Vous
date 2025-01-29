@@ -3,6 +3,7 @@
 {% block content %}
 
 <div class="col-md-7 m-auto p-3 mb-5 rounded">
+    {% if on_hold %}
     <div>
         <h3 class="text-center mt-2">Mes Rendez-Vous</h3>
     </div>
@@ -36,8 +37,7 @@
                         <a href="{% url 'upd_app' app.id %}" type="button">
                             <i class="mod fa fa-pencil" aria-hidden="true"></i>
                         </a>
-                        <a href="#" class=""><i class="fa fa-trash" aria-hidden="true"></i></a>
-                        
+                        <a href="#" class=""><i class="fa fa-trash" aria-hidden="true"></i></a>        
                     </td>
 
                     
@@ -47,6 +47,9 @@
             </tbody>
         </table>
     </div>
+    {% else %}
+    <p class="text-center">AUCUNE RENDEZ-VOUS N'EST EN ATTENTE</p>
+    {% endif %}
    
 </div>
 
