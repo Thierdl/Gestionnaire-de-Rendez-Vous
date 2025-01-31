@@ -3,10 +3,12 @@ from pathlib import Path
 import os
 import environ
 
+env=environ.Env()   
+environ.Env.read_env()  
+SENDGRID_API_KEY = env('SENDGRID_API_KEY')
 
-env=environ.Env()   #init.
-environ.Env.read_env()  #read
-SECRET_KEY=env('SECRET_KEY'),  #utilisation de variable environnement
+SECRET_KEY=env('SECRET_KEY')  #utilisation de variable environnement
+
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -16,7 +18,7 @@ DATABASES={
     'default':env.db('DATABASE_URL', default='sqlite:///{}'.format(BASE_DIR / 'db.sqlite3')),
 }
 
-
+SESSION_COOKIE_NAME = 'sessionid_{}'.format(os.getpid())
 
 DEBUG = True
 
@@ -50,6 +52,7 @@ INSTALLED_APPS = [
 
     'crispy_forms',
     'crispy_bootstrap4',
+    'django_extensions',
 ]
 
 
@@ -136,18 +139,6 @@ AUTHENTICATION_BACKENDS = [
     
     
 ]
-
-
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-
-#EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'hthierdl70@gmail.com'  
-EMAIL_HOST_PASSWORD = 'K7oi2G2zWwT2J@g'
-DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
-
 
 
 WSGI_APPLICATION = 'project.wsgi.application'
