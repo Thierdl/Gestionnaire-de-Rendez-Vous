@@ -3,12 +3,13 @@
 {% block content %}
 
 <div class="col-md-7 m-auto p-3 mb-5 rounded">
+    {% if confirmed %}
     <div>
         <h3 class="text-center mt-2">Mes Rendez-Vous</h3>
-        <span><a href="{% url 'add_app' %}">add RV</a></span>
     </div>
 
     <div >
+        
         <table class="table">
             <thead>
                 <tr>
@@ -20,29 +21,18 @@
             </thead>
         
             <tbody>
-                
-            {% for app in appoint %}
-
+            {% for app in confirmed %}
 
                 <tr>
                     <td>{{ app.title }}</td>
                     <td>{{ app.patient }}</td>
                     <td>{{ app.date }} / {{app.time}} </td>
 
-                    {% if app.status == "En attente" %}
-                    <td class="badge text-bg-warning">
-                        {{app.status}}
-                    </td>
-                    {% elif app.status == "Annuler" %}
-                    <td class="badge text-bg-danger">
-                        {{app.status}}
-                    </td>
-                    {% elif app.status == "Confirmer" %}
+                   
                     <td class="badge text-bg-success">
                         {{app.status}}
                     </td>
-                    {% endif %}
-                    
+            
                    
                     <td>
                         <a href="{% url 'upd_app' app.id %}" type="button">
@@ -58,6 +48,10 @@
 
             </tbody>
         </table>
+
+        {% else %}
+        <h1 class="text-center">AUCUNE RENDEZ-VOUS  N'A ÉTÉ CONFIRMÉ</h1>
+        {% endif %}
     </div>
    
 </div>

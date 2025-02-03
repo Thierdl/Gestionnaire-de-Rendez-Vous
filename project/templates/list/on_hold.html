@@ -3,9 +3,9 @@
 {% block content %}
 
 <div class="col-md-7 m-auto p-3 mb-5 rounded">
+    {% if on_hold %}
     <div>
         <h3 class="text-center mt-2">Mes Rendez-Vous</h3>
-        <span><a href="{% url 'add_app' %}">add RV</a></span>
     </div>
 
     <div >
@@ -20,36 +20,24 @@
             </thead>
         
             <tbody>
-                
-            {% for app in appoint %}
-
+            {% for app in on_hold %}
 
                 <tr>
                     <td>{{ app.title }}</td>
                     <td>{{ app.patient }}</td>
                     <td>{{ app.date }} / {{app.time}} </td>
 
-                    {% if app.status == "En attente" %}
+                   
                     <td class="badge text-bg-warning">
                         {{app.status}}
                     </td>
-                    {% elif app.status == "Annuler" %}
-                    <td class="badge text-bg-danger">
-                        {{app.status}}
-                    </td>
-                    {% elif app.status == "Confirmer" %}
-                    <td class="badge text-bg-success">
-                        {{app.status}}
-                    </td>
-                    {% endif %}
-                    
+            
                    
                     <td>
                         <a href="{% url 'upd_app' app.id %}" type="button">
                             <i class="mod fa fa-pencil" aria-hidden="true"></i>
                         </a>
-                        <a href="#" class=""><i class="fa fa-trash" aria-hidden="true"></i></a>
-                        
+                        <a href="#" class=""><i class="fa fa-trash" aria-hidden="true"></i></a>        
                     </td>
 
                     
@@ -59,6 +47,9 @@
             </tbody>
         </table>
     </div>
+    {% else %}
+    <p class="text-center">AUCUNE RENDEZ-VOUS N'EST EN ATTENTE</p>
+    {% endif %}
    
 </div>
 

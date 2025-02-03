@@ -60,7 +60,7 @@ def signup_view(request):
 
 
 # views.py
-
+"""
 from django.core.mail import send_mail
 from django.http import HttpResponse
 from django.conf import settings
@@ -75,3 +75,22 @@ def send_test_email(request):
     send_mail(subject, message, settings.DEFAULT_FROM_EMAIL, recipient_list)
 
     return HttpResponse("Email envoyé avec succès !")
+"""
+
+
+# views.py
+from django.core.mail import send_mail
+from django.http import HttpResponse
+
+def send_test_email(request):
+    subject = 'Test d\'envoi d\'e-mail avec SendGrid'
+    message = 'Ceci est un message de test envoyé depuis Django avec SendGrid.'
+    from_email = 'ton_email@domaine.com'  # Doit correspondre à DEFAULT_FROM_EMAIL
+    recipient_list = ['destinataire@example.com']  # Liste des destinataires
+
+    try:
+        send_mail(subject, message, from_email, recipient_list)
+        return HttpResponse("E-mail envoyé avec succès !")
+    except Exception as e:
+        return HttpResponse(f"Erreur lors de l'envoi de l'e-mail : {str(e)}")
+
