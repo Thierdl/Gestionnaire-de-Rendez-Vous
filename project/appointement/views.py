@@ -1,14 +1,9 @@
 
 from django.shortcuts import render, redirect, get_object_or_404
-
-#from .import forms
-#from django.contrib.auth import authenticate, login
-#from django.contrib.auth.models import  User
 from django.contrib.auth.decorators import login_required 
 from .import models
 
 from patient.models import Patient
-
 
 def index_views(request):
     return render(request,'page/index.html')

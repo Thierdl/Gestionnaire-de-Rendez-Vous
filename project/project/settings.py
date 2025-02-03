@@ -5,13 +5,13 @@ import environ
 
 env=environ.Env()   
 environ.Env.read_env()  
-SENDGRID_API_KEY = env('SENDGRID_API_KEY')
 
-SECRET_KEY=env('SECRET_KEY')  #utilisation de variable environnement
+#client_id='860432862760-cic1tvt36noa9ge3hkvanca5u4788utk.apps.googleusercontent.com'
+#secret_key='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'
 
 
+SECRET_KEY=env('SECRET_KEY')
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 DATABASES={
@@ -33,6 +33,7 @@ ALLOWED_HOSTS = [
 # Application definition
 
 INSTALLED_APPS = [
+
     'django.contrib.sites',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -52,7 +53,7 @@ INSTALLED_APPS = [
 
     'crispy_forms',
     'crispy_bootstrap4',
-    'django_extensions',
+    
 ]
 
 
@@ -78,7 +79,30 @@ MIDDLEWARE = [
 
 SITE_ID = 1
 
+AUTHENTICATION_BACKENDS = [
+   
+    'django.contrib.auth.backends.ModelBackend',
 
+    'allauth.account.auth_backends.AuthenticationBackend',  
+    
+]
+
+
+ROOT_URLCONF = 'project.urls'
+
+LOGIN_REDIRECT_URL='/appoint/board' 
+
+ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+ACCOUNT_EMAIL_REQUIRED = True
+#ACCOUNT_AUTHENTICATION_METHOD = 'email'
+ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
+
+#ACCOUNT_USERNAME_REQUIRED = False 
+ACCOUNT_LOGOUT_REDIRECT_URL = "/accounts/login/"
+
+
+
+"""
 SOCIALACCOUNT_PROVIDERS = {
     'google': {
         'SCOPE': [
@@ -90,28 +114,33 @@ SOCIALACCOUNT_PROVIDERS = {
         
     },
 }
+"""
 
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'APP': {
+            'client_id':'860432862760-cic1tvt36noa9ge3hkvanca5u4788utk.apps.googleusercontent.com',  
+            'secret':'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',  
+            'key': ''
+        },
+        'SCOPE': [
+            'profile',
+            'email',
+        ],
+        'AUTH_PARAMS': {
+            'access_type': 'online',
+        }
+    }
+}
 
 
 
 INTERNAL_IPS = [
     '127.0.0.1',
-    'localhost',  # Adresse IP locale
+    'localhost',  
 ]
 
 
-ROOT_URLCONF = 'project.urls'
-
-LOGIN_REDIRECT_URL='/appoint/board' 
-
-ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
-ACCOUNT_EMAIL_REQUIRED = True
-ACCOUNT_AUTHENTICATION_METHOD = 'email'
-
-ACCOUNT_USERNAME_REQUIRED = False 
-LOGOUT_REDIRECT_URL = "/account/login/"
-
-  
 
 
 TEMPLATES = [
@@ -131,14 +160,7 @@ TEMPLATES = [
 ]
 
 
-AUTHENTICATION_BACKENDS = [
-   
-    'django.contrib.auth.backends.ModelBackend',
 
-    'allauth.account.auth_backends.AuthenticationBackend',
-    
-    
-]
 
 
 WSGI_APPLICATION = 'project.wsgi.application'
@@ -171,8 +193,8 @@ USE_TZ = True
 
 
 STATIC_URL = '/static/'
-STATIC_ROOT = BASE_DIR / 'staticfiles'
-STATICFILES_DIRS = [ os.path.join(BASE_DIR, 'static'),]
+#STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATICFILES_DIRS = [ os.path.join(BASE_DIR, 'static')]
 
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

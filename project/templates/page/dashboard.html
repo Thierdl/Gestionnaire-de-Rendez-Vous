@@ -5,10 +5,10 @@
 <div class="container-fluid mb-5">
 	<div class="row">
 		
-		<nav class="col-2 col-md-2 sidebar d-md-block d-none mt-5 " >
-			<h4 class="text-center text-white">
-				<a href="{% url 'board' %}">Dashboard</a> 
-			</h4>
+		<nav class="side col-2 col-md-2 sidebar d-md-block d-none mt-2" >
+			<h3 class="text-center">
+				<a class="text-black" href="{% url 'board' %}">Dashboard</a> 
+			</h3>
 			<img src="" class="rounded mx-auto d-block" alt="image">
 			<a href="{% url 'index' %}">Accueil</a>
 			<a href="{% url 'list_appoint' %}">Mes Rendez-Vous</a>
@@ -17,7 +17,7 @@
 			
 		</nav>
 	
-		<main class="col-12 col-md-10 ms-sm-auto content mb-5">
+		<main class="col-12 col-md-10 mb-5">
 			<div>
 				<h1 class="text-center mb-">Gestionnaire de Rendez-Vous</h1>
 			</div>
@@ -26,7 +26,7 @@
 			<div class="row justify-content-md-center">
 				<div class="col-md-5 mt-3">
 					<a href="{% url 'list_appoint' %}">
-						<div class="card bg-light">
+						<div class="appoint card">
 							<div class="card-body">
 
 								{% if rv %}
@@ -45,7 +45,7 @@
 				<div class="col-md-5 mt-3" >
 					<a href="{% url  'list-patient' %}">
 
-						<div class="card bg-light">
+						<div class="appoint card">
 							<div class="card-body">
 
 								{% if patients %}
