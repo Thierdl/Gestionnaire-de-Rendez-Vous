@@ -2,14 +2,16 @@
 {% extends 'base_generic.html' %}
 {% block content %}
 {% include 'partiels/navbar.html' %}
-<div class="container-fluid mb-5">
+<div class="container-fluid mb-5 mt-5 pt-4">
 	<div class="row">
 		
 		<nav class="side col-2 col-md-2 sidebar d-md-block d-none mt-2" >
 			<h3 class="text-center">
-				<a class="text-black" href="{% url 'board' %}">Dashboard</a> 
+				<a class="text-white text-center" href="{% url 'board' %}">Dashboard</a> 
 			</h3>
+			
 			<img src="" class="rounded mx-auto d-block" alt="image">
+			
 			<a href="{% url 'index' %}">Accueil</a>
 			<a href="{% url 'list_appoint' %}">Mes Rendez-Vous</a>
 			<a href="{% url  'list-patient' %}">Mes Patients</a>
@@ -19,7 +21,7 @@
 	
 		<main class="col-12 col-md-10 mb-5">
 			<div>
-				<h1 class="text-center mb-">Gestionnaire de Rendez-Vous</h1>
+				<h1 class="text-center">Gestionnaire de Rendez-Vous</h1>
 			</div>
 
 			<!-- Dashboard Widgets -->
@@ -64,7 +66,7 @@
 				
 			</div>
 
-			<div class="row justify-content-md-center mt-3">
+			<div class="row justify-content-md-center mt-3 ">
 				
 				<div class="col-md-3 mt-3">
 					<a href="{% url  'confirmed' %}">
@@ -93,7 +95,7 @@
 					</a>
 				</div>
 
-				<div class="col-md-3 mt-3 mb-5" >
+				<div class="col-md-3 mt-3" >
 					<a href="{% url 'cancel' %}">
 						<div class="card text-danger border-danger">
 							<div class="card-body">

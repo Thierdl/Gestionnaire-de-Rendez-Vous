@@ -2,20 +2,23 @@
 {% load static %}
 {% block content %}
 
-<div class="col-md-7 m-auto p-3 mb-5 rounded">
+{% include 'partiels/navbar.html' %}
+
+<div class="col-md-10 m-auto p-3 mb-5">
     <div>
         <h3 class="text-center mt-2">Mes Rendez-Vous</h3>
-        <span><a href="{% url 'add_app' %}">add RV</a></span>
+        <span>
+            <a href="{% url 'add_app' %}">
+                <i class="fa-solid fa-calendar-plus"></i>
+            </a>
+        </span>
     </div>
 
     <div >
         <table class="table">
-            <thead>
+            <thead class="thead-dark">
                 <tr>
-                    <th>Title</th>
-                    <th>Patient</th>
-                    <th>Date</th>
-                    <th>Status</th>
+
                 </tr>
             </thead>
         
@@ -25,9 +28,14 @@
 
 
                 <tr>
-                    <td>{{ app.title }}</td>
-                    <td>{{ app.patient }}</td>
-                    <td>{{ app.date }} / {{app.time}} </td>
+                    <td>{{ app.date }} <br> <div class="name">{{ app.patient }}</div></td>               
+                    <td>{{app.time}} <br>
+                        <a href="{% url 'upd_app' app.id %}" type="button">
+                            <i class="mod fa fa-pencil" aria-hidden="true"></i>
+                        </a>
+                        <a href="#" class=""><i class="fa fa-trash" aria-hidden="true"></i>
+                        </a>
+                    </td>
 
                     {% if app.status == "En attente" %}
                     <td class="badge text-bg-warning">
@@ -43,16 +51,6 @@
                     </td>
                     {% endif %}
                     
-                   
-                    <td>
-                        <a href="{% url 'upd_app' app.id %}" type="button">
-                            <i class="mod fa fa-pencil" aria-hidden="true"></i>
-                        </a>
-                        <a href="#" class=""><i class="fa fa-trash" aria-hidden="true"></i></a>
-                        
-                    </td>
-
-                    
                 </tr>
             {% endfor %}
 
@@ -61,7 +59,5 @@
     </div>
    
 </div>
-
-
 
 {% endblock %}

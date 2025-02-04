@@ -1,69 +1,71 @@
 {% extends "base_generic.html" %}
 {% block content %}
 
-<div class="border col-md-5 m-auto p-3 mb-5 mt-5 ">
-  <form method="POST" enctype="multipart/form-data"> {% csrf_token %}
+{% include 'partiels/navbar.html' %}
+<div class="pb-3">
+  <div class="title pt-5 ">
+    <h2 class="text-center">Update</h2>
+  </div>
+  
+  <div class="border col-md-4 m-auto p-2">
+    <form method="POST" enctype="multipart/form-data"> {% csrf_token %}
 
-    <div class="container">
-      <div class="row">
+      <div class="container">
+        <div class="row">
+
+          <div class="">
+            <label for="title" class="form-label"></label>
+            <input type="text" class="form-control" name="title" placeholder="Titre" value="{{ appoint.title }}"></input>  
+          </div>
+
         
-        <div>
-            <h1 class="text-center">Update</h1>
-        </div>
-              
-        <div class="mb-3">
-          <label for="title" class="form-label"></label>
-          <input type="text" class="form-control mt-3" name="title" placeholder="Titre" value="{{ appoint.title }}"></input>  
-        </div>
+          <div class="">
+            <label for="patient_id" name="patient_id" class="form-label">
+              <select id="patient_id" name="patient_id" class="form-select mt-2" required>
+                {% for patient in patients %}
+                  <option value="{{ patient.id }}" {% if patient.id == appoint.patient.id %}selected{% endif %}>
+                    {{ patient.firstname }} {{ patient.name }}
+                  </option>
+                {% endfor %}
+              </select>
+            </label>
+          </div>
+          
+          <div class="">
+            <label for="date" class="form-label"></label>
+            <input type="date" class="form-control"  name="date" value="{{ appoint.date }}" required></input>  
+          </div>
 
-       
-        <div class="mb-3">
-          <label for="patient_id" name="patient_id" class="form-label">
-            <select id="patient_id" name="patient_id" class="form-select mt-3" required>
-              {% for patient in patients %}
-                <option value="{{ patient.id }}" {% if patient.id == appoint.patient.id %}selected{% endif %}>
-                  {{ patient.firstname }} {{ patient.name }}
-                </option>
-              {% endfor %}
+          <div class="">
+            <label for="time" class="form-label"></label>
+            <input type="time" class="form-control"  name="time" value="{{ appoint.time }}" required></input>  
+          </div>
+
+          <div class="">
+            <label for="place" class="form-label"></label>
+            <input type="text" class="form-control" name="place" placeholder="Lieu" value="{{ appoint.place }}"></input>  
+          </div>
+
+          <div class="">
+            <label for="status" class="form-label"></label>
+            <select id="status" name="status" class="form-select mt-2" required>
+              <option value="En attente" {% if appoint.status == "En attente" %}selected{% endif %}>En attente</option>
+              <option value="Annuler" {% if appoint.status == "Annuler" %}selected{% endif %}>Annuler</option>
+              <option value="Confirmer" {% if appoint.status == "Confirmer" %}selected{% endif %}>Confirmer</option>
             </select>
-          </label>
-        </div>
-        
-        <div class="mb-3">
-          <label for="date" class="form-label"></label>
-          <input type="date" class="form-control mt-3"  name="date" value="{{ appoint.date }}" required></input>  
-        </div>
+          </div>
 
-        <div class="mb-3">
-          <label for="time" class="form-label"></label>
-          <input type="time" class="form-control mt-3"  name="time" value="{{ appoint.time }}" required></input>  
-        </div>
+          <div class="d-grid gap-2">
+              <button type="submit" class="buttsave btn mt-2">Enregistrer</button>
+          </div>
+      </div>
+    </form>
 
-        <div class="mb-3">
-          <label for="place" class="form-label"></label>
-          <input type="text" class="form-control mt-3" name="place" placeholder="Lieu" value="{{ appoint.place }}"></input>  
-        </div>
-
-        <div class="mb-3">
-          <label for="status" class="form-label"></label>
-          <select id="status" name="status" class="form-select mt-3" required>
-            <option value="En attente" {% if appoint.status == "En attente" %}selected{% endif %}>En attente</option>
-            <option value="Annuler" {% if appoint.status == "Annuler" %}selected{% endif %}>Annuler</option>
-            <option value="Confirmer" {% if appoint.status == "Confirmer" %}selected{% endif %}>Confirmer</option>
-          </select>
-        </div>
-
-        <div class="d-grid gap-2">
-            <button type="submit" class="btn btn-dark mt-3">Enregistrer</button>
-        </div>
-    </div>
-  </form>
-
-  <form action="{% url 'del_app' appoint.id %}" method="post" style="display:inline;" class="d-grid gap-2 mt-3">
-    {% csrf_token %}
-    <button type="submit" class="btn btn-outline-danger">Supprimer</button>
-  </form>
+    <form action="{% url 'del_app' appoint.id %}" method="post" style="display:inline;" class="d-grid gap-2 mt-3">
+      {% csrf_token %}
+      <button type="submit" class="btn btn-outline-danger">Supprimer</button>
+    </form>
+  </div>
 </div>
-
 {% endblock %}
 
