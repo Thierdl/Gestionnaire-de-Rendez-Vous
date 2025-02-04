@@ -9,9 +9,9 @@
     <div class="row">
        
         <!--div1-->
-        <div class="col-12 col-md-6 mt-5">
+        <div class="col-12 col-md-6 mt-2">
             <div class="text mt-3">
-                <h1 class="text-black" >BIENVENU </h1>
+                <h1 class="title" >BIENVENU </h1>
                 <h3>Dans votre gestionnaire de RENDEZ-VOUS</h3>
                 <p>
                     Lorem ipsum dolor sit amet consectetur adipisicing elit.
@@ -29,16 +29,18 @@
 
             <div class="start mt-5">
                 
-                <a class="text-black" href="#">Commencer</a>
-                <i class="fa-solid fa-arrow-right-long"></i>
+                <a class="text-white" href="{% url 'board' %}">Commencer <i class="fa-solid fa-chevron-right"></i>
+
+                </a>
+                
             
             </div>
         </div>
 
         
         <!--div2-->
-        <div class="col-12 col-md-6 mt-5">
-            <img src="{% static 'image/preview.png' %}" class="img-fluid" alt="image">
+        <div class="imgindex col-12 col-md-5 mt-2">
+            <img src="{% static 'image/homeimg.jpg' %}" class="img-fluid" alt="image">
         </div>
     </div>
 </div>
