@@ -1,5 +1,7 @@
 body {
     font-family: 'Times New Roman', Times, serif;
+    padding-top: 2rem;
+    margin-bottom: -20rem;
 }
 
 
@@ -25,9 +27,9 @@ body {
 
 .sidebar {
     background-color: hwb(25 21% 0%);
-    min-height: 84vh;
     padding-top: 2rem;
     border-radius: 1px 15px 15PX 1px;
+   
    
 
 }
@@ -67,10 +69,6 @@ a {
     text-decoration: none;
 }
 
-.navbar {
-    
-    border-radius: 1rem;
-}
 
 
 .start a {
@@ -93,13 +91,41 @@ a {
     padding-bottom: 2rem;
 }
 
+/**css image**/
 .imgindex {
-    width: 45%;
-    
+    width: 45%;   
+    height: 45%;
 }
 
 
 .navimg {
-    width: 5%;
+    width: 45px; 
+    height: 45px;
 }
 
+.name {
+    color: hwb(25 21% 0%);
+    font-weight: bold;
+}
+
+.buttsave {
+    background-color: hwb(25 21% 0%);
+    font-weight: bold;
+    font-size: 1rem;
+
+}
+
+/** css icone **/
+i {
+    color: hwb(25 21% 0%);
+}
+
+.fa-trash {
+    color: red;
+    margin-left: 5px;
+}
+
+.fa-pencil {
+    color: black;
+    margin-right: 5px;
+}

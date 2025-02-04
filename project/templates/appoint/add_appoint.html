@@ -1,25 +1,28 @@
 {% extends "base_generic.html" %}
 {% block content %}
 
+{% include 'partiels/navbar.html' %}
 
-<div class="border col-md-5 m-auto p-3 mb-5 mt-5 ">
+<div class="title mt-1 pt-5">
+  <h2 class="text-center">Rendez-Vous</h2>
+</div>
+
+<div class="border col-md-4 m-auto p-2 ">
   <form method="POST" enctype="multipart/form-data"> {% csrf_token %}
 
+    
     <div class="container">
       <div class="row">
-        <div>
-            <h1 class="text-center">Rendez-Vous</h1>
-        </div>
-              
-        <div class="mb-3">
+                     
+        <div class="">
           <label for="title" class="form-label"></label>
-          <input type="text" class="form-control mt-3" name="title" placeholder="Titre"></input>  
+          <input type="text" class="form-control" name="title" placeholder="Titre"></input>  
         </div>
 
 
-        <div class="mb-3">
+        <div class="">
           <label for="patient_id" name="patient_id" class="form-label">
-            <select id="patient_id" name="patient_id" class="form-control form-select mt-3">
+            <select id="patient_id" name="patient_id" class="form-control form-select mt-2">
               {% for patient in patients %}
                
                 <option value="{{ patient.id }}">{{patient.firstname}} {{patient.name}}</option>
@@ -30,24 +33,24 @@
         </div>
 
         
-        <div class="mb-3">
+        <div class="">
           <label for="date" class="form-label"></label>
           <input type="date" class="form-control"  name="date" placeholder="Date"></input>  
         </div>
 
-        <div class="mb-3">
+        <div class="">
           <label for="patient" class="form-label"></label>
           <input for="time" type="time" class="form-control"  name="time" placeholder="Heure"></input>  
         </div>
 
-        <div class="mb-3">
+        <div class="">
           <label for="place" class="form-label"></label>
           <input type="text" class="form-control" name="place" placeholder="Lieu" ></input>  
         </div>
 
-        <div class="mb-3">
+        <div class="">
           <label for="status" name="status" class="form-label">
-            <select class="form-select mt-3" name="status" id="status" aria-label="Default select example">
+            <select class="form-select mt-2" name="status" id="status" aria-label="Default select example">
               <option value="En attente">En attente</option>
               <option value="Annuler">Annuler</option>
               <option value="Confirmer">Confirmer</option>
@@ -55,8 +58,8 @@
           </label>
         </div>
 
-        <div class="d-grid gap-2 mt-3">
-            <button type="submit" class="btn btn-dark">Enregistrer</button>
+        <div class="d-grid gap-2">
+            <button type="submit" class="buttsave btn">Enregistrer</button>
         </div>
       </div>
     </div>
