@@ -36,7 +36,8 @@ DEBUG = False
 ALLOWED_HOSTS = [
     '127.0.0.1',
     'localhost',
-    '1f26-41-82-151-36.ngrok-free.app'
+    '1f26-41-82-151-36.ngrok-free.app',
+    'https://gestionnaire-de-rendez-vous.onrender.com',
                  
                  ]
 
