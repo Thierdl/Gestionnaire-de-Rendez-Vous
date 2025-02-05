@@ -6,26 +6,38 @@ import environ
 env=environ.Env()   
 environ.Env.read_env()  
 
-#client_id='860432862760-cic1tvt36noa9ge3hkvanca5u4788utk.apps.googleusercontent.com'
-#secret_key='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'
-
-
 SECRET_KEY=env('SECRET_KEY')
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+"""
 DATABASES={
     'default':env.db('DATABASE_URL', default='sqlite:///{}'.format(BASE_DIR / 'db.sqlite3')),
 }
+"""
+
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': '/mnt/data/db.sqlite3',  
+        'OPTIONS': {
+            'timeout': 20,
+        }
+    }
+}
+
+
 
 SESSION_COOKIE_NAME = 'sessionid_{}'.format(os.getpid())
 
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = [
     '127.0.0.1',
     'localhost',
-    '1f26-41-82-151-36.ngrok-free.app'
+    '1f26-41-82-151-36.ngrok-free.app',
+    'https://gestionnaire-de-rendez-vous.onrender.com',
                  
                  ]
 
