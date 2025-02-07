@@ -32,6 +32,8 @@ urlpatterns = [
 
     path('appoint/',include('appointement.urls')),
     path('patient/', include("patient.urls")),
+    path('gmail/', include("sendmail.urls")),
+
     #path('account/', include('account.urls')),
 
     path('accounts/', include('allauth.urls')),

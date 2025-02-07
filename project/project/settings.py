@@ -31,13 +31,14 @@ DATABASES = {
 
 SESSION_COOKIE_NAME = 'sessionid_{}'.format(os.getpid())
 
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = [
     '127.0.0.1',
     'localhost',
-    '1f26-41-82-151-36.ngrok-free.app',
-    'https://gestionnaire-de-rendez-vous.onrender.com',
+    
+    '159c-196-207-227-140.ngrok-free.app',
+    #'https://gestionnaire-de-rendez-vous.onrender.com',
                  
                  ]
 
@@ -61,7 +62,8 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
-    'allauth.socialaccount.providers.google',
+    #s'allauth.socialaccount.providers.google',
+    'sendmail',
 
     'crispy_forms',
     'crispy_bootstrap4',
@@ -96,21 +98,25 @@ AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
 
     'allauth.account.auth_backends.AuthenticationBackend',  
+    #'allauth.socialaccount.backends.google.GoogleOAuth2',
     
 ]
 
 
 ROOT_URLCONF = 'project.urls'
 
-LOGIN_REDIRECT_URL='/appoint/board' 
+LOGIN_REDIRECT_URL='/appoint/board' #
 
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
-ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_EMAIL_REQUIRED = True   #
 #ACCOUNT_AUTHENTICATION_METHOD = 'email'
-ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
+#ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
 
 #ACCOUNT_USERNAME_REQUIRED = False 
-ACCOUNT_LOGOUT_REDIRECT_URL = "/accounts/login/"
+ACCOUNT_LOGOUT_REDIRECT_URL = "/accounts/login/" #
+
+
+
 
 
 
@@ -128,24 +134,15 @@ SOCIALACCOUNT_PROVIDERS = {
 }
 """
 
-SOCIALACCOUNT_PROVIDERS = {
-    'google': {
-        'APP': {
-            'client_id':'860432862760-cic1tvt36noa9ge3hkvanca5u4788utk.apps.googleusercontent.com',  
-            'secret':'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',  
-            'key': ''
-        },
-        'SCOPE': [
-            'profile',
-            'email',
-        ],
-        'AUTH_PARAMS': {
-            'access_type': 'online',
-        }
-    }
-}
+"""
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.example.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'hthierdl70@gmail.com'
+EMAIL_HOST_PASSWORD = 'ton_mot_de_passe'
 
-
+"""
 
 INTERNAL_IPS = [
     '127.0.0.1',
@@ -212,6 +209,13 @@ STATICFILES_DIRS = [ os.path.join(BASE_DIR, 'static')]
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
+
+CSRF_COOKIE_SECURE = True
+CSRF_COOKIE_HTTPONLY = True
+CSRF_TRUSTED_ORIGINS = [
+    'https://159c-196-207-227-140.ngrok-free.app',
+    #'83cb-196-207-227-140.ngrok-free.app',
+]
 
 
 
