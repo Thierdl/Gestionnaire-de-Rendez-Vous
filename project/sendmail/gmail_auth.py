@@ -37,7 +37,7 @@ def authenticate_gmail():
 
 
 def create_message(sender, to, subject, body):
-    """Crée le message MIME pour l'email"""
+    #Crée le message MIME pour l'email
     message = MIMEMultipart()
     message['to'] = to
     message['from'] = sender
@@ -51,7 +51,7 @@ def create_message(sender, to, subject, body):
     return raw_message
 
 def send_email(service, sender, to, subject, body):
-    """Envoie un email via l'API Gmail"""
+    #Envoie un email via l'API Gmail
     try:
         message = create_message(sender, to, subject, body)
         message = service.users().messages().send(userId="me", body={'raw': message}).execute()

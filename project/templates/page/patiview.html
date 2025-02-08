@@ -6,8 +6,9 @@
     <h1>Mes Patient</h1>
     <a href="{% url 'addpatient' %}">add patient</a>
   </div>
-
+  
   <table class="table">
+  {% if pa %}
     <thead>
       <tr>
         <th></th>
@@ -27,13 +28,15 @@
         <td>
           <a href="{% url 'updatepat' pa.id %}" type="button" class="btn btn-info">Info</a>
         </td>
-        
 
       </tr>
 
       {% endfor %}
 
     </tbody>
+  {% else %}
+    <p>Aucune patient</p>
+  {% endif %}
   </table>
 </div>
 

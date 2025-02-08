@@ -10,17 +10,13 @@ SECRET_KEY=env('SECRET_KEY')
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-"""
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = env('GOOGLE_CLIENT_ID')
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = env('GOOGLE_CLIENT_SECRET')
-"""
 
 
-"""
-DATABASES={
-    'default':env.db('DATABASE_URL', default='sqlite:///{}'.format(BASE_DIR / 'db.sqlite3')),
-}
-"""
+
+#DATABASES={
+#    'default':env.db('DATABASE_URL', default='sqlite:///{}'.format(BASE_DIR / 'db.sqlite3')),
+#}
+
 
 
 DATABASES = {
@@ -111,12 +107,12 @@ AUTHENTICATION_BACKENDS = [
 
 ROOT_URLCONF = 'project.urls'
 
-LOGIN_REDIRECT_URL='/appoint/board' #
+LOGIN_REDIRECT_URL='/appoint/board' 
 
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
-ACCOUNT_EMAIL_REQUIRED = True   #
+ACCOUNT_EMAIL_REQUIRED = True   
 
-ACCOUNT_LOGOUT_REDIRECT_URL = "/accounts/login/" #
+ACCOUNT_LOGOUT_REDIRECT_URL = "/accounts/login/" 
 
 
 
@@ -141,10 +137,9 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.sendgrid.net'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'apikey'  # Utilise le mot 'apikey' ici
+EMAIL_HOST_USER = 'apikey'  
 EMAIL_HOST_PASSWORD = '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'  # Ta clé API générée par SendGrid
-DEFAULT_FROM_EMAIL = 'hthierdl70@gmail.com'  # Ton adresse email par défaut
-
+DEFAULT_FROM_EMAIL = 'hthierdl70@gmail.com' 
 
 INTERNAL_IPS = [
     '127.0.0.1',
