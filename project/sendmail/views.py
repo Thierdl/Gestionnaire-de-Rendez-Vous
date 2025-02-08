@@ -1,9 +1,7 @@
-from django.shortcuts import render
-
-
 
 from django.http import HttpResponse
 from .gmail_auth import authenticate_gmail, send_email
+
 
 def send_test_email(request):
     # Authentifier l'application
