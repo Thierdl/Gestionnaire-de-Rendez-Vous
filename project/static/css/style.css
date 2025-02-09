@@ -2,6 +2,8 @@ body {
     font-family: 'Times New Roman', Times, serif;
     padding-top: 2rem;
     margin-bottom: -20rem;
+    
+    
 }
 
 
@@ -93,8 +95,9 @@ a {
 
 /**css image**/
 .imgindex {
-    width: 45%;   
-    height: 45%;
+    max-width: 100%;
+    height: auto;
+    object-fit: cover;
 }
 
 
@@ -128,4 +131,10 @@ i {
 .fa-pencil {
     color: black;
     margin-right: 5px;
+}
+
+
+.h1 {
+    color: hwb(25 21% 0%);
+    font-weight: bold;
 }

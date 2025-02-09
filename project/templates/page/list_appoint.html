@@ -6,7 +6,8 @@
 
 <div class="col-md-10 m-auto p-3 mb-5">
     <div>
-        <h3 class="text-center mt-2">Mes Rendez-Vous</h3>
+        <h1 class="h1 text-center mt-5">Mes Rendez-Vous</h1>
+        {% if appoint %}
         <span>
             <a href="{% url 'add_app' %}">
                 <i class="fa-solid fa-calendar-plus"></i>
@@ -56,6 +57,17 @@
 
             </tbody>
         </table>
+        {% else %}
+        <h3 class="text-center">
+            AUCUN RENDEZ-VOUS</br>
+            Si vous n'avez pas encore de patient, veuillez en ajouter un avant de créer un rendez-vous.</br>
+            <span>
+                <a href="{% url 'addpatient' %}">
+                    <i class="fa-solid fa-user-plus mt-5"></i>
+                </a>
+            </span>
+        </h3>
+        {% endif %}
     </div>
    
 </div>

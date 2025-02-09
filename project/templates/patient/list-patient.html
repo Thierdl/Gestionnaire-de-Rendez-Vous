@@ -2,16 +2,20 @@
 {% load static %}
 {% block content %}
 
+{% include 'partiels/navbar.html' %}
+
 <div class="col-md-10 m-auto p-3 mb-5 rounded">
     <div>
-        <h3 class="text-center mt-2">Mes Rendez-Vous</h3>
+        <h1 class="h1 text-center mt-5">Mes Patients</h1>
+        {% if patient %}
         <span><a href="{% url 'addpatient' %}"><i class="fa-solid fa-user-plus"></i></a>
         </span>
-        
     </div>
 
     <div >
+
         <table class="table">
+        
             <thead>
                 <tr>
                     <th>Prénom</th>
@@ -25,18 +29,18 @@
         
             <tbody>
                 
-                {% for patient in patient %}
+                {% for patients in patient %}
  
                 <tr>
-                    <td>{{ patient.name }}</td>
-                    <td>{{ patient.firstname }}</td>
-                    <td>{{ patient.age }}</td>
-                    <td>{{ patient.adress }}</td>
-                    <td>{{ patient.phone }}</td>
+                    <td>{{ patients.name }}</td>
+                    <td>{{ patients.firstname }}</td>
+                    <td>{{ patients.age }}</td>
+                    <td>{{ patients.adress }}</td>
+                    <td>{{ patients.phone }}</td>
                    
                    
                     <td>
-                        <a href="#" type="button">
+                        <a href="{% url 'updatepat' patients.id %}" type="button">
                             <i class="mod fa fa-pencil" aria-hidden="true"></i>
                         </a>
                         <a href="#" class=""><i class="fa fa-trash" aria-hidden="true"></i></a>
@@ -46,14 +50,22 @@
 
                     
                 </tr>
-          
 
             </tbody>
+        {% else %}
+        <h3 class="text-center">
+            AUCUN PATIENT</br>
+            Appuyer sur l'icone pour ajouter</br>
+            <span>
+                <a href="{% url 'addpatient' %}">
+                    <i class="fa-solid fa-user-plus mt-5"></i>
+                </a>
+            </span>
+        </h3>
+        {% endif %}
         </table>
     </div>
    
 </div>
-
-
 
 {% endblock %}

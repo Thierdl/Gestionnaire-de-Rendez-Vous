@@ -35,7 +35,7 @@
         
         <div class="">
           <label for="date" class="form-label"></label>
-          <input type="date" class="form-control"  name="date" placeholder="Date"></input>  
+          <input type="date" class="form-control"  name="date" placeholder="Date" value="{{ form.date_input.value|date:'Y-m-d' }}"></input>  
         </div>
 
         <div class="">

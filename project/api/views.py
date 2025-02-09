@@ -33,19 +33,18 @@ class AppointementViewSet(ModelViewSet):
     
 
 
-"""
-    def get_queryset(self, *args, **kwargs):
-        qs = Appointement.objects.all()
-        qs = qs.filter(owner=self.request.user)
-        return qs
-"""
+#    def get_queryset(self, *args, **kwargs):
+#        qs = Appointement.objects.all()
+#        qs = qs.filter(owner=self.request.user)
+#        return qs
 
-"""
-    def get_queryset(self):
-        queryset=Appointement.objects.all()
-        return queryset
+
+
+#    def get_queryset(self):
+#        queryset=Appointement.objects.all()
+#        return queryset
     
-   """
+
 
     
 

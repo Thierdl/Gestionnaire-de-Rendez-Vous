@@ -1,39 +1,39 @@
 {% extends "base_generic.html" %}
 {% block content %}
 
-<h3 class="text-center mt-5 pt-3">Ajouter une Patient</h3>
-<div class="container mt-5">
-  <div class="col-md-5 m-auto shadow p-3 mb-5 bg-body-tertiary rounded">
+<h3 class="h1 text-center mt-3 pt-3">Ajouter une Patient</h3>
+<div class="container mt-3">
+  <div class="col-md-5 m-auto shadow p-3 mb-5 rounded">
 
     <form method="POST" enctype="multipart/form-data"> {% csrf_token %}
 
-      <div class="mb-3">
-        <label for="name" class="form-label">Nom</label>
-        <input type="text" class="form-control" name="name" required/>
+      <div class="">
+        <label for="name" class="form-label"></label>
+        <input type="text" class="form-control" name="name" placeholder="nom" required/>
       </div>
 
-      <div class="mb-3">
-        <label for="firstname" class="form-label">Prénom</label>
-        <input type="text" class="form-control" name="firstname" required></input>  
+      <div class="">
+        <label for="firstname" class="form-label"></label>
+        <input type="text" class="form-control" name="firstname" placeholder="prénom" required></input>  
       </div>
 
-      <div class="mb-3">
-        <label for="age">Age</label>
-        <input type="number" class="form-control" name="age" required></input>  
-      </div>
-
-      <div>
-          <label for="adress" class="form-label">Adress</label>
-          <input type="text" class="form-control" name="adress" required></input>  
+      <div class="">
+        <label for="age"></label>
+        <input type="number" class="form-control" name="age" placeholder="age" required></input>  
       </div>
 
       <div>
-          <label for="phone" class="form-label">Tel:</label>
-          <input type="number" class="form-control" name="phone" required></input>  
+          <label for="adress" class="form-label"></label>
+          <input type="text" class="form-control" name="adress" placeholder="adresse" required></input>  
+      </div>
+
+      <div>
+          <label for="phone" class="form-label"></label>
+          <input type="number" class="form-control" name="phone" placeholder="tel." required></input>  
       </div>
 
       <div class="d-grid gap-2">
-        <button type="submit" class="btn btn-outline-dark">Enregistrer</button>
+        <button type="submit" class="buttsave btn mt-3">Enregistrer</button>
       </div>
 
     </form>
