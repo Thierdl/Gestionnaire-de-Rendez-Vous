@@ -133,13 +133,17 @@ SOCIALACCOUNT_PROVIDERS = {
 }
 
 
+
+# Paramètres d'email
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.sendgrid.net'
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'apikey'  
-EMAIL_HOST_PASSWORD = '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'  # Ta clé API générée par SendGrid
-DEFAULT_FROM_EMAIL = 'hthierdl70@gmail.com' 
+EMAIL_HOST = 'mail.smtp2go.com'  
+EMAIL_PORT = 587  
+EMAIL_USE_TLS = True  
+EMAIL_USE_SSL = False  
+EMAIL_HOST_USER = 'thierno@onlineclass.pro'  
+EMAIL_HOST_PASSWORD = 'ton_mot_de_passe_smtp2go'  
+DEFAULT_FROM_EMAIL = 'hthierdl70@gmail.com'   
+
 
 INTERNAL_IPS = [
     '127.0.0.1',
