@@ -135,6 +135,7 @@ SOCIALACCOUNT_PROVIDERS = {
 
 
 # Paramètres d'email
+
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'mail.smtp2go.com'  
 EMAIL_PORT = 587  
@@ -216,7 +217,6 @@ CSRF_COOKIE_HTTPONLY = True
 CSRF_TRUSTED_ORIGINS = [
     'http://localhost:8080',
     'https://2a33-196-207-227-140.ngrok-free.app',
-    #'83cb-196-207-227-140.ngrok-free.app',
 ]
 
 
