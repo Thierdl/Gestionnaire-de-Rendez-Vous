@@ -24,9 +24,28 @@ class TestPatientModels(TestCase):
 
                         )
 
-    def test_content_article(self):
+    def test_content_patient(self):
         self.assertEqual(self.data_patient.user.email, "albert@albert.sn")
         self.assertEqual(self.data_patient.name, "xarala")
         self.assertEqual(self.data_patient.firstname, "xarala2025")
         self.assertEqual(self.data_patient.age, 23)
         self.assertEqual(self.data_patient.phone, 770778899)
+
+
+
+
+class TestAddPatient(TestCase):
+  def setUp(self):
+      data_patient=Patient.objects.data(
+                      name='albert', 
+                      firstname='albert410',
+                      age=22,
+                      phone=77000,
+                      )
+
+
+      
+
+  def test_upd_patient(self):
+
+      return 
