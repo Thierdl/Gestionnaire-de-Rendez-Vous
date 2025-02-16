@@ -6,6 +6,8 @@ source /env/bin/activate
 
 python3 project/manage.py migrate
 
+python3 project/manage.py collectstatic --noinput
+
 PORT=${PORT:-1000}
 
 if [ "$1" = "gunicorn" ]; then

@@ -11,14 +11,6 @@ SECRET_KEY=env('SECRET_KEY')
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
-
-
-#DATABASES={
-#    'default':env.db('DATABASE_URL', default='sqlite:///{}'.format(BASE_DIR / 'db.sqlite3')),
-#}
-
-
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -33,20 +25,18 @@ DATABASES = {
 
 SESSION_COOKIE_NAME = 'sessionid_{}'.format(os.getpid())
 
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = [
     '127.0.0.1',
     'localhost:8080',
     'localhost',
-    '2a33-196-207-227-140.ngrok-free.app',
     'gestionnaire-de-rendez-vous.onrender.com',
     
                  
                  ]
 
 
-# Application definition
 
 INSTALLED_APPS = [
 
@@ -128,7 +118,6 @@ SOCIALACCOUNT_PROVIDERS = {
         ],
         'AUTH_PARAMS': {'access_type': 'online'},
         'OAUTH_PKCE_ENABLED': True,
-        #'REDIRECT_URI': 'https://2a33-196-207-227-140.ngrok-free.app/accounts/google/login/callback/',
         
     },
 }
@@ -205,7 +194,7 @@ USE_TZ = True
 
 
 STATIC_URL = '/static/'
-#STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATIC_ROOT = os.path.join(BASE_DIR ,'staticfiles')
 STATICFILES_DIRS = [ os.path.join(BASE_DIR, 'static')]
 
 
@@ -217,7 +206,6 @@ CSRF_COOKIE_SECURE = True
 CSRF_COOKIE_HTTPONLY = True
 CSRF_TRUSTED_ORIGINS = [
     'http://localhost:8080',
-    'https://2a33-196-207-227-140.ngrok-free.app',
     'https://gestionnaire-de-rendez-vous.onrender.com'
 ]
 
