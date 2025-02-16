@@ -1,35 +1,39 @@
 FROM python:3.12
 
-ENV PYTHONBUFFERED 1
 
-ENV PYTHONDONTWRITECODE 1
+ENV PYTHONUNBUFFERED=1
+ENV PYTHONDONTWRITEBYTECODE=1
 
-RUN mkdir /app 
 
+RUN mkdir -p /app /mnt/data
 WORKDIR /app
 
-COPY . /app/
 
 RUN apt-get update && apt-get install -y \
     graphviz \
     libgraphviz-dev \
     && rm -rf /var/lib/apt/lists/*
 
-RUN python3 -m venv /env
 
-RUN mkdir -p /mnt/data
-
+COPY . /app/
 COPY project/ /app/project/
 
-ENV PATH="/env/bin/:$PATH"
+
+RUN python3 -m venv /env
+ENV PATH="/env/bin:$PATH"
+
+
+RUN python3 -m pip install --upgrade pip
+COPY requirements.txt /app/
+RUN pip install --no-cache-dir -r requirements.txt
+
+ENV PYTHONPATH="/app/project"
 
 COPY entrypoint.sh /app/entrypoint.sh
-
 RUN chmod +x /app/entrypoint.sh
 
-RUN chmod +x /app/entrypoint.sh
-RUN python3 -m pip install --upgrade pip
 
-COPY requirements.txt /app/
+EXPOSE 10000
 
-RUN pip install -r requirements.txt 
+
+CMD ["/app/entrypoint.sh"]

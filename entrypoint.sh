@@ -4,11 +4,15 @@ set -e
 
 source /env/bin/activate
 
-if [$1 == 'gunicorn']; then
+python3 project/manage.py migrate
 
-    exec gunicorn project.project.wsgi:application -b 0.0.0.0:8000
+PORT=${PORT:-1000}
+
+if [ "$1" = "gunicorn" ]; then
+
+    exec gunicorn project.wsgi:application -b 0.0.0.0:$PORT
 
 else
-    exec python3 project/manage.py runserver 0.0.0.0:8000 
+    exec python3 project/manage.py runserver 0.0.0.0:$PORT
 
 fi

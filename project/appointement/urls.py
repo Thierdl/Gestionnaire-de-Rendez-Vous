@@ -13,8 +13,6 @@ urlpatterns = [
 
     path('add_app', views.add_appointement, name="add_app"),
 
-
-
     path('upd_app/<int:appoint_id>/', views.update_appoint, name="upd_app"),
     path('del_app/<int:appoint_id>/', views.del_appoint, name="del_app"),
     
