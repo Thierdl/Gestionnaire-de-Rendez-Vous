@@ -33,14 +33,15 @@ DATABASES = {
 
 SESSION_COOKIE_NAME = 'sessionid_{}'.format(os.getpid())
 
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = [
     '127.0.0.1',
     'localhost:8080',
     'localhost',
     '2a33-196-207-227-140.ngrok-free.app',
-    #'https://gestionnaire-de-rendez-vous.onrender.com',
+    'gestionnaire-de-rendez-vous.onrender.com',
+    
                  
                  ]
 
@@ -217,6 +218,7 @@ CSRF_COOKIE_HTTPONLY = True
 CSRF_TRUSTED_ORIGINS = [
     'http://localhost:8080',
     'https://2a33-196-207-227-140.ngrok-free.app',
+    'https://gestionnaire-de-rendez-vous.onrender.com'
 ]
 
 
