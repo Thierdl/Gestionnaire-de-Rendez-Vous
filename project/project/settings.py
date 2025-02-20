@@ -2,11 +2,12 @@
 from pathlib import Path
 import os
 import environ
-
+from decouple import config
 env=environ.Env()   
 environ.Env.read_env()  
 
 SECRET_KEY=env('SECRET_KEY')
+
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -50,23 +51,21 @@ INSTALLED_APPS = [
     'rest_framework',
     'appointement.apps.AppointementConfig',
     'patient',
+   
     'debug_toolbar',
 
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
     #s'allauth.socialaccount.providers.google',
-    'sendmail',
-
-    'crispy_forms',
-    'crispy_bootstrap4',
     
+
 ]
 
-
-CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap4"
-
-CRISPY_TEMPLATE_PACK = "bootstrap4"
+ACCOUNT_FORMS = {
+    'signup':'account.forms.CustomSignupForm', 
+    #'login':'account.forms.CustomSigninForm',
+    }
 
 
 
@@ -98,42 +97,20 @@ AUTHENTICATION_BACKENDS = [
 
 ROOT_URLCONF = 'project.urls'
 
-LOGIN_REDIRECT_URL='/appoint/board' 
+
 
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 ACCOUNT_EMAIL_REQUIRED = True   
+ACCOUNT_EMAIL_SUBJECT_PREFIX="Gestionnaire de Rendez-Vous"
+ACCOUNT_AUTHENTICATION_METHOD="email"
+ACCOUNT_USERNAME_REQUIRED=False
+ACCOUNT_CONFIRMATION_EMAIL_ON_GET=True
 
+
+
+ACCOUNT_AUTHENTICATED_REDIRECT_URL = '/appoint/board' 
+LOGIN_REDIRECT_URL='/appoint/board' 
 ACCOUNT_LOGOUT_REDIRECT_URL = "/accounts/login/" 
-
-
-
-GOOGLE_CLIENT_ID='74664223955-4tn4e5fag58eu69gme86iu0foc1oulpb.apps.googleusercontent.com'
-GOOGLE_CLIENT_SECRET='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'
-
-SOCIALACCOUNT_PROVIDERS = {
-    'google': {
-        'SCOPE': [
-            'profile',
-            'email',
-        ],
-        'AUTH_PARAMS': {'access_type': 'online'},
-        'OAUTH_PKCE_ENABLED': True,
-        
-    },
-}
-
-
-
-# Paramètres d'email
-
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'mail.smtp2go.com'  
-EMAIL_PORT = 587  
-EMAIL_USE_TLS = True  
-EMAIL_USE_SSL = False  
-EMAIL_HOST_USER = 'thierno@onlineclass.pro'  
-EMAIL_HOST_PASSWORD = 'ton_mot_de_passe_smtp2go'  
-DEFAULT_FROM_EMAIL = 'hthierdl70@gmail.com'   
 
 
 INTERNAL_IPS = [
@@ -184,6 +161,24 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
+
+
+# -----------------------------------------------------------
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = config('EMAIL_HOST')
+EMAIL_PORT = config('EMAIL_PORT')
+EMAIL_USE_TLS = config('EMAIL_USE_TLS')
+EMAIL_HOST_USER = config('EMAIL_HOST_USER') 
+EMAIL_HOST_PASSWORD = config('SENDGRID_API_KEY') 
+
+# -----------------------------------------------------------
+
+
+
+
+
+
 LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'UTC'
@@ -202,11 +197,21 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 
-CSRF_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = False
 CSRF_COOKIE_HTTPONLY = True
 CSRF_TRUSTED_ORIGINS = [
-    'http://localhost:8080',
+    'http://localhost:8000',
     'https://gestionnaire-de-rendez-vous.onrender.com'
 ]
 
 
+
+
+"""
+EMAIL_BACKEND = "sendgrid_backend.SendgridBackend"
+SENGRID_API_KEY=config("SENDGRID_API_KEY")
+SENDGRID_SANDBOX_MODE_IN_DEBUG=False
+SENDGRID_ECHO_TO_STDOUT=True
+DEFAULT_FROM_MAIL=config("DEFAULT_FROM_MAIL")
+
+"""

@@ -28,14 +28,28 @@ def cancel(request):
 
 
 
-@login_required(login_url='/accounts/login/')
+#@login_required(login_url='/accounts/login/')
 def dashboard_views(request):
+    """
     appoint=models.Appointement.objects.filter(patient__user=request.user)
     on_hold=models.Appointement.objects.filter(patient__user=request.user, status="En attente")
     confirmed=models.Appointement.objects.filter(patient__user=request.user, status="Confirmer")
     cancel=models.Appointement.objects.filter(patient__user=request.user, status="Annuler")
 
     patient=Patient.objects.filter(user=request.user)
+    
+    rv=appoint.count()
+    on_holds=on_hold.count()
+    patients=patient.count()
+    confirmeds=confirmed.count()
+    cancels=cancel.count()
+"""
+    appoint=models.Appointement.objects.all()
+    on_hold=models.Appointement.objects.filter(status="En attente")
+    confirmed=models.Appointement.objects.filter(status="Confirmer")
+    cancel=models.Appointement.objects.filter(status="Annuler")
+
+    patient=Patient.objects.all()
     
     rv=appoint.count()
     on_holds=on_hold.count()
@@ -152,3 +166,4 @@ def del_appoint(request, appoint_id):
         return redirect("list_app")
     
     return render(request, 'appoint/updapp.html')
+

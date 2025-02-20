@@ -25,15 +25,13 @@ router.register('user', UserViewSet, basename="user")
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+
     #path('api/', include(route.urls)),
     #path('apis/', include(router.urls)),
-
     #path('api-auth/', include('rest_framework.urls')),
 
     path('appoint/',include('appointement.urls')),
     path('patient/', include("patient.urls")),
-    path('gmail/', include("sendmail.urls")),
-
     #path('account/', include('account.urls')),
 
     path('accounts/', include('allauth.urls')),

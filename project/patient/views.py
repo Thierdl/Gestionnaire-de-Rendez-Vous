@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from .import models
-
+from patient.forms import ResearchForm
 
 
 
@@ -76,3 +76,15 @@ def delete_patient(request, id):
 
         return redirect("pative")
     return render(request, 'patient/deletepat.html')
+
+
+
+def research_patient(request):
+    form = ResearchForm(request.GET)
+    patient=[]
+
+    if form.is_valid():
+        query=form.cleaned_data['query']
+        patient=models.Patient.objects.filter(name__icontains=query)|models.Patient.objects.filter(firstname__icontains=query)
+
+    return render(request, 'page/research.html', {"patient":patient, "form":form})
