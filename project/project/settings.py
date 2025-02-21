@@ -32,7 +32,7 @@ ALLOWED_HOSTS = [
     '127.0.0.1',
     'localhost:8080',
     'localhost',
-    'gestionnaire-de-rendez-vous.onrender.com',
+    'gestionnaire-de-rendez-vous.onrender.com-1',
     
                  
                  ]
@@ -164,13 +164,16 @@ AUTH_PASSWORD_VALIDATORS = [
 
 
 # -----------------------------------------------------------
+# settings.py
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = config('EMAIL_HOST')
-EMAIL_PORT = config('EMAIL_PORT')
-EMAIL_USE_TLS = config('EMAIL_USE_TLS')
-EMAIL_HOST_USER = config('EMAIL_HOST_USER') 
-EMAIL_HOST_PASSWORD = config('SENDGRID_API_KEY') 
+EMAIL_HOST = 'smtp.sendgrid.net'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'apikey'  
+EMAIL_HOST_PASSWORD = config('SENDGRID_API_KEY') #
+DEFAULT_FROM_EMAIL = 'hthierdl70@gmail.com'  
+
 
 # -----------------------------------------------------------
 
