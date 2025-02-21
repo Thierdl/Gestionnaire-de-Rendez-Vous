@@ -1,11 +1,11 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from .import models
-from appointement.models import Appointement
 
 
 
 
+@login_required(login_url="/accounts/login/")
 def patient_view(request):
     patient=models.Patient.objects.filter(user=request.user).order_by("-created")
     patients=patient.count()
@@ -17,7 +17,7 @@ def patient_view(request):
                             })
 
 
-
+@login_required(login_url="/accounts/login/")
 def addpatient(request):
     if request.method=="POST":        
         name=request.POST.get("name")
@@ -44,7 +44,7 @@ def addpatient(request):
     return render(request, "patient/addpatient.html")
     
 
-
+@login_required(login_url="/accounts/login/")
 def update_patient(request, id):
     patient=get_object_or_404(models.Patient, id=id)
     if request.method=="POST":
@@ -67,7 +67,7 @@ def update_patient(request, id):
     return render(request, "patient/updatepat.html", {'patient':patient})
 
     
-
+@login_required(login_url="/accounts/login/")
 def delete_patient(request, id):
     patients=get_object_or_404(models.Patient, id=id)
 
