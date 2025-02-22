@@ -32,7 +32,7 @@ ALLOWED_HOSTS = [
     '127.0.0.1',
     'localhost:8080',
     'localhost',
-    'gestionnaire-de-rendez-vous.onrender.com-1',
+    'gestionnaire-de-rendez-vous-1.onrender.com'
     
                  
                  ]
@@ -116,6 +116,7 @@ ACCOUNT_LOGOUT_REDIRECT_URL = "/accounts/login/"
 INTERNAL_IPS = [
     '127.0.0.1',
     'localhost',  
+
 ]
 
 
@@ -199,8 +200,9 @@ CSRF_COOKIE_SECURE = False
 CSRF_COOKIE_HTTPONLY = True
 CSRF_TRUSTED_ORIGINS = [
     'http://localhost:8000',
-    'https://gestionnaire-de-rendez-vous.onrender.com'
+    'https://gestionnaire-de-rendez-vous-1.onrender.com'
 ]
+
 
 
 
