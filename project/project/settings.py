@@ -201,6 +201,7 @@ CSRF_COOKIE_HTTPONLY = True
 CSRF_TRUSTED_ORIGINS = [
 
     'http://localhost:8000',
+    
     'https://gestionnaire-de-rendez-vous-1.onrender.com'
 ]
 
