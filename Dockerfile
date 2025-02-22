@@ -12,22 +12,25 @@ WORKDIR /app
 RUN apt-get update && apt-get install -y \
     graphviz \
     libgraphviz-dev \
+    build-essential \
     && rm -rf /var/lib/apt/lists/*
 
 
 COPY . /app/
-COPY project/ /app/project/
+#COPY project/ /app/project/
 
 
 RUN python3 -m venv /env
 ENV PATH="/env/bin:$PATH"
 
 
-RUN python3 -m pip install --upgrade pip
+
+RUN python3 -m pip install --upgrade pip setuptools wheel
 COPY requirements.txt /app/
 RUN pip install --no-cache-dir -r requirements.txt
 
-RUN python3 project/manage.py collectstatic --noinput
+RUN mkdir -p staticfiles && chmod -R 777 staticfiles
+RUN /env/bin/python3 project/manage.py collectstatic --noinput
 
 ENV PYTHONPATH="/app/project"
 

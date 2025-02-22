@@ -4,13 +4,11 @@ cachetools==5.5.1
 certifi==2024.12.14
 cffi==1.17.1
 charset-normalizer==3.4.1
-crispy-bootstrap4==2024.10
 cryptography==44.0.0
 defusedxml==0.7.1
 Django==5.1.4
 django-allauth==65.3.1
 django-cors-headers==4.6.0
-django-crispy-forms==2.3
 django-debug-toolbar==4.4.6
 django-environ==0.11.2
 django-extensions==3.2.3
@@ -42,6 +40,7 @@ pygraphviz==1.7
 PyJWT==2.10.1
 pyparsing==3.2.1
 PySocks==1.7.1
+python-decouple==3.8
 python-http-client==3.3.7
 python3-openid==3.2.0
 python3-saml==1.16.0
@@ -51,7 +50,6 @@ requests-oauthlib==2.0.0
 requests-toolbelt==1.0.0
 rich==13.9.4
 rsa==4.9
-sendgrid==3.6.5
 sendgrid-django==4.2.0
 setuptools==75.8.0
 sqlparse==0.5.3
