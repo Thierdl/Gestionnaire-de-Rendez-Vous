@@ -199,19 +199,10 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CSRF_COOKIE_SECURE = False
 CSRF_COOKIE_HTTPONLY = True
 CSRF_TRUSTED_ORIGINS = [
+
     'http://localhost:8000',
     'https://gestionnaire-de-rendez-vous-1.onrender.com'
 ]
 
 
 
-
-
-"""
-EMAIL_BACKEND = "sendgrid_backend.SendgridBackend"
-SENGRID_API_KEY=config("SENDGRID_API_KEY")
-SENDGRID_SANDBOX_MODE_IN_DEBUG=False
-SENDGRID_ECHO_TO_STDOUT=True
-DEFAULT_FROM_MAIL=config("DEFAULT_FROM_MAIL")
-
-"""
