@@ -196,7 +196,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 
-CSRF_COOKIE_SECURE = False
+CSRF_COOKIE_SECURE = True
 CSRF_COOKIE_HTTPONLY = True
 CSRF_TRUSTED_ORIGINS = [
 
@@ -204,6 +204,3 @@ CSRF_TRUSTED_ORIGINS = [
     
     'https://gestionnaire-de-rendez-vous-1.onrender.com'
 ]
-
-
-
