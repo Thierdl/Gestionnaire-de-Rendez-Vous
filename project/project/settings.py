@@ -172,12 +172,6 @@ EMAIL_HOST_PASSWORD = config('SENDGRID_API_KEY')
 DEFAULT_FROM_EMAIL = 'hthierdl70@gmail.com'  
 
 
-
-
-
-
-
-
 LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'UTC'
