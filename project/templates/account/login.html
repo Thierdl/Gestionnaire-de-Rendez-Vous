@@ -5,9 +5,15 @@
 {% block content %}
 {% include 'partiels/navbar.html' %}
 
-<div class="container mt-4">
+
+<div class="text-center mt-5">
+    <h1 class="h1">Sign In</h1>
+</div>
+
+<div class="container">
+    
     <div class="shadow rounded col-md-5 m-auto p-5">
-        <h1 class="h1 text-center">Connexion</h1>
+        
 
         {% if not SOCIALACCOUNT_ONLY %}
             {% url 'account_login' as login_url %}
