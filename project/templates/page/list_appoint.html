@@ -27,15 +27,16 @@
                 
             {% for app in appoint %}
 
-
                 <tr>
                     <td>{{ app.date }} <br> <div class="name">{{ app.patient }}</div></td>               
                     <td>{{app.time}} <br>
                         <a href="{% url 'upd_app' app.id %}" type="button">
                             <i class="mod fa fa-pencil" aria-hidden="true"></i>
                         </a>
-                        <a href="#" class=""><i class="fa fa-trash" aria-hidden="true"></i>
-                        </a>
+                    
+                        <button type="button" class="btn btn-outline" data-toggle="modal" data-target="#deleteModal-{{ app.id }}">
+                            <i class="fa fa-trash" aria-hidden="true"></i>
+                        </button>
                     </td>
 
                     {% if app.status == "En attente" %}
@@ -59,15 +60,54 @@
         </table>
         {% else %}
         <h3 class="text-center">
-            AUCUN RENDEZ-VOUS</br>
-            Si vous n'avez pas encore de patient, veuillez en ajouter un avant de créer un rendez-vous.</br>
+            AUCUN RENDEZ-VOUS<br>
+            Appuyer sur l'icone pour ajouter<br>
+            {% if patient %}
             <span>
-                <a href="{% url 'addpatient' %}">
-                    <i class="fa-solid fa-user-plus mt-5"></i>
+                <a href="{% url 'add_app' %}">
+                    <i class="fa-solid fa-calendar-plus pt-4"></i>
                 </a>
             </span>
+            {% else %}
+            <p class="mt-3">Vous n'avez pas encore de patient, veuillez en ajouter un pour pouvoir créer un rendez-vous.</p>
+            {% endif %}
+            </p>
         </h3>
         {% endif %}
+    </div>
+
+    <div>
+        
+    <div class="modal fade" id="deleteModal-{{ app.id }}" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="deleteModalLabel">Confirmation de suppression</h5>
+            </div>
+
+            <div class="col-md-9 m-auto p-3 mb-5 rounded ">
+              A simple warning alert with Give it a click if you like.
+            </div>
+
+        
+
+            <div class="modal-body text-center">
+                Êtes-vous sûr de vouloir supprimer ce Rendez-Vous ?
+                <p class="h1"></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+
+                <form action="#" method="POST" style="display:inline;">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-outline-danger">Supprimer</button>
+                </form>
+            </div>
+          </div>
+        </div>
+    </div>
+    
+
     </div>
    
 </div>
