@@ -3,39 +3,52 @@
 {% load allauth account %}
 
 {% block content %}
-    <h1 class="h1 text-center">Sign In</h1>
+{% include 'partiels/navbar.html' %}
 
-    <div class="container">
-        <div class="border rounded col-md-5 m-auto p-5 mb-5">
-    {% if not SOCIALACCOUNT_ONLY %}
-        {% setvar link %}
-            <a href="{{ signup_url }}">
-            {% endsetvar %}
-            {% setvar end_link %}
-            </a>
-        {% endsetvar %}
-       
-        {% url 'account_login' as login_url %}
-        {% element form form=form method="post" action=login_url tags="entrance,login" %}
-            {% slot body %}
+<div class="container mt-4">
+    <div class="shadow rounded col-md-5 m-auto p-5">
+        <h1 class="h1 text-center">Connexion</h1>
+
+        {% if not SOCIALACCOUNT_ONLY %}
+            {% url 'account_login' as login_url %}
+            <form method="post" action="{{ login_url }}" class="form">
                 {% csrf_token %}
-                {% element fields form=form unlabeled=True %}
-                {% endelement %}
+
+                {% for field in form %}
+                    <div class="form-group">
+                        <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
+                        {{ field }} 
+                        {% if field.errors %}
+                            <div class="error-message">
+                                {{ field.errors }}
+                            </div>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+
                 {{ redirect_field }}
-            {% endslot %}
-            {% slot actions %}
-            <div class="d-grid mt-3">  
-                <button class="btn btn-dark" type="submit">S'inscrire</button>
+
+                <div class="form-action">
+                    <button type="submit" class="btn-submit">Se connecter</button>
+                </div>
+            </form>
+
+            <div class="text-center mt-3">
+                <small>
+                    <a href="{% url 'account_reset_password' %}" class="text-muted">Mot de passe oublié ?</a>
+                </small>
             </div>
-            {% endslot %}
-            
-        {% endelement %}
-        <p>If you have not created an account yet, then please <a href="{% url 'account_signup' %}">sign up</a> first.</p>
 
-    {% endif %}
-    
-    {% if SOCIALACCOUNT_ENABLED %}
-        {% include "socialaccount/snippets/login.html" with page_layout="entrance" %}
-    {% endif %}
-{% endblock content %}
+            <div class="text-center mt-3">
+                <p>Vous n'avez pas de compte ? <a href="{% url 'account_signup' %}" class="text-primary">Inscrivez-vous</a>.</p>
+            </div>
+        {% endif %}
 
+        {% if SOCIALACCOUNT_ENABLED %}
+            <div class="mt-4">
+                {% include "socialaccount/snippets/login.html" with page_layout="entrance" %}
+            </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

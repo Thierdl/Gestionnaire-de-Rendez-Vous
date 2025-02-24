@@ -29,7 +29,7 @@ RUN python3 -m pip install --upgrade pip setuptools wheel
 COPY requirements.txt /app/
 RUN pip install --no-cache-dir -r requirements.txt
 
-RUN mkdir -p staticfiles && chmod -R 777 staticfiles
+#RUN mkdir -p staticfiles && chmod -R 777 staticfiles
 RUN /env/bin/python3 project/manage.py collectstatic --noinput
 
 ENV PYTHONPATH="/app/project"
