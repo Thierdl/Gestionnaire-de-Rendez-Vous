@@ -1,9 +1,13 @@
 
+from django.shortcuts import redirect
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required 
 from .import models
 
 from patient.models import Patient
+
+def redirect_index(request):
+    return redirect ("index")
 
 def index_views(request):
     return render(request,'page/index.html')
