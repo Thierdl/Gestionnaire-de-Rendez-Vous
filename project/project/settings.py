@@ -26,7 +26,7 @@ DATABASES = {
 
 SESSION_COOKIE_NAME = 'sessionid_{}'.format(os.getpid())
 
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = [
     '127.0.0.1',

@@ -75,7 +75,7 @@ def delete_patient(request, id):
         patients.delete()
 
         return redirect("list-patient")
-    return render(request, 'patient/deletepat.html', {"patients":patients})
+    return render(request, {"patients":patients})
 
 
 

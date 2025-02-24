@@ -61,7 +61,7 @@ def list_appointement(request):
                         ).order_by("-date")
     patient=Patient.objects.filter(user=request.user)
     
-    return render(request, 'page/list_appoint.html', {"appoint":appoint, "patient":patient})
+    return render(request, 'appoint/list_appoint.html', {"appoint":appoint, "patient":patient})
     
 
 @login_required(login_url='/accounts/login/')
