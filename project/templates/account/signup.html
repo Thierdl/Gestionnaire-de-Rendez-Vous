@@ -1,64 +1,49 @@
 {% extends "base_generic.html" %}
 
-{% load crispy_forms_tags %}
-{% load allauth i18n %}
-{% block head_title %}
-    {% trans "Signup" %}
-{% endblock head_title %}
 {% block content %}
+{% include 'partiels/navbar.html' %}
 
-<div>
+<div class="mt-5">
     <div class="text-center">
-        {% element h1 %}
-            {% trans "Sign Up" %}
-        {% endelement %}
-
-    </div>
-
-    <div>
-        {% setvar link %}
-            <a class="text-center" href="{{ login_url }}">
-            {% endsetvar %}
-            {% setvar end_link %}
-            </a>
-        {% endsetvar %}
+        <h1 class="h1">Sign Up</h1>
     </div>
     
-
-    <div class="text-center mt-3">
-        {% element p %}
-            {% blocktranslate %}Already have an account? Then please {{ link }}sign in{{ end_link }}.{% endblocktranslate %}
-        {% endelement %}
-    </div>
-
     <div class="container">
-        <div class="border rounded col-md-5 m-auto p-5 mb-5">
+        <div class="shadow rounded col-md-5 m-auto p-5 mb-5">
 
-            {% if not SOCIALACCOUNT_ONLY %}
-            {% url 'account_signup' as action_url %}
-        
             <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
                 {% csrf_token %}
-                {{ form|crispy }}
-                {% if redirect_field_value %}
-                <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
-                {% endif %}
-                <div class="d-grid mt-3">
-                    <button class="btn btn-dark" type="submit">{% trans "S'inscrire" %}</button>
+
+                {{ form.non_field_errors }}
+
+                <div class="mb-3">
+                    <label class="form-label">Email</label>
+                    {{ form.email }} 
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Password</label>
+                    {{ form.password1 }}
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Password</label>
+                    {{ form.password2 }}
+                </div>
+                
+
+                <div class="form-action">
+                    <button class="btn-submit" type="submit">S'inscrire</button>
                 </div>
             </form>
-            {% endif %}
+
+            <div class="text-center mt-3">
+                <p>Already have an account? Then please 
+                    <a class="text-center" href="{{ login_url }}">sign in</a>
+                </p>  
+            </div>
         </div>
     </div>
     
-    <div class="socialn text-center">
-        {% if SOCIALACCOUNT_ENABLED %}
-
-        <div class="col-md-5 m-auto mb-3 rounded">
-            
-            {% include "socialaccount/snippets/login.html" with page_layout="entrance" %}
-            {% endif %}
-        </div>
-    </div>
-</div>
 {% endblock content %}
+

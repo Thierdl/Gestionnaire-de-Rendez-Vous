@@ -133,8 +133,118 @@ i {
     margin-right: 5px;
 }
 
+.fa-triangle-exclamation {
+   color: rgb(255, 0, 0);
+
+}
 
 .h1 {
     color: hwb(25 21% 0%);
     font-weight: bold;
+}
+
+
+
+
+
+/*formulaire */
+
+.container {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+
+.form-container {
+    width: 100%;
+    max-width: 500px;  
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+
+h1 {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+}
+
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-label {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 5px;
+    display: block;
+}
+
+
+input[type="text"], input[type="password"], input[type="email"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    box-sizing: border-box; 
+}
+
+
+
+.form-action {
+    margin-top: 20px;
+}
+
+.btn-submit {
+    width: 100%;
+    padding: 12px;
+    background-color: hwb(25 21% 0%);
+    color: #fff;
+    font-size: 18px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.btn-submit:hover {
+    background-color: hwb(25 55% 0%);
+}
+
+
+.text-center small a,
+.text-center p a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.text-center small a:hover,
+.text-center p a:hover {
+    text-decoration: underline;
+}
+
+/* Resp*/
+@media (max-width: 768px) {
+    .form-container {
+        padding: 15px;
+    }
+
+    h1 {
+        font-size: 20px;
+    }
+
+    .form-label {
+        font-size: 14px;
+    }
+
+    input[type="text"], input[type="password"], input[type="email"] {
+        font-size: 14px;
+    }
+
+    .btn-submit {
+        font-size: 16px;
+    }
 }

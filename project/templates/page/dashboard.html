@@ -2,6 +2,7 @@
 {% extends 'base_generic.html' %}
 {% block content %}
 {% include 'partiels/navbar.html' %}
+
 <div class="container-fluid mb-5 mt-5 pt-4">
 	<div class="row">
 		
@@ -10,7 +11,7 @@
 				<a class="text-white text-center" href="{% url 'board' %}">Dashboard</a> 
 			</h3>
 			
-			<img src="" class="rounded mx-auto d-block" alt="image">
+			
 			
 			<a href="{% url 'index' %}">Accueil</a>
 			<a href="{% url 'list_appoint' %}">Mes Rendez-Vous</a>
@@ -21,14 +22,14 @@
 	
 		<main class="col-12 col-md-10 mb-5">
 			<div>
-				<h1 class="text-center">Gestionnaire de Rendez-Vous</h1>
+				<h1 class="h1 text-center">Gestionnaire de Rendez-Vous</h1>
 			</div>
 
 			<!-- Dashboard Widgets -->
 			<div class="row justify-content-md-center">
 				<div class="col-md-5 mt-3">
 					<a href="{% url 'list_appoint' %}">
-						<div class="appoint card">
+						<div class="appoint card shadow">
 							<div class="card-body">
 
 								{% if rv %}
@@ -47,7 +48,7 @@
 				<div class="col-md-5 mt-3" >
 					<a href="{% url  'list-patient' %}">
 
-						<div class="appoint card">
+						<div class="appoint card shadow">
 							<div class="card-body">
 
 								{% if patients %}
@@ -70,11 +71,11 @@
 				
 				<div class="col-md-3 mt-3">
 					<a href="{% url  'confirmed' %}">
-						<div class="card text-success border border-success">
-							<div class="card-body">
+						<div class="card border border-success shadow">
+							<div class="card-body ">
 								
-								<h3 class="text-center">{{ confirmeds }}</h3>
-								<h1 class="text-center">Confirmer</h1>
+								<h3 class="text-center text-success">{{ confirmeds }}</h3>
+								<h1 class="text-center text-success">Confirmer</h1>
 							
 							</div>
 						</div>
@@ -84,11 +85,11 @@
 
 				<div class="col-md-4 mt-3" >
 					<a href="{% url 'on_hold' %}">
-						<div class="card text-warning border-warning">
+						<div class="card border-warning shadow">
 							<div class="card-body">
 								
-								<h3 class="text-center">{{ on_holds }}</h3>
-								<h1 class="text-center">En attente</h1>
+								<h3 class="text-center text-warning">{{ on_holds }}</h3>
+								<h1 class="text-center text-warning">En attente</h1>
 
 							</div>
 						</div>
@@ -97,10 +98,10 @@
 
 				<div class="col-md-3 mt-3" >
 					<a href="{% url 'cancel' %}">
-						<div class="card text-danger border-danger">
+						<div class="card border-danger shadow">
 							<div class="card-body">
-								<h3 class="text-center">{{ cancels }}</h3>
-								<h1 class="text-center">Annuler</h1>
+								<h3 class="text-center  text-danger">{{ cancels }}</h3>
+								<h1 class="text-center  text-danger">Annuler</h1>
 							</div>
 						</div>
 					</a>

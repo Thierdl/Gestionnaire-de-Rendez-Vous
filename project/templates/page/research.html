@@ -1,0 +1,73 @@
+{% extends 'base_generic.html' %}
+{% block content %}
+{% include 'partiels/navbar.html' %}
+
+<div class="col-md-4 m-auto p-3 mb-5 mt-5 ">
+        
+    <div>
+        <h1 class="h1 text-center">Recherche</h1>
+
+        <nav class="navbar">
+            <form class="form-control" method="get">
+
+                <label for="{{ form.query.id_for_label }}">
+                {{ form.query }}  
+                </label>
+                <button class="btn btn-dark" type="submit">
+                    Rechercher
+                </button>
+
+            </form>
+        </nav>
+    </div>
+
+    {% if patient %}
+    <div class="mt-5"></div>
+        <h2 class="text-center">Résultats de la recherche</h2>
+    
+        <table class="table mt-3">
+        
+            <thead>
+            <tr>
+                <th></th>
+                <th>Nom</th>
+                <th>Prénom</th>
+                
+            </tr>
+            </thead>
+
+            <tbody>
+            
+            {% for pati in patient %}
+            <tr>
+                <td><i class="fas fa-user"></i></td>
+                <td> {{pati.firstname}} </td>
+                <td>{{pati.name}}</td>
+                
+                <td>
+                <a href="#" type="button" class="btn btn-info">Info</a>
+                </td>
+
+            </tr>
+
+            {% endfor %}
+
+            </tbody>
+
+    {% else %}
+            <p class="text-center">Aucune patient trouver</p>
+    {% endif %}
+
+        </table>
+    </div>
+</div>
+
+
+{% endblock %}
+
+
+
+
+
+
+

@@ -1,9 +1,13 @@
 
+from django.shortcuts import redirect
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required 
 from .import models
 
 from patient.models import Patient
+
+def redirect_index(request):
+    return redirect ("index")
 
 def index_views(request):
     return render(request,'page/index.html')
@@ -30,6 +34,7 @@ def cancel(request):
 
 @login_required(login_url='/accounts/login/')
 def dashboard_views(request):
+    
     appoint=models.Appointement.objects.filter(patient__user=request.user)
     on_hold=models.Appointement.objects.filter(patient__user=request.user, status="En attente")
     confirmed=models.Appointement.objects.filter(patient__user=request.user, status="Confirmer")
@@ -42,6 +47,7 @@ def dashboard_views(request):
     patients=patient.count()
     confirmeds=confirmed.count()
     cancels=cancel.count()
+
     
     return render(request, "page/dashboard.html", {
                             "rv":rv,
@@ -57,8 +63,9 @@ def list_appointement(request):
     appoint=models.Appointement.objects.filter(
                         patient_id__user=request.user 
                         ).order_by("-date")
+    patient=Patient.objects.filter(user=request.user)
     
-    return render(request, 'page/list_appoint.html', {"appoint":appoint})
+    return render(request, 'appoint/list_appoint.html', {"appoint":appoint, "patient":patient})
     
 
 @login_required(login_url='/accounts/login/')
@@ -152,3 +159,4 @@ def del_appoint(request, appoint_id):
         return redirect("list_app")
     
     return render(request, 'appoint/updapp.html')
+

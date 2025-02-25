@@ -1,6 +1,7 @@
 from django.test import TestCase
 from django.contrib.auth.models import User
 from .models import Patient
+from django.urls import reverse
 
 
 class TestPatientModels(TestCase):
@@ -92,4 +93,17 @@ class TestPatientModels(TestCase):
 
     patient.delete()
 
+<<<<<<< HEAD
     self.assertEqual(Patient.objects.count(), 0)
+=======
+    self.assertEqual(Patient.objects.count(), 0)
+
+
+
+  def test_homepage_url(self):
+      # Utilisation de reverse pour obtenir l'URL associée à la vue nommée 'homepage'
+      url = reverse('delete')
+      # Vérifie que la réponse HTTP est 200 (OK)
+      response = self.client.get(url)
+      self.assertEqual(response.status_code, 200)
+>>>>>>> deve

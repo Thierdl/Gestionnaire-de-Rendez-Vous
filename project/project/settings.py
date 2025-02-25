@@ -2,11 +2,12 @@
 from pathlib import Path
 import os
 import environ
-
+from decouple import config
 env=environ.Env()   
 environ.Env.read_env()  
 
 SECRET_KEY=env('SECRET_KEY')
+
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -25,13 +26,15 @@ DATABASES = {
 
 SESSION_COOKIE_NAME = 'sessionid_{}'.format(os.getpid())
 
-DEBUG = True
+DEBUG = False
+
 
 ALLOWED_HOSTS = [
     '127.0.0.1',
     'localhost:8080',
     'localhost',
-    'gestionnaire-de-rendez-vous.onrender.com',
+
+    'gestionnaire-de-rendez-vous-1.onrender.com'
     
                  
                  ]
@@ -50,23 +53,20 @@ INSTALLED_APPS = [
     'rest_framework',
     'appointement.apps.AppointementConfig',
     'patient',
-    'debug_toolbar',
-
+    
+    
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
     #s'allauth.socialaccount.providers.google',
-    'sendmail',
-
-    'crispy_forms',
-    'crispy_bootstrap4',
     
+
 ]
 
-
-CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap4"
-
-CRISPY_TEMPLATE_PACK = "bootstrap4"
+ACCOUNT_FORMS = {
+    'signup':'account.forms.CustomSignupForm', 
+    #'login':'account.forms.CustomSigninForm',
+    }
 
 
 
@@ -78,11 +78,14 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'debug_toolbar.middleware.DebugToolbarMiddleware',
+    #'debug_toolbar.middleware.DebugToolbarMiddleware',
 
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     "allauth.account.middleware.AccountMiddleware",
 
 ]
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 SITE_ID = 1
 
@@ -98,11 +101,19 @@ AUTHENTICATION_BACKENDS = [
 
 ROOT_URLCONF = 'project.urls'
 
-LOGIN_REDIRECT_URL='/appoint/board' 
+
 
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 ACCOUNT_EMAIL_REQUIRED = True   
+ACCOUNT_EMAIL_SUBJECT_PREFIX="Gestionnaire de Rendez-Vous"
+ACCOUNT_AUTHENTICATION_METHOD="email"
+ACCOUNT_USERNAME_REQUIRED=False
+ACCOUNT_CONFIRMATION_EMAIL_ON_GET=True
 
+
+
+ACCOUNT_AUTHENTICATED_REDIRECT_URL = '/appoint/board' 
+LOGIN_REDIRECT_URL='/appoint/board' 
 ACCOUNT_LOGOUT_REDIRECT_URL = "/accounts/login/" 
 
 
@@ -136,9 +147,11 @@ EMAIL_HOST_PASSWORD = 'ton_mot_de_passe_smtp2go'
 DEFAULT_FROM_EMAIL = 'hthierdl70@gmail.com'   
 
 
+
 INTERNAL_IPS = [
     '127.0.0.1',
     'localhost',  
+
 ]
 
 
@@ -184,6 +197,16 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.sendgrid.net'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'apikey'  
+EMAIL_HOST_PASSWORD = config('SENDGRID_API_KEY') 
+DEFAULT_FROM_EMAIL = 'hthierdl70@gmail.com'  
+
+
 LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'UTC'
@@ -205,8 +228,13 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CSRF_COOKIE_SECURE = True
 CSRF_COOKIE_HTTPONLY = True
 CSRF_TRUSTED_ORIGINS = [
+
     'http://localhost:8080',
     'https://gestionnaire-de-rendez-vous.onrender.com'
+
+
+    'http://localhost:8000',
+    
+    'https://gestionnaire-de-rendez-vous-1.onrender.com'
+
 ]
-
-

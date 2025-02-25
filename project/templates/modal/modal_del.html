@@ -1,0 +1,38 @@
+{% for patient in patients %}
+    <div class="modal fade" id="deleteModal-{{ patient.id }}" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="deleteModalLabel">Confirmation de suppression</h5>
+            </div>
+
+            <div class="col-md-9 m-auto p-3 mb-5 rounded">
+              <i class="fa-solid fa-triangle-exclamation"></i> 
+              Attention, <br>la suppression de ce patient entraînera la suppression de tous les rendez-vous liés à ce patient.
+            </div>
+
+        
+
+            <div class="modal-body text-center">
+                Êtes-vous sûr de vouloir supprimer le Patient ?
+                <p class="h1"> {{ patient.firstname }} {{ patient.name }}</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+
+                <form action="{% url 'delete' patient.id %}" method="POST" style="display:inline;">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-outline-danger">Supprimer</button>
+                </form>
+            </div>
+          </div>
+        </div>
+    </div>
+    {% endfor %}
+
+
+
+
+
+
+  

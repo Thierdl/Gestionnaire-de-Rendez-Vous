@@ -2,82 +2,59 @@
 {% load i18n %}
 {% load allauth account %}
 
-{% load crispy_forms_tags %}  
-
-{% block head_title %}
-    <h5>{% trans "Sign In" %}</h5>
-{% endblock head_title %}
-
 {% block content %}
-<div class="container">
-    <div class="text-center">
-      {% element h1 %}
-          {% trans "Sign In" %}
-      {% endelement %}
-    </div>
-
-    <div class="container">
-        <div class="border col-md-5 m-auto p-3 rounded">
-          {% if not SOCIALACCOUNT_ONLY %}
-              <!-- Lien vers l'inscription -->
-
-              <div class="border rounded text-center mb-3">
-              {% url 'account_signup' as signup_url %}
-              {% element p %}
-                   {% blocktranslate %}If you have not created an account yet, then please <a href="{{ signup_url }}">sign up</a> first.{% endblocktranslate %}
-              {% endelement %}
-
-              {% url 'account_login' as login_url %}
-            </div>
+{% include 'partiels/navbar.html' %}
 
 
-        
-            <div>
-                <form class="login" method="POST" action="{% url 'account_login' %}">
-                    {% csrf_token %}
-                    {{ form|crispy }}
-                    {% if redirect_field_value %}
-                    <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
-                    {% endif %}
-                    <div class="d-grid">
-                    <button class="primaryAction mt-3 btn btn-dark" type="submit">{% trans "S'identifier" %}</button><br>
-                    <a class="button secondaryAction text-dark text-center" href="{% url 'account_reset_password' %}">{% trans "Mot de passe oublié?" %}</a>
-                    </div>
-                </form>
-            </div>
-        </div>
-
-          {% endif %}
-    </div>
-
-
-    <div class="col-md-5 m-auto p-3">
-
-        {% if LOGIN_BY_CODE_ENABLED %}
-            {% element hr %}
-            {% endelement %}
-            {% element button_group vertical=True %}
-            
-                {% if LOGIN_BY_CODE_ENABLED %}
-                    {% element button href=request_login_code_url tags="prominent,login,outline,primary" %}
-                        {% trans "Mail me a sign-in code" %}
-                    {% endelement %}
-                {% endif %}
-
-            {% endelement %}hhh
-        {% endif %}
-    </div>
-
-    <div class="social text-center col-md-5 m-auto p-3 mb-5">
-        {% if SOCIALACCOUNT_ENABLED %}   
-            {% include "socialaccount/snippets/login.html" with page_layout="entrance" %}
-        {% endif %}
-    </div>
-
+<div class="text-center mt-5">
+    <h1 class="h1">Sign In</h1>
 </div>
 
-{% endblock content %}
+<div class="container">
+    
+    <div class="shadow rounded col-md-5 m-auto p-5">
+        
 
-{% block extra_body %}
-    {{ block.super }}
+        {% if not SOCIALACCOUNT_ONLY %}
+            {% url 'account_login' as login_url %}
+            <form method="post" action="{{ login_url }}" class="form">
+                {% csrf_token %}
+
+                {% for field in form %}
+                    <div class="form-group">
+                        <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
+                        {{ field }} 
+                        {% if field.errors %}
+                            <div class="error-message">
+                                {{ field.errors }}
+                            </div>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+
+                {{ redirect_field }}
+
+                <div class="form-action">
+                    <button type="submit" class="btn-submit">Se connecter</button>
+                </div>
+            </form>
+
+            <div class="text-center mt-3">
+                <small>
+                    <a href="{% url 'account_reset_password' %}" class="text-muted">Mot de passe oublié ?</a>
+                </small>
+            </div>
+
+            <div class="text-center mt-3">
+                <p>Vous n'avez pas de compte ? <a href="{% url 'account_signup' %}" class="text-primary">Inscrivez-vous</a>.</p>
+            </div>
+        {% endif %}
+
+        {% if SOCIALACCOUNT_ENABLED %}
+            <div class="mt-4">
+                {% include "socialaccount/snippets/login.html" with page_layout="entrance" %}
+            </div>
+        {% endif %}
+    </div>
+</div>
 {% endblock %}

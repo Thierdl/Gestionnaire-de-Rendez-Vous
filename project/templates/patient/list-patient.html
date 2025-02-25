@@ -4,10 +4,10 @@
 
 {% include 'partiels/navbar.html' %}
 
-<div class="col-md-10 m-auto p-3 mb-5 rounded">
+<div class="col-md-9 m-auto p-3 mb-5 rounded">
     <div>
         <h1 class="h1 text-center mt-5">Mes Patients</h1>
-        {% if patient %}
+        {% if patients %}
         <span><a href="{% url 'addpatient' %}"><i class="fa-solid fa-user-plus"></i></a>
         </span>
     </div>
@@ -29,25 +29,25 @@
         
             <tbody>
                 
-                {% for patients in patient %}
+                {% for patient in patients %}
  
                 <tr>
-                    <td>{{ patients.name }}</td>
-                    <td>{{ patients.firstname }}</td>
-                    <td>{{ patients.age }}</td>
-                    <td>{{ patients.adress }}</td>
-                    <td>{{ patients.phone }}</td>
-                   
-                   
+                    <td>{{ patient.name }}</td>
+                    <td>{{ patient.firstname }}</td>
+                    <td>{{ patient.age }}</td>
+                    <td>{{ patient.adress }}</td>
+                    <td>{{ patient.phone }}</td>
+                    
                     <td>
-                        <a href="{% url 'updatepat' patients.id %}" type="button">
+                        <a href="{% url 'updatepat' patient.id %}" type="button">
                             <i class="mod fa fa-pencil" aria-hidden="true"></i>
                         </a>
-                        <a href="#" class=""><i class="fa fa-trash" aria-hidden="true"></i></a>
                         
+                        <button type="button" class="btn btn-outline" data-toggle="modal" data-target="#deleteModal-{{ patient.id }}">
+                            <i class="fa fa-trash" aria-hidden="true"></i>
+                        </button>
                     </td>
                 {% endfor %}
-
                     
                 </tr>
 
@@ -65,7 +65,12 @@
         {% endif %}
         </table>
     </div>
-   
+
+    <div>
+        {% include 'modal/modal_del.html' %}
+    </div>
+
+
 </div>
 
 {% endblock %}
