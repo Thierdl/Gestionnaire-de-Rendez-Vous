@@ -3,7 +3,8 @@
 {% load allauth %}
 
 {% block content %}
-    <div class="border shadow rounded col-md-6 m-auto p-5 mb-5">
+<div class="container">
+    <div class="border shadow rounded col-md-6 m-auto p-4 mb-5">
         <h1 class="h1 text-center">Vérifiez votre adresse e-mail</h1>
         
         <p>Nous vous avons envoyé un e-mail de vérification. 
@@ -13,8 +14,12 @@
             contacter si vous ne recevez pas l'e-mail de vérification dans 
             quelques minutes.
         </p>
-    </div>
 
-    
+
+        <button class="btn-submit" type="submit">
+            <a href="{% url 'account_login' %}">Login</a>
+        </button>
+    </div>
+</div>
 
 {% endblock content %}
