@@ -117,7 +117,7 @@ LOGIN_REDIRECT_URL='/appoint/board'
 ACCOUNT_LOGOUT_REDIRECT_URL = "/accounts/login/" 
 
 
-
+"""
 GOOGLE_CLIENT_ID='74664223955-4tn4e5fag58eu69gme86iu0foc1oulpb.apps.googleusercontent.com'
 GOOGLE_CLIENT_SECRET='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'
 
@@ -133,19 +133,7 @@ SOCIALACCOUNT_PROVIDERS = {
     },
 }
 
-
-
-# Paramètres d'email
-
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'mail.smtp2go.com'  
-EMAIL_PORT = 587  
-EMAIL_USE_TLS = True  
-EMAIL_USE_SSL = False  
-EMAIL_HOST_USER = 'thierno@onlineclass.pro'  
-EMAIL_HOST_PASSWORD = 'ton_mot_de_passe_smtp2go'  
-DEFAULT_FROM_EMAIL = 'hthierdl70@gmail.com'   
-
+"""
 
 
 INTERNAL_IPS = [
@@ -230,11 +218,7 @@ CSRF_COOKIE_HTTPONLY = True
 CSRF_TRUSTED_ORIGINS = [
 
     'http://localhost:8080',
-    'https://gestionnaire-de-rendez-vous.onrender.com'
-
-
-    'http://localhost:8000',
-    
     'https://gestionnaire-de-rendez-vous-1.onrender.com'
+
 
 ]

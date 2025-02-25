@@ -1,41 +1,42 @@
 {% extends "base_generic.html" %}
 {% block content %}
+{% include 'partiels/navbar.html' %}
 
-<h3 class="h1 text-center mt-2 pt-3">Modifier</h3>
-<div class="container mt-3">
-  
-    <div class="border shadow col-md-5 m-auto p-3 mb-5 rounded">
+<h3 class="h1 text-center">Modifier</h3>
+
+<div class="container">
+    <div class="shadow rounded col-md-5 m-auto p-5">
 
      
-      <form method="POST" action="{% url 'updatepat' patient.id %}" enctype="multipart/form-data"> {% csrf_token %}
+      <form method="POST" action="{% url 'updatepat' patient.id %}" enctype="multipart/form-data" class="form"> {% csrf_token %}
 
-        <div class="mb-3">
+        <div class="form-group">
           <label for="name" class="form-label"></label>
           <input type="text" class="form-control" name="name" placeholder="Nom" required value="{{ patient.name }}"/>
         </div>
 
-        <div class="mb-3">
+        <div class="form-group">
           <label for="firstname" class="form-label"></label>
           <input type="text" class="form-control" name="firstname" placeholder="Prénom" required value="{{ patient.firstname }}"></input>  
         </div>
 
-        <div class="mb-3">
-          <label for="floatingTextarea2"></label>
+        <div class="form-group">
+          <label for="floatingTextarea2" class="form-label"></label>
           <input type="number" class="form-control" name="age" placeholder="Age" required value="{{ patient.age }}"></input>  
         </div>
 
-        <div>
+        <div class="form-group">
             <label for="adress" class="form-label"></label>
             <input type="text" class="form-control" name="adress" placeholder="Adresse" required value="{{ patient.adress }}"></input>  
         </div>
 
-        <div>
+        <div class="form-group">
             <label for="phone" class="form-label"></label>
             <input type="number" class="form-control" name="phone" placeholder="Téléphone" required value="{{ patient.phone }}"></input>  
         </div>
 
-        <div class="d-grid gap-2">
-          <button type="submit" class="buttsave btn mt-3 border">Enregistrer</button>
+        <div class="form-action">
+          <button type="submit" class="btn-submit">Enregistrer</button>
         </div>
 
       </form>  
