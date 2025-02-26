@@ -142,23 +142,6 @@ LOGIN_REDIRECT_URL='/appoint/board'
 ACCOUNT_LOGOUT_REDIRECT_URL = "/accounts/login/" 
 
 
-"""
-GOOGLE_CLIENT_ID='74664223955-4tn4e5fag58eu69gme86iu0foc1oulpb.apps.googleusercontent.com'
-GOOGLE_CLIENT_SECRET='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'
-
-SOCIALACCOUNT_PROVIDERS = {
-    'google': {
-        'SCOPE': [
-            'profile',
-            'email',
-        ],
-        'AUTH_PARAMS': {'access_type': 'online'},
-        'OAUTH_PKCE_ENABLED': True,
-        
-    },
-}
-
-"""
 
 
 INTERNAL_IPS = [
