@@ -9,6 +9,7 @@ environ.Env.read_env()
 
 from decouple import config
 print("GOOGLE_CLIENT_ID:", config('GOOGLE_CLIENT_ID', default='Not Found'))
+print("GOOGLE_SECRET:", config('GOOGLE_SECRET', default='Not Found'))
 
 SECRET_KEY=env('SECRET_KEY')
 
@@ -122,10 +123,7 @@ SOCIALACCOUNT_PROVIDERS = {
             'access_type': 'online',
         },
         'OAUTH_PKCE_ENABLED': True,
-        'APP':{
-            'client_id':config('GOOGLE_CLIENT_ID',default=''),
-            'secret':config('GOOGLE_SECRET', default=''),
-        }
+       
     }
 }
 
@@ -151,7 +149,7 @@ ACCOUNT_AUTHENTICATED_REDIRECT_URL = '/appoint/board'
 LOGIN_REDIRECT_URL='/appoint/board' 
 ACCOUNT_LOGOUT_REDIRECT_URL = "/accounts/login/" 
 
-
+ACCOUNT_DEFAULT_HTTP_PROTOCOLE='https'
 
 
 INTERNAL_IPS = [
