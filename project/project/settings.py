@@ -7,10 +7,10 @@ env=environ.Env()
 environ.Env.read_env()  
 
 
-from decouple import config
-print("GOOGLE_CLIENT_ID:", config('GOOGLE_CLIENT_ID', default='Not Found'))
 
 SECRET_KEY=env('SECRET_KEY')
+GOOGLE_CLIENT_ID = env('GOOGLE_CLIENT_ID')
+GOOGLE_SECRET = env('GOOGLE_SECRET')
 
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -94,8 +94,6 @@ MIDDLEWARE = [
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-GOOGLE_CLIENT_ID = config('GOOGLE_CLIENT_ID')
-GOOGLE_SECRET = config('GOOGLE_SECRET')
 
 
 SITE_ID = 1
@@ -122,16 +120,15 @@ SOCIALACCOUNT_PROVIDERS = {
             'access_type': 'online',
         },
         'OAUTH_PKCE_ENABLED': True,
-        'APP':{
-            'client_id':config('GOOGLE_CLIENT_ID',default=''),
-            'secret':config('GOOGLE_SECRET', default=''),
-        }
+
     }
 }
 
+print('GOOGLE_CLIENT_ID:', config('GOOGLE_CLIENT_ID',default='Not Found'))
+print('GOOGLE_SECRET:', config('GOOGLE_SECRET',default='Not Found'))
+
 
 SOCIAL_AUTH_GOOGLE_OAUTH2_REDIRECT_URI = 'https://gestionnaire-de-rendez-vous-1.onrender.com/accounts/google/login/callback/'
-
 
 
 ROOT_URLCONF = 'project.urls'
@@ -151,7 +148,7 @@ ACCOUNT_AUTHENTICATED_REDIRECT_URL = '/appoint/board'
 LOGIN_REDIRECT_URL='/appoint/board' 
 ACCOUNT_LOGOUT_REDIRECT_URL = "/accounts/login/" 
 
-
+ACCOUNT_DEFAULT_HTTP_PROTOCOLE='https'
 
 
 INTERNAL_IPS = [
@@ -226,7 +223,6 @@ STATICFILES_DIRS = [ os.path.join(BASE_DIR, 'static')]
 
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
 
 
 CSRF_COOKIE_SECURE = True
