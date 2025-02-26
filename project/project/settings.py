@@ -6,6 +6,10 @@ from decouple import config
 env=environ.Env()   
 environ.Env.read_env()  
 
+
+from decouple import config
+print("GOOGLE_CLIENT_ID:", config('GOOGLE_CLIENT_ID', default='Not Found'))
+
 SECRET_KEY=env('SECRET_KEY')
 
 

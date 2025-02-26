@@ -45,5 +45,3 @@ class CustomSignupForm(SignupForm):
 
     class Meta:
         fields = ('email', 'username', 'password1', 'password2')
-
-
