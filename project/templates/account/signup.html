@@ -43,15 +43,11 @@
                 </p>  
             </div>
 
-            {% if SOCIALACCOUNT_ENABLED %}
-            <div class="form-group">
-                {% include "socialaccount/snippets/login.html" with page_layout="entrance" %}
+            <div class="form-group"></div>
+                {% if SOCIALACCOUNT_ENABLED %}
+                    {% include "socialaccount/snippets/login.html" with page_layout="entrance" %}
+                {% endif %}
             </div>
-            {% endif %}
-        </div>
-
-        
-        
         </div>
     </div>
 </div> 

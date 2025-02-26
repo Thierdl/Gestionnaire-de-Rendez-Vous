@@ -78,6 +78,8 @@ def delete_patient(request, id):
     return render(request, {"patients":patients})
 
 
+
+
 @login_required(login_url="/accounts/login/")
 def research_patient(request):
     form = ResearchForm(request.GET)

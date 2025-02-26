@@ -6,8 +6,6 @@ from .import models
 
 from patient.models import Patient
 
-def redirect_index(request):
-    return redirect ("index")
 
 def index_views(request):
     return render(request,'page/index.html')

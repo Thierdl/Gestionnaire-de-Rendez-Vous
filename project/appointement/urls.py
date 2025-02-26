@@ -4,7 +4,7 @@ from appointement import views
 
 urlpatterns = [
    
-    path('',views.redirect_index),
+   
     path('index', views.index_views, name="index"),
     path('board', views.dashboard_views, name="board"),
     path('list_appoint', views.list_appointement, name="list_appoint"),
