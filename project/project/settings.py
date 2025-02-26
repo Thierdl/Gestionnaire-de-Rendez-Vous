@@ -58,10 +58,13 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
-    #s'allauth.socialaccount.providers.google',
+    'allauth.socialaccount.providers.google',
     
 
 ]
+
+
+
 
 ACCOUNT_FORMS = {
     'signup':'account.forms.CustomSignupForm', 
@@ -78,7 +81,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    #'debug_toolbar.middleware.DebugToolbarMiddleware',
+    
 
     'whitenoise.middleware.WhiteNoiseMiddleware',
     "allauth.account.middleware.AccountMiddleware",
@@ -87,7 +90,12 @@ MIDDLEWARE = [
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
+SOCIAL_AUTH_GOOGLE_CLIENT_ID = config('SOCIAL_AUTH_GOOGLE_CLIENT_ID')
+SOCIAL_AUTH_GOOGLE_SECRET = config('SOCIAL_AUTH_GOOGLE_SECRET')
+
+
 SITE_ID = 1
+
 
 AUTHENTICATION_BACKENDS = [
    
@@ -96,21 +104,38 @@ AUTHENTICATION_BACKENDS = [
     'allauth.account.auth_backends.AuthenticationBackend',  
     #'allauth.socialaccount.backends.google.GoogleOAuth2',
     
+    
 ]
+
+
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'SCOPE': [
+            'profile',
+            'email',
+        ],
+        'AUTH_PARAMS': {
+            'access_type': 'online',
+        },
+        'OAUTH_PKCE_ENABLED': True,
+    }
+}
+
+
 
 
 ROOT_URLCONF = 'project.urls'
 
 
-
-ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+ACCOUNT_EMAIL_VERIFICATION = 'mandatory' 
 ACCOUNT_EMAIL_REQUIRED = True   
 ACCOUNT_EMAIL_SUBJECT_PREFIX="Gestionnaire de Rendez-Vous"
 ACCOUNT_AUTHENTICATION_METHOD="email"
 ACCOUNT_USERNAME_REQUIRED=False
 ACCOUNT_CONFIRMATION_EMAIL_ON_GET=True
 
-
+SOCIALACCOUNT_ENABLED = True
+SOCIALACCOUNT_AUTO_SIGNUP = True  
 
 ACCOUNT_AUTHENTICATED_REDIRECT_URL = '/appoint/board' 
 LOGIN_REDIRECT_URL='/appoint/board' 
@@ -139,9 +164,7 @@ SOCIALACCOUNT_PROVIDERS = {
 INTERNAL_IPS = [
     '127.0.0.1',
     'localhost',  
-
 ]
-
 
 
 

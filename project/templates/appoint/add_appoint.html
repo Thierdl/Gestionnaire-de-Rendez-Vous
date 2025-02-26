@@ -3,63 +3,63 @@
 
 {% include 'partiels/navbar.html' %}
 
-<div class="title mt-1 pt-5">
-  <h2 class="text-center">Rendez-Vous</h2>
-</div>
+
+<h1 class="h1 text-center mt-5">Rendez-Vous</h1>
 
 <div class="container">
-  <div class="shadow rounded col-md-5 m-auto p-5">
-    <form method="POST" enctype="multipart/form-data"> {% csrf_token %}
-      <div class="form-group">
-        <label for="title" class="form-label"></label>
-        <input type="text" class="form-control" name="title" placeholder="Titre"></input>  
-      </div>
+  <div class="col-md-5 m-auto shadow p-5 rounded">
+
+  <form method="POST" enctype="multipart/form-data" class="form"> {% csrf_token %}
+                     
+    <div class="form-group">
+      <label for="title" class="form-label"></label>
+      <input type="text" class="form-control" name="title" placeholder="Titre"></input>  
+    </div>
 
 
-      <div class="form-group">
-        <label for="patient_id" name="patient_id" class="form-label">
-          <select id="patient_id" name="patient_id" class="form-control form-select mt-2">
-            {% for patient in patients %}
+    <div class="form-group">
+      <label for="patient_id" name="patient_id" class="form-label">
+        <select id="patient_id" name="patient_id" class="form-control form-select mt-2">
+          {% for patient in patients %}
             
-              <option value="{{ patient.id }}">{{patient.firstname}} {{patient.name}}</option>
-        
-            {% endfor %}
-          </select>
-        </label>
-      </div>
-
+            <option value="{{ patient.id }}">{{patient.firstname}} {{patient.name}}</option>
       
-      <div class="form-group">
-        <label for="date" class="form-label"></label>
-        <input type="date" class="form-control"  name="date" placeholder="Date" value="{{ form.date_input.value|date:'Y-m-d' }}" required></input>  
-      </div>
+          {% endfor %}
+        </select>
+      </label>
+    </div>
 
-      <div class="form-group">
-        <label for="patient" class="form-label"></label>
-        <input for="time" type="time" class="form-control"  name="time" placeholder="Heure" required></input>  
-      </div>
+        
+    <div class="form-group">
+      <label for="date" class="form-label"></label>
+      <input type="date" class="form-control"  name="date" placeholder="Date" value="{{ form.date_input.value|date:'Y-m-d' }}" required></input>  
+    </div>
 
-      <div class="form-group">
-        <label for="place" class="form-label"></label>
-        <input type="text" class="form-control" name="place" placeholder="Lieu" ></input>  
-      </div>
+    <div class="form-group">
+      <label for="patient" class="form-label"></label>
+      <input for="time" type="time" class="form-control"  name="time" placeholder="Heure" required></input>  
+    </div>
 
-      <div class="form-group">
-        <label for="status" name="status" class="form-label">
-          <select class="form-select mt-2" name="status" id="status" aria-label="Default select example">
-            <option value="En attente">En attente</option>
-            <option value="Annuler">Annuler</option>
-            <option value="Confirmer">Confirmer</option>
-          </select>
-        </label>
-      </div>
+    <div class="form-group">
+      <label for="place" class="form-label"></label>
+      <input type="text" class="form-control" name="place" placeholder="Lieu" ></input>  
+    </div>
 
-      <div class="form-action">
-          <button type="submit" class="btn-submit">Enregistrer</button>
-      </div>
-  
-    </form>
-  </div>
+    <div class="form-group">
+      <label for="status" name="status" class="form-label">
+        <select class="form-select mt-2" name="status" id="status" aria-label="Default select example">
+          <option value="En attente">En attente</option>
+          <option value="Annuler">Annuler</option>
+          <option value="Confirmer">Confirmer</option>
+        </select>
+      </label>
+    </div>
+
+    <div class="form-action">
+        <button type="submit" class="btn-submit">Enregistrer</button>
+    </div>
+  </form>
+
 </div>
 {% endblock %}
 

@@ -1,5 +1,4 @@
 from django.shortcuts import render, redirect
-from allauth.account.forms import LoginForm
 from .forms import CustomSigninForm
 
 def custom_signin_view(request):
@@ -15,10 +14,3 @@ def custom_signin_view(request):
     return render(request, 'account/login.html', {'form': form})
 
 
-def user_update(request):
-    if request.method == 'POST':
-        form = CustomSigninForm(request.POST, instance=request.user)
-        if form.is_valid():
-            
-            return
-    return

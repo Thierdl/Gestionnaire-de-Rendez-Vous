@@ -1,0 +1,38 @@
+
+{% load i18n %}
+
+
+{% block content %}
+{% autoescape off %}
+
+{% blocktrans with site_name=current_site.name %}Bonjour, de {{ site_name }}!{% endblocktrans %}
+{% blocktrans %}Vous recevez cet e-mail car vous ou quelqu'un d'autre avez essayé de créer un
+compte en utilisant l'adresse e-mail :
+
+{{ email }}
+
+Cependant, un compte utilisant cette adresse e-mail existe déjà. Si vous
+l'avez oublié, veuillez utiliser la procédure de mot de passe oublié pour récupérer
+votre compte :
+
+{{ password_reset_url }}{% endblocktrans %}
+
+{% blocktrans with site_name=current_site.name site_domain=current_site.domain %}Merci d'utiliser {{ site_name }}!
+{{ site_domain }}{% endblocktrans %}
+
+{% endautoescape %}
+{% endblock content %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

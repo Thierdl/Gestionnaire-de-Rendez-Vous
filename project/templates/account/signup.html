@@ -42,8 +42,14 @@
                     <a class="text-center" href="{{ login_url }}">sign in</a>
                 </p>  
             </div>
+
+            <div class="form-group"></div>
+                {% if SOCIALACCOUNT_ENABLED %}
+                    {% include "socialaccount/snippets/login.html" with page_layout="entrance" %}
+                {% endif %}
+            </div>
         </div>
     </div>
-    
+</div> 
 {% endblock content %}
 

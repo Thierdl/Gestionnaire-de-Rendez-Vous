@@ -31,24 +31,6 @@ class AppointementViewSet(ModelViewSet):
         combined_queryset=queryset |  qs | qx
         return combined_queryset.order_by("-date")
     
-
-
-#    def get_queryset(self, *args, **kwargs):
-#        qs = Appointement.objects.all()
-#        qs = qs.filter(owner=self.request.user)
-#        return qs
-
-
-
-#    def get_queryset(self):
-#        queryset=Appointement.objects.all()
-#        return queryset
-    
-
-
-    
-
-   
     
     
 class PatientViewSet(ModelViewSet):

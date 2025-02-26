@@ -93,9 +93,7 @@ class TestPatientModels(TestCase):
 
     patient.delete()
 
-<<<<<<< HEAD
-    self.assertEqual(Patient.objects.count(), 0)
-=======
+
     self.assertEqual(Patient.objects.count(), 0)
 
 
@@ -106,4 +104,4 @@ class TestPatientModels(TestCase):
       # Vérifie que la réponse HTTP est 200 (OK)
       response = self.client.get(url)
       self.assertEqual(response.status_code, 200)
->>>>>>> deve
+

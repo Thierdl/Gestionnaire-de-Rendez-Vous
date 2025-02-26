@@ -7,7 +7,6 @@ from patient.models import Patient
 class UserSerializer(ModelSerializer):
     class Meta():
         model=User
-        
         fields = ['url', 'username', 'email', 'password', 'groups']
 
 
