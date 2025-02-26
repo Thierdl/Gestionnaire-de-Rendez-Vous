@@ -95,7 +95,7 @@ MIDDLEWARE = [
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 GOOGLE_CLIENT_ID = config('GOOGLE_CLIENT_ID')
-AUTH_GOOGLE_SECRET = config('GOOGLE_SECRET')
+GOOGLE_SECRET = config('GOOGLE_SECRET')
 
 
 SITE_ID = 1
@@ -122,6 +122,10 @@ SOCIALACCOUNT_PROVIDERS = {
             'access_type': 'online',
         },
         'OAUTH_PKCE_ENABLED': True,
+        'APP':{
+            'client_id':config('GOOGLE_CLIENT_ID',default=''),
+            'secret':config('GOOGLE_SECRET', default=''),
+        }
     }
 }
 
