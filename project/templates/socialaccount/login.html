@@ -1,20 +1,37 @@
-{% load allauth socialaccount %}
-{% get_providers as socialaccount_providers %}
-{% if socialaccount_providers %}
-    {% element provider_list %}
-        {% for provider in socialaccount_providers %}
-        <div class="btn btn-primary">
-            {% if provider.id == "openid" %}
-                {% for brand in provider.get_brands %}
-                    {% provider_login_url provider openid=brand.openid_url process=process as href %}
-                    {% element provider name=brand.name provider_id=provider.id href=href %}
-                    {% endelement %}
-                {% endfor %}
-            {% endif %}
-            {% provider_login_url provider process=process scope=scope auth_params=auth_params as href %}
-            {% element provider name=provider.name provider_id=provider.id href=href %}
-            {% endelement %}
-        </div>
-        {% endfor %}
+{% extends "base_generic.html" %}
+{% load i18n %}
+{% load allauth %}
+{% block head_title %}
+    {% trans "Sign In" %}
+{% endblock head_title %}
+
+
+{% block content %}
+<div class="container"></div>
+    <div class="shadow rounded col-md-7 m-auto p-5">
+    {% if process == "connect" %}
+        {% element h1 %}
+            {% blocktrans with provider.name as provider %}Connect {{ provider }}{% endblocktrans %}
+        {% endelement %}
+        {% element p %}
+            {% blocktrans with provider.name as provider %}Vous êtes sur le point de connecter un nouveau compte tiers depuis {{ provider }}.{% endblocktrans %}
+        {% endelement %}
+    {% else %}
+        {% element h1 %}
+            <h3 class="h1">{% blocktrans with provider.name as provider %}Connectez-vous via {{ provider }}{% endblocktrans %}</h3>
+        {% endelement %}
+        {% element p %}
+            {% blocktrans with provider.name as provider %}Vous êtes sur le point de vous connecter en utilisant un compte tiers de {{ provider }}.                                                                                                                                       .{% endblocktrans %}
+        {% endelement %}
+    {% endif %}
+    {% element form method="post" no_visible_fields=True %}
+        {% slot actions %}
+            {% csrf_token %}
+            <button type="submit" class="btn btn-success">Continuer</button>
+        {% endslot %}
     {% endelement %}
-{% endif %}
+    </div>
+</div>
+
+
+{% endblock content %}

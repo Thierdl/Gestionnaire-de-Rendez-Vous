@@ -1,13 +1,14 @@
 {% extends "base_generic.html" %}
 {% load i18n %}
 {% load allauth account %}
+{% load socialaccount %}
 
 {% block content %}
 {% include 'partiels/navbar.html' %}
 
 
 <div class="text-center mt-5">
-    <h1 class="h1">Sign In</h1>
+    <h1 class="h1">Login In</h1>
 </div>
 
 <div class="container">
@@ -39,22 +40,26 @@
                 </div>
             </form>
 
-            <div class="text-center mt-3">
+            <div class="">
                 <small>
                     <a href="{% url 'account_reset_password' %}" class="text-muted">Mot de passe oublié ?</a>
                 </small>
             </div>
 
-            <div class="text-center mt-3">
+            <div class="text-center mt-2">
                 <p>Vous n'avez pas de compte ? <a href="{% url 'account_signup' %}" class="text-primary">Inscrivez-vous</a>.</p>
             </div>
         {% endif %}
+            
 
         {% if SOCIALACCOUNT_ENABLED %}
-            <div class="mt-4">
+            <div class="form-group">
                 {% include "socialaccount/snippets/login.html" with page_layout="entrance" %}
             </div>
         {% endif %}
+
+        
+
     </div>
 </div>
 {% endblock %}

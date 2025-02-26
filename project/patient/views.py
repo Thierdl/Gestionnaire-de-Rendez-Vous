@@ -78,7 +78,7 @@ def delete_patient(request, id):
     return render(request, {"patients":patients})
 
 
-
+@login_required(login_url="/accounts/login/")
 def research_patient(request):
     form = ResearchForm(request.GET)
     patient=[]
@@ -88,5 +88,3 @@ def research_patient(request):
         patient=models.Patient.objects.filter(name__icontains=query)|models.Patient.objects.filter(firstname__icontains=query)
 
     return render(request, 'page/research.html', {"patient":patient, "form":form})
-
-

@@ -26,7 +26,7 @@ DATABASES = {
 
 SESSION_COOKIE_NAME = 'sessionid_{}'.format(os.getpid())
 
-DEBUG = False
+DEBUG = True
 
 
 ALLOWED_HOSTS = [
@@ -57,10 +57,13 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
-    #s'allauth.socialaccount.providers.google',
+    'allauth.socialaccount.providers.google',
     
 
 ]
+
+
+
 
 ACCOUNT_FORMS = {
     'signup':'account.forms.CustomSignupForm', 
@@ -86,7 +89,12 @@ MIDDLEWARE = [
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
+SOCIAL_AUTH_GOOGLE_CLIENT_ID = '74664223955-1rvp3ah45t19ib7tbla1c1m3s6cfblgo.apps.googleusercontent.com'
+SOCIAL_AUTH_GOOGLE_SECRET = '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'
+
+
 SITE_ID = 1
+
 
 AUTHENTICATION_BACKENDS = [
    
@@ -95,21 +103,44 @@ AUTHENTICATION_BACKENDS = [
     'allauth.account.auth_backends.AuthenticationBackend',  
     #'allauth.socialaccount.backends.google.GoogleOAuth2',
     
+    
 ]
 
+
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'SCOPE': [
+            'profile',
+            'email',
+        ],
+        'AUTH_PARAMS': {
+            'access_type': 'online',
+        },
+        'OAUTH_PKCE_ENABLED': True,
+    }
+}
+
+
+
+# Paramètres allauth
+
+
+#Client_ID="74664223955-1rvp3ah45t19ib7tbla1c1m3s6cfblgo.apps.googleusercontent.com"
+#Client_secret="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"
 
 ROOT_URLCONF = 'project.urls'
 
 
-
-ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
-ACCOUNT_EMAIL_REQUIRED = True   
+ACCOUNT_EMAIL_VERIFICATION = 'mandatory' #1
+ACCOUNT_EMAIL_REQUIRED = True   #~
 ACCOUNT_EMAIL_SUBJECT_PREFIX="Gestionnaire de Rendez-Vous"
 ACCOUNT_AUTHENTICATION_METHOD="email"
 ACCOUNT_USERNAME_REQUIRED=False
 ACCOUNT_CONFIRMATION_EMAIL_ON_GET=True
 
-
+SOCIALACCOUNT_ENABLED = True
+ACCOUNT_SIGNUP_EMAIL_ENTER_TWICE = True
+SOCIALACCOUNT_AUTO_SIGNUP = True  
 
 ACCOUNT_AUTHENTICATED_REDIRECT_URL = '/appoint/board' 
 LOGIN_REDIRECT_URL='/appoint/board' 
@@ -121,6 +152,8 @@ INTERNAL_IPS = [
     'localhost',  
 
 ]
+
+
 
 
 
