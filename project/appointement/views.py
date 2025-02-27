@@ -13,19 +13,33 @@ def index_views(request):
 
 @login_required(login_url="/accounts/login/")
 def confirmed(request):
-    confirmed=models.Appointement.objects.filter(patient__user=request.user, status="Confirmer")
+    confirmed=models.Appointement.objects.filter(
+                        patient__user=request.user, 
+                        status="Confirmer"
+                    )
+    
     return render(request, "list/confirmed.html", {"confirmed":confirmed})
+
 
 
 @login_required(login_url="/accounts/login/")
 def on_hold(request):
-    on_hold=models.Appointement.objects.filter(patient__user=request.user, status="En attente")
+    on_hold=models.Appointement.objects.filter(
+                        patient__user=request.user, 
+                        status="En attente"
+                    )
+    
     return render(request, "list/on_hold.html", {"on_hold":on_hold})
+
 
 
 @login_required(login_url="/accounts/login/")
 def cancel(request):
-    cancel=models.Appointement.objects.filter(patient__user=request.user, status="Annuler")
+    cancel=models.Appointement.objects.filter(
+                        patient__user=request.user, 
+                        status="Annuler"
+                    )
+    
     return render (request, "list/cancel.html", {"cancel":cancel})
 
 
@@ -34,9 +48,20 @@ def cancel(request):
 def dashboard_views(request):
     
     appoint=models.Appointement.objects.filter(patient__user=request.user)
-    on_hold=models.Appointement.objects.filter(patient__user=request.user, status="En attente")
-    confirmed=models.Appointement.objects.filter(patient__user=request.user, status="Confirmer")
-    cancel=models.Appointement.objects.filter(patient__user=request.user, status="Annuler")
+    on_hold=models.Appointement.objects.filter(
+                        patient__user=request.user, 
+                        status="En attente"
+                    )
+    
+    confirmed=models.Appointement.objects.filter(
+                        patient__user=request.user, 
+                        status="Confirmer"
+                    )
+    
+    cancel=models.Appointement.objects.filter(
+                        patient__user=request.user, 
+                        status="Annuler"
+                    )
 
     patient=Patient.objects.filter(user=request.user)
     
@@ -61,6 +86,7 @@ def list_appointement(request):
     appoint=models.Appointement.objects.filter(
                         patient_id__user=request.user 
                         ).order_by("-date")
+    
     patient=Patient.objects.filter(user=request.user)
     
     return render(request, 'appoint/list_appoint.html', {"appoint":appoint, "patient":patient})

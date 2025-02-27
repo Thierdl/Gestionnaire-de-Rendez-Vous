@@ -3,15 +3,14 @@ from pathlib import Path
 import os
 import environ
 from decouple import config
+
 env=environ.Env()   
-environ.Env.read_env()  
-
-
+environ.Env.read_env() 
 
 SECRET_KEY=env('SECRET_KEY')
-GOOGLE_CLIENT_ID = env('GOOGLE_CLIENT_ID')
-GOOGLE_SECRET = env('GOOGLE_SECRET')
 
+SOCIAL_AUTH_GOOGLE_CLIENT_ID = env('SOCIAL_AUTH_GOOGLE_CLIENT_ID')
+SOCIAL_AUTH_GOOGLE_SECRET = env('SOCIAL_AUTH_GOOGLE_SECRET')
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -19,7 +18,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': '/mnt/data/db.sqlite3',  
+        'NAME': '/mnt/data/db.sqlite3',   
         'OPTIONS': {
             'timeout': 20,
         }
@@ -30,12 +29,12 @@ DATABASES = {
 
 SESSION_COOKIE_NAME = 'sessionid_{}'.format(os.getpid())
 
-DEBUG = False
+DEBUG = True
 
 
 ALLOWED_HOSTS = [
     '127.0.0.1',
-    'localhost:8080',
+    'localhost:8000',
     'localhost',
 
     'gestionnaire-de-rendez-vous-1.onrender.com'
@@ -63,6 +62,7 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
+    
     
 
 ]
@@ -112,20 +112,12 @@ AUTHENTICATION_BACKENDS = [
 
 SOCIALACCOUNT_PROVIDERS = {
     'google': {
-        'SCOPE': [
-            'profile',
-            'email',
-        ],
-        'AUTH_PARAMS': {
-            'access_type': 'online',
-        },
+        'SCOPE': ['profile','email'],
+        'AUTH_PARAMS': {'access_type': 'online'},
         'OAUTH_PKCE_ENABLED': True,
-
     }
 }
 
-print('GOOGLE_CLIENT_ID:', config('GOOGLE_CLIENT_ID',default='Not Found'))
-print('GOOGLE_SECRET:', config('GOOGLE_SECRET',default='Not Found'))
 
 
 SOCIAL_AUTH_GOOGLE_OAUTH2_REDIRECT_URI = 'https://gestionnaire-de-rendez-vous-1.onrender.com/accounts/google/login/callback/'
@@ -148,7 +140,7 @@ ACCOUNT_AUTHENTICATED_REDIRECT_URL = '/appoint/board'
 LOGIN_REDIRECT_URL='/appoint/board' 
 ACCOUNT_LOGOUT_REDIRECT_URL = "/accounts/login/" 
 
-ACCOUNT_DEFAULT_HTTP_PROTOCOLE='https'
+#ACCOUNT_DEFAULT_HTTP_PROTOCOLE='https'
 
 
 INTERNAL_IPS = [
@@ -229,8 +221,12 @@ CSRF_COOKIE_SECURE = True
 CSRF_COOKIE_HTTPONLY = True
 CSRF_TRUSTED_ORIGINS = [
 
-    'http://localhost:8080',
+    'http://localhost:8000',
     'https://gestionnaire-de-rendez-vous-1.onrender.com'
 
 
 ]
+
+
+
+
