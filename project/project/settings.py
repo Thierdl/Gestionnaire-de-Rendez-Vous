@@ -120,7 +120,10 @@ SOCIALACCOUNT_PROVIDERS = {
         'SCOPE': ['profile','email'],
         'AUTH_PARAMS': {'access_type': 'online'},
         'OAUTH_PKCE_ENABLED': True,
-       
+        'APP': {
+            'client_id': env('GOOGLE_CLIENT_ID'),  
+            'secret': env('GOOGLE_SECRET'),  
+        },
     }
 }
 
