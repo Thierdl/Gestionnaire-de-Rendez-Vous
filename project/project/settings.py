@@ -10,11 +10,12 @@ environ.Env.read_env()
 SECRET_KEY=env('SECRET_KEY')
 
 
-#SOCIAL_AUTH_GOOGLE_CLIENT_ID = env('SOCIAL_AUTH_GOOGLE_CLIENT_ID')
-#SOCIAL_AUTH_GOOGLE_SECRET = env('SOCIAL_AUTH_GOOGLE_SECRET')
 
-GOOGLE_CLIENT_ID = os.getenv('GOOGLE_CLIENT_ID')
-GOOGLE_SECRET = os.getenv('GOOGLE_SECRET')
+GOOGLE_CLIENT_ID = env('GOOGLE_CLIENT_ID')
+GOOGLE_SECRET = env('GOOGLE_SECRET')
+
+#GOOGLE_CLIENT_ID = config('GOOGLE_CLIENT_ID')
+#GOOGLE_SECRET = config('GOOGLE_SECRET')
 
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -119,6 +120,7 @@ SOCIALACCOUNT_PROVIDERS = {
         'SCOPE': ['profile','email'],
         'AUTH_PARAMS': {'access_type': 'online'},
         'OAUTH_PKCE_ENABLED': True,
+       
     }
 }
 
