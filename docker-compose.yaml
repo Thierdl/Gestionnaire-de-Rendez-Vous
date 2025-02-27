@@ -4,7 +4,7 @@ services:
 
     build: .
 
-    #command: python3 manage.py runserver 0.0.0.0:800 0
+    #command: python3 manage.py runserver 0.0.0.0:8000
 
     volumes:
       - .:/app
