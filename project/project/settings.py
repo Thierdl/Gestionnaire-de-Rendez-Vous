@@ -14,9 +14,6 @@ SECRET_KEY=env('SECRET_KEY')
 GOOGLE_CLIENT_ID = env('GOOGLE_CLIENT_ID')
 GOOGLE_SECRET = env('GOOGLE_SECRET')
 
-#GOOGLE_CLIENT_ID = config('GOOGLE_CLIENT_ID')
-#GOOGLE_SECRET = config('GOOGLE_SECRET')
-
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -126,10 +123,6 @@ SOCIALACCOUNT_PROVIDERS = {
         },
     }
 }
-
-
-
-SOCIAL_AUTH_GOOGLE_OAUTH2_REDIRECT_URI = 'https://gestionnaire-de-rendez-vous-1.onrender.com/accounts/google/login/callback/'
 
 
 ROOT_URLCONF = 'project.urls'
